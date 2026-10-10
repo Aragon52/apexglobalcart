@@ -183,6 +183,7 @@ export default function Header() {
               className="h-10 w-full border border-border bg-background px-4 text-sm placeholder:text-muted-foreground focus:outline-none" />
             
             <button 
+              aria-label="Search"
               onClick={() => handleSearch()}
               disabled={isSearching}
               className="flex h-10 items-center justify-center rounded-r-md bg-primary px-4 text-primary-foreground hover:bg-primary/90 disabled:opacity-70">
@@ -275,6 +276,7 @@ export default function Header() {
           
           <button 
             type="submit" 
+            aria-label="Search"
             disabled={isSearching}
             className="flex h-9 items-center justify-center bg-primary px-3 text-primary-foreground disabled:opacity-70">
             {isSearching ? (
