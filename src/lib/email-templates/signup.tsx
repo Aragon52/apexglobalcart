@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { EmailFooter } from './email-footer'
 
 import {
   Body,
@@ -53,6 +54,7 @@ export const SignupEmail = ({
         <Text style={footer}>
           If you didn't create an account, you can safely ignore this email.
         </Text>
+        <EmailFooter />
       </Container>
     </Body>
   </Html>
