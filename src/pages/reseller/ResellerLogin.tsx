@@ -23,7 +23,6 @@ export default function ResellerLogin() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showSupport, setShowSupport] = useState(false);
-  const [resetSent, setResetSent] = useState(false);
 
   const referralCode = searchParams.get('ref') || '';
 
