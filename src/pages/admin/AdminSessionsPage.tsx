@@ -107,9 +107,10 @@ export default function AdminSessionsPage() {
 
   useEffect(() => {
     loadData(false);
+    // Refresh once a minute, only while the page is visible.
     const interval = setInterval(() => {
-      loadData(true);
-    }, 15000);
+      if (document.visibilityState === "visible") loadData(true);
+    }, 60000);
     return () => clearInterval(interval);
   }, [loadData]);
 
