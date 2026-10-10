@@ -28,6 +28,8 @@ import { ProductSyncProvider } from "@/context/ProductSyncContext";
 import { SeasonalThemeProvider } from "@/lib/seasonal-theme-context";
 import { ErrorBoundary, ErrorFallbackView } from "@/components/ErrorBoundary";
 import { initPWAInstall } from "@/lib/pwa-install";
+import { registerAppServiceWorker } from "@/lib/pwa-register";
+import { OnlineStatusNotifier } from "@/components/pwa/online-status-notifier";
 
 function NotFoundComponent() {
   return (
@@ -112,7 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/brand/icon-192.png" },
+      { rel: "apple-touch-icon", href: "/icons/apple-touch-180.png" },
       { rel: "manifest", href: "/manifest.json" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -147,33 +149,7 @@ function RootComponent() {
 
   useEffect(() => {
     initPWAInstall();
-    // Register the service worker only on real production domains — never in
-    // dev, iframes, or Lovable previews, where it would serve stale caches.
-    const host = window.location.hostname;
-    const isPreviewHost =
-      host.startsWith('id-preview--') ||
-      host.startsWith('preview--') ||
-      host === 'lovableproject.com' ||
-      host.endsWith('.lovableproject.com') ||
-      host.endsWith('.lovable.app') ||
-      host.endsWith('.lovableproject-dev.com') ||
-      host.endsWith('.beta.lovable.dev');
-    const swDisabled = new URLSearchParams(window.location.search).has('sw');
-    if (
-      'serviceWorker' in navigator &&
-      import.meta.env.PROD &&
-      window.self === window.top &&
-      !isPreviewHost &&
-      !swDisabled
-    ) {
-      navigator.serviceWorker.register('/sw.js').catch((error) => {
-        console.error('[v0] Service worker registration failed:', error);
-      });
-    } else if ('serviceWorker' in navigator && (isPreviewHost || swDisabled)) {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        registrations.forEach((registration) => registration.unregister());
-      });
-    }
+    registerAppServiceWorker();
   }, []);
   const structuredData = {
     "@context": "https://schema.org",
@@ -215,6 +191,7 @@ function RootComponent() {
                             <AdminAuthProvider>
                               <Toaster />
                               <Sonner />
+                              <OnlineStatusNotifier />
                               <ErrorBoundary boundaryName="router_outlet" fullScreen={false}>
                                 <Outlet />
                               </ErrorBoundary>
