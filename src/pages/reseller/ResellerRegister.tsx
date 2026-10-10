@@ -1,3 +1,4 @@
+import { GoogleButton } from "@/components/auth/google-button";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { useReseller } from "@/lib/reseller-context-hooks";
@@ -11,7 +12,7 @@ import SupportChatDialog from "@/components/messaging/SupportChatDialog";
 
 export default function ResellerRegister() {
   const loginBg = resellerBg;
-  const { register } = useReseller();
+  const { register, signInWithGoogle } = useReseller();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [searchParams] = useState(
@@ -250,6 +251,20 @@ export default function ResellerRegister() {
             )}
           </button>
         </form>
+        <div className="flex items-center gap-3"><span className="h-px flex-1 bg-white/20" /><span className="text-xs text-white/60">or</span><span className="h-px flex-1 bg-white/20" /></div>
+        <GoogleButton
+          label="Join with Google"
+          className="border-white/20 bg-white text-foreground hover:bg-white/90"
+          onClick={async () => {
+            setError("");
+            if (!referralCode.trim()) {
+              setError("To join as a reseller, please open the referral link from your admin first.");
+              return;
+            }
+            const result = await signInWithGoogle(referralCode);
+            if (result.error) setError(result.error);
+          }}
+        />
 
         <p className="text-center text-xs text-white/60">
           {t("auth.hasAccount", { defaultValue: "Already have an account?" })}{" "}

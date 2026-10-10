@@ -51,12 +51,10 @@ export default function AdminSignIn() {
     setError("");
     setSubmitting(true);
     try {
-      const { error: signInError } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: window.location.origin + adminPath("/admin")
-        }
-      });
+      const { signInWithGoogle } = await import("@/lib/google-sign-in");
+      const result = await signInWithGoogle(adminPath("/admin/auth/sign-in"));
+      const signInError = result.error ? new Error(result.error) : null;
+      if (!result.redirected) setSubmitting(false);
       if (signInError) throw signInError;
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Google sign-in failed.";
@@ -200,7 +198,7 @@ export default function AdminSignIn() {
                   fill="#EA4335"
                 />
               </svg>
-              Google
+              Continue with Google
             </Button>
 
             <div className="mt-6 pt-4 border-t border-border flex flex-col gap-2">

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { GoogleButton } from "@/components/auth/google-button";
 import { Link, useNavigate, useSearchParams } from "@/lib/router-compat";
 import { useReseller } from "@/lib/reseller-context-hooks";
 import SEO from "@/components/SEO";
@@ -12,7 +13,7 @@ import { toast } from "sonner";
 
 export default function ResellerLogin() {
   const loginBgImg = resellerBg;
-  const { login } = useReseller();
+  const { login, reseller, signInWithGoogle } = useReseller();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -53,6 +54,24 @@ export default function ResellerLogin() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  useEffect(() => {
+    const googleError = sessionStorage.getItem("reseller_google_error");
+    if (googleError) {
+      sessionStorage.removeItem("reseller_google_error");
+      setError(googleError);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (reseller) navigate(resellerPath("/reseller/dashboard"));
+  }, [reseller, navigate]);
+
+  const handleGoogle = async () => {
+    setError("");
+    const result = await signInWithGoogle();
+    if (result.error) setError(result.error);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -168,6 +187,8 @@ export default function ResellerLogin() {
             )}
           </button>
         </form>
+        <div className="flex items-center gap-3"><span className="h-px flex-1 bg-white/20" /><span className="text-xs text-white/60">or</span><span className="h-px flex-1 bg-white/20" /></div>
+        <GoogleButton onClick={handleGoogle} className="border-white/20 bg-white text-foreground hover:bg-white/90" />
 
         <p className="text-center text-xs text-white/60">
           {t("auth.forgotPassword", { defaultValue: "Forgot your password?" })}{" "}
