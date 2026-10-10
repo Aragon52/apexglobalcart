@@ -112,7 +112,7 @@ export default function Header() {
         <div className="flex max-w-full items-center justify-between gap-3 px-3 md:px-8 md:gap-px">
           {/* Left: hamburger + logo */}
           <div className="flex items-center gap-2 min-w-0">
-            <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="p-1 md:hidden flex-shrink-0">
+            <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="p-1 md:hidden flex-shrink-0" aria-label="Open menu">
               {showMobileMenu ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
             <Link to="/" className="relative flex items-start gap-1 sm:gap-1.5 min-w-0 overflow-hidden">
@@ -130,13 +130,13 @@ export default function Header() {
             <Link to="/categories?q=" className="p-1">
               <Search className="h-5 w-5 text-muted-foreground" />
             </Link>
-            <button onClick={() => setShowNotifications(true)} className="relative p-1">
+            <button aria-label="Notifications" onClick={() => setShowNotifications(true)} className="relative p-1">
               <Bell className="h-5 w-5 text-muted-foreground" />
               {unreadNotifs > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadNotifs}</span>
               )}
             </button>
-            <button onClick={() => setShowSupport(true)} className="relative p-1">
+            <button aria-label="Customer support" onClick={() => setShowSupport(true)} className="relative p-1">
               <Headset className="h-5 w-5 text-muted-foreground" />
               {unreadSupport > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadSupport}</span>
@@ -198,7 +198,7 @@ export default function Header() {
           <div className="hidden items-center gap-4 md:flex">
             {/* Language Switcher */}
             <div className="relative">
-              <button onClick={() => setShowLangDropdown(!showLangDropdown)} className="p-1 text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+              <button aria-label="Change language" onClick={() => setShowLangDropdown(!showLangDropdown)} className="p-1 text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
                 <Globe className="h-5 w-5" />
                 <span className="text-xs font-bold uppercase">{(i18n.language || 'en').split('@')[0].split('-')[0]}</span>
               </button>
@@ -224,7 +224,7 @@ export default function Header() {
                   <User className="h-4 w-4" />
                   {user?.name?.split(' ')[0]}
                 </Link>
-                <button onClick={logout} className="p-1 text-muted-foreground hover:text-destructive transition-colors" title="Sign out">
+                <button onClick={logout} className="p-1 text-muted-foreground hover:text-destructive transition-colors" title="Sign out" aria-label="Sign out">
                   <LogOut className="h-4 w-4" />
                 </button>
               </>
@@ -234,13 +234,13 @@ export default function Header() {
                 {t('nav.login')}
               </Link>
             )}
-            <button onClick={() => setShowNotifications(true)} className="relative p-1 hover:text-primary transition-colors">
+            <button aria-label="Notifications" onClick={() => setShowNotifications(true)} className="relative p-1 hover:text-primary transition-colors">
               <Bell className="h-5 w-5" />
               {unreadNotifs > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadNotifs}</span>
               )}
             </button>
-            <button onClick={() => setShowSupport(true)} className="relative p-1 hover:text-primary transition-colors">
+            <button aria-label="Customer support" onClick={() => setShowSupport(true)} className="relative p-1 hover:text-primary transition-colors">
               <Headset className="h-5 w-5" />
               {unreadSupport > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadSupport}</span>
