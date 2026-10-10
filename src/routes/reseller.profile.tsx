@@ -5,7 +5,7 @@ import ResellerProfile from "@/pages/reseller/ResellerProfile";
 export const Route = createFileRoute("/reseller/profile")({
   head: () => ({
     meta: [
-      { title: "User Portal — GCOS" },
+      { title: "User Portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

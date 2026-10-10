@@ -5,7 +5,7 @@ import SQCVirtualOrdersPage from "@/pages/admin/SQCVirtualOrdersPage";
 export const Route = createFileRoute("/admin/sla/sqc-orders")({
   head: () => ({
     meta: [
-      { title: "Admin portal — GCOS" },
+      { title: "Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

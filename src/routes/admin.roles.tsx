@@ -5,7 +5,7 @@ import { RolesPage } from "@/pages/admin/AdminPlaceholderPages";
 export const Route = createFileRoute("/admin/roles")({
   head: () => ({
     meta: [
-      { title: "Admin portal — GCOS" },
+      { title: "Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

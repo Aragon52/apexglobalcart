@@ -5,7 +5,7 @@ import Cart from "@/pages/Cart";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "User Portal — GCOS" },
+      { title: "User Portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

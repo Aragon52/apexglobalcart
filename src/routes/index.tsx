@@ -15,19 +15,19 @@ export const Route = createFileRoute("/")({
   },
   head: () => ({
     meta: [
-      { title: "GCOS — Global Commerce Online Store & Marketplace" },
+      { title: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
       {
         name: "description",
         content:
-          "Shop premium products across Electronics, Fashion, Home, Beauty, and Sports on GCOS. Discover verified reseller stores with secure worldwide checkout.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
       },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
-      { property: "og:title", content: "GCOS — Global Commerce Online Store & Marketplace" },
+      { property: "og:title", content: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
       {
         property: "og:description",
         content:
-          "Shop premium products across Electronics, Fashion, Home, Beauty, and Sports on GCOS. Discover verified reseller stores with secure worldwide checkout.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://apexglobalonlineshop.com/" },

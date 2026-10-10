@@ -5,7 +5,7 @@ import ContentManagementPage from "@/pages/admin/ContentManagementPage";
 export const Route = createFileRoute("/admin/content")({
   head: () => ({
     meta: [
-      { title: "Admin portal — GCOS" },
+      { title: "Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

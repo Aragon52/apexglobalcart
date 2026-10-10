@@ -5,7 +5,7 @@ import Register from "@/pages/Register";
 export const Route = createFileRoute("/cart/register")({
   head: () => ({
     meta: [
-      { title: "User Portal — GCOS" },
+      { title: "User Portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
