@@ -224,15 +224,6 @@ export default function Cart() {
         }).catch(err => console.error("[FCM] Failed to send push notification:", err));
       }
 
-      // 3. Update Reseller Balance if applicable
-      if (resellerId && resellerData) {
-        await supabase.from('reseller_profiles').update({
-          unpicked_balance: (resellerData.unpicked_balance || 0) + total,
-          total_orders: (resellerData.total_orders || 0) + 1,
-          updated_at: new Date().toISOString()
-        }).eq('id', resellerId);
-      }
-
       toast({
         title: t('common.orderPlaced'),
         description: t('common.orderPlacedDesc'),
