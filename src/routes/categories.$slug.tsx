@@ -5,7 +5,7 @@ import CategoryDetail from "@/pages/CategoryDetail";
 export const Route = createFileRoute("/categories/$slug")({
   head: () => ({
     meta: [
-      { title: "Explore Category Deals & Products | GCOS Marketplace" },
+      { title: "Explore Category Deals & Products | Apex Global Cart" },
       {
         name: "description",
         content:
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/categories/$slug")({
       },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
-      { property: "og:title", content: "Explore Category Deals & Products | GCOS Marketplace" },
+      { property: "og:title", content: "Explore Category Deals & Products | Apex Global Cart" },
       {
         property: "og:description",
         content:
