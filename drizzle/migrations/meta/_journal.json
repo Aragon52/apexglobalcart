@@ -50,6 +50,13 @@
       "when": 1791601668792,
       "tag": "0006_reseller_order_refs",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791604108150,
+      "tag": "0007_short_invite_codes",
+      "breakpoints": true
     }
   ]
 }
