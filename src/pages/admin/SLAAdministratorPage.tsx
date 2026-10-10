@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast as sonnerToast } from "sonner";
 import { buildReferralLink } from "@/lib/referral-link";
 import { Link as LinkIcon } from "lucide-react";
 import { useState, useMemo } from "react";
@@ -245,7 +245,7 @@ export default function SLAAdministratorPage() {
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     void navigator.clipboard.writeText(buildReferralLink(admin.inviteCode));
-                                    toast.success(`Referral link copied (code ${admin.inviteCode})`);
+                                    sonnerToast.success(`Referral link copied (code ${admin.inviteCode})`);
                                   }}
                                   className="ml-1.5 mt-0.5 inline-flex items-center gap-1 rounded bg-primary/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-primary hover:bg-primary/20"
                                   aria-label={`Copy referral link for ${admin.name}`}
