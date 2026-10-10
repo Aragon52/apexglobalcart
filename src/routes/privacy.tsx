@@ -1,19 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainLayout from "@/components/layout/MainLayout";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Duplicate address: send visitors and crawlers to the main page.
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy | Apex Global Cart Online Shop" },
-      { name: "description", content: "Privacy policy, data protection, and GDPR/CCPA/PDPA compliance for Apex Global Cart International Pte. Ltd." },
-      { property: "og:title", content: "Privacy Policy | Apex Global Cart Online Shop" },
-      { property: "og:description", content: "Privacy policy and international data protection standards at Apex Global Cart." },
-    ],
-  }),
-  component: () => (
-    <MainLayout>
-      <PrivacyPolicy />
-    </MainLayout>
-  ),
+  beforeLoad: () => {
+    throw redirect({ to: "/privacy-policy", statusCode: 301 });
+  },
 });

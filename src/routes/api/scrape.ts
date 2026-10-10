@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import * as cheerio from "cheerio";
 import * as PapaModule from "papaparse";
 import { z } from "zod";
 
@@ -82,6 +81,7 @@ export const Route = createFileRoute("/api/scrape")({
             }
           } else {
             const html = await response.text();
+            const cheerio = await import("cheerio");
             const $ = cheerio.load(html);
             $("img").each((_i, el) => {
               if (products.length >= 10) return;

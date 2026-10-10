@@ -4,7 +4,7 @@ import AdminSignIn from "@/pages/admin/AdminSignIn";
 export const Route = createFileRoute("/admin/auth/sign-in")({
   head: () => ({
     meta: [
-      { title: "Admin portal — Apex Global Cart" },
+      { title: "Sign in — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

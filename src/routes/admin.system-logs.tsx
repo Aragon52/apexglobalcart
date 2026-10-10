@@ -5,7 +5,7 @@ import { SystemLogsPage } from "@/pages/admin/AdminPlaceholderPages";
 export const Route = createFileRoute("/admin/system-logs")({
   head: () => ({
     meta: [
-      { title: "Admin portal — Apex Global Cart" },
+      { title: "System logs — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

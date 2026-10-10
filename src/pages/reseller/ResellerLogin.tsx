@@ -176,7 +176,7 @@ export default function ResellerLogin() {
             onClick={handleForgotPassword} 
             className="text-white hover:underline font-medium"
           >
-            {t("common.clickHere", { defaultValue: "Click here" })}
+            {t("auth.resetYourPassword", { defaultValue: "Reset your password" })}
           </button>
         </p>
         

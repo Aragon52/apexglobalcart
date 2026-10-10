@@ -5,7 +5,7 @@ import ResellerDashboard from "@/pages/reseller/ResellerDashboard";
 export const Route = createFileRoute("/reseller/dashboard")({
   head: () => ({
     meta: [
-      { title: "User Portal — Apex Global Cart" },
+      { title: "Dashboard — Reseller portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

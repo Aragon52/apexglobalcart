@@ -53,11 +53,12 @@ export default function Index() {
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
-        title="GCOS | Global Online Marketplace"
-        description="Shop premium products from verified sellers worldwide. Discover reseller stores, enjoy secure checkout, and get world-class customer support."
+        title="Apex Global Cart — Shop Verified Reseller Stores Worldwide"
+        description="Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery."
         canonical="https://apexglobalonlineshop.com/"
         ogType="website"
       />
+      <h1 className="sr-only">Apex Global Cart — shop verified reseller stores worldwide</h1>
       <SeasonalDecorations />
       <HeroBanner />
       <TrustSection />

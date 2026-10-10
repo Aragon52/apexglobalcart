@@ -1,19 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainLayout from "@/components/layout/MainLayout";
-import LegalNotice from "@/pages/LegalNotice";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Duplicate address: send visitors and crawlers to the main page.
 export const Route = createFileRoute("/legal")({
-  head: () => ({
-    meta: [
-      { title: "Legal Notice & Corporate Impressum | Apex Global Cart Online Shop" },
-      { name: "description", content: "Corporate registration, ACRA UEN, Tax ID, and legal representative info for Apex Global Cart International Pte. Ltd." },
-      { property: "og:title", content: "Legal Notice | Apex Global Cart Online Shop" },
-      { property: "og:description", content: "Official corporate impressum and legal disclosure for Apex Global Cart." },
-    ],
-  }),
-  component: () => (
-    <MainLayout>
-      <LegalNotice />
-    </MainLayout>
-  ),
+  beforeLoad: () => {
+    throw redirect({ to: "/legal-notice", statusCode: 301 });
+  },
 });
