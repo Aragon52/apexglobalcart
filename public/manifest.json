@@ -1,67 +1,106 @@
 {
   "id": "com.globalcart.customer",
-  "name": "GCOS - Global Online Marketplace",
-  "short_name": "GCOS",
-  "description": "Shop premium products from verified sellers worldwide. Discover reseller stores and enjoy secure checkout.",
+  "name": "Apex Global Cart",
+  "short_name": "Apex Cart",
+  "description": "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0B1B3F",
   "theme_color": "#0B1B3F",
   "orientation": "any",
   "lang": "en",
   "dir": "ltr",
   "gcm_sender_id": "103953800507",
-  "categories": ["shopping", "business"],
+  "categories": [
+    "shopping",
+    "business"
+  ],
   "screenshots": [
     {
-      "src": "/brand/icon-512.png",
-      "sizes": "512x512",
+      "src": "/screenshots/shop-wide.png",
+      "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "GCOS Marketplace"
+      "label": "Apex Global Cart shop on desktop"
     },
     {
-      "src": "/brand/icon-192.png",
-      "sizes": "192x192",
+      "src": "/screenshots/shop-narrow.png",
+      "sizes": "780x1688",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "GCOS Mobile"
+      "label": "Apex Global Cart shop on mobile"
     }
   ],
   "icons": [
     {
-      "src": "/brand/icon-16.svg",
-      "sizes": "16x16",
-      "type": "image/svg+xml",
+      "src": "/icons/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/brand/icon-32.svg",
-      "sizes": "32x32",
-      "type": "image/svg+xml",
+      "src": "/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/brand/icon-192.png",
+      "src": "/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/brand/icon-512.png",
+      "src": "/icons/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/brand/icon-192.png",
+      "src": "/icons/maskable-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/brand/icon-512.png",
+      "src": "/icons/maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -74,8 +113,8 @@
       "description": "Browse all products",
       "icons": [
         {
-          "src": "/brand/icon-192.png",
-          "sizes": "192x192",
+          "src": "/icons/icon-96.png",
+          "sizes": "96x96",
           "type": "image/png"
         }
       ]
@@ -86,8 +125,8 @@
       "description": "View your account",
       "icons": [
         {
-          "src": "/brand/icon-192.png",
-          "sizes": "192x192",
+          "src": "/icons/icon-96.png",
+          "sizes": "96x96",
           "type": "image/png"
         }
       ]
@@ -98,8 +137,8 @@
       "description": "View your shopping cart",
       "icons": [
         {
-          "src": "/brand/icon-192.png",
-          "sizes": "192x192",
+          "src": "/icons/icon-96.png",
+          "sizes": "96x96",
           "type": "image/png"
         }
       ]
