@@ -15,6 +15,13 @@
       "when": 1791600128088,
       "tag": "0001_tighten_products_settings_broadcasts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791600481701,
+      "tag": "0002_restrict_users_and_virtual_profiles",
+      "breakpoints": true
     }
   ]
 }
