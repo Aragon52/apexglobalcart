@@ -167,7 +167,7 @@ export default function Register() {
             <GoogleButton
               label="Sign up with Google"
               onClick={async () => {
-                const result = await signInWithGoogle("/login");
+                const result = await signInWithGoogle("/cart/login");
                 if (result.error) setError(result.error);
               }}
             />

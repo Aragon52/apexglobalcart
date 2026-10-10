@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleGoogle = async () => {
     setError("");
-    const result = await signInWithGoogle("/login");
+    const result = await signInWithGoogle("/cart/login");
     if (result.error) setError(result.error);
   };
 
