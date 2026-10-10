@@ -19,6 +19,7 @@ export interface ResellerProfile {
   shopSlug?: string;
   storeTheme: StoreTheme;
   level: string;
+  isSuspended?: boolean;
   verified: boolean;
   balance: number;
   pendingBalance: number;
@@ -71,6 +72,7 @@ export const LEVEL_PROFIT_MAP: Record<string, number> = {
 
 export interface LevelRequirement {
   level: string;
+  isSuspended?: boolean;
   profitMargin: number;
   productLimit: number;
   depositRequirement: number;
@@ -85,37 +87,29 @@ export const VIP_LEVELS: LevelRequirement[] = [
   { level: "VIP-5", profitMargin: 0.40, productLimit: 150, depositRequirement: 100000 },
 ];
 
-/** Normalizes any stored level label ("5", "VIP 1", "VIP-1") to the canonical "VIP-n" form. */
-export function normalizeLevel(label: unknown): string {
-  const digits = String(label ?? "").replace(/[^0-9]/g, "");
-  const num = digits ? Math.min(parseInt(digits, 10), VIP_LEVELS.length - 1) : 0;
-  return `VIP-${num}`;
-}
-
 export function getLevelByDeposit(
   netDeposit: number, 
   currentLevelLabel: string = "VIP-0",
-  registrationDate?: string | Date | null
+  registrationDate?: string | Date | null,
+  availableBalance?: number
 ): LevelRequirement {
   const cleanLevelStr = currentLevelLabel.replace(/[^0-9]/g, "");
   const currentLevelNum = cleanLevelStr ? parseInt(cleanLevelStr, 10) : 0;
   const isNew = isNewResellerPromotionRuleActive(registrationDate);
+  const qualificationAmount = Math.max(
+    Number(netDeposit || 0),
+    Number(availableBalance || 0)
+  );
   
   let metLevelIndex = 0;
   for (let i = VIP_LEVELS.length - 1; i >= 0; i--) {
-    if (netDeposit >= VIP_LEVELS[i].depositRequirement) {
+    if (qualificationAmount >= VIP_LEVELS[i].depositRequirement) {
       metLevelIndex = i;
       break;
     }
   }
   
-  // Only sanitize for NEWLY registered resellers on or after the effective date.
-  // Existing resellers who were registered before the cutoff and set as VIP-1 keep their level intact.
-  // The stored level (including levels set manually by admins) is always respected.
-  void isNew;
-  const sanitizedLevelNum = Math.min(Math.max(currentLevelNum, 0), VIP_LEVELS.length - 1);
-  
-  const newLevelIndex = Math.max(sanitizedLevelNum, metLevelIndex);
+  const newLevelIndex = Math.max(currentLevelNum, metLevelIndex);
   return VIP_LEVELS[newLevelIndex] || VIP_LEVELS[0];
 }
 

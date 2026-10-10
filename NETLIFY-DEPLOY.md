@@ -27,7 +27,7 @@ A single Netlify site serves the main shop, reseller portal, and admin portal us
 | Build command | `npm run build` |
 | Publish directory | `dist` |
 | Node version | `22` |
-| Nitro preset | `netlify` (pinned in `vite.config.ts`; produces `.netlify/functions-internal/server`) |
+| Nitro preset | `netlify` (pinned in `vite.config.ts`; produces a `server` function routed on `/*`) |
 
 ---
 
@@ -38,13 +38,13 @@ Go to **Site configuration → Environment variables** and add these.
 ### Values you can copy directly
 
 ```
-VITE_SUPABASE_URL=https://hreotqowulxpchyxjlai.supabase.co
-VITE_SUPABASE_PROJECT_ID=hreotqowulxpchyxjlai
+VITE_SUPABASE_URL=https://<your-project-id>.supabase.co
+VITE_SUPABASE_PROJECT_ID=<your-project-id>
 ```
 
 ### Values you must copy from Supabase
 
-1. Open https://supabase.com/dashboard/project/hreotqowulxpchyxjlai/settings/api
+1. Open https://supabase.com/dashboard/project/<your-project-id>/settings/api
 2. Copy the **anon public** key into:
 
 ```
@@ -80,12 +80,10 @@ If your DNS is managed outside Netlify, add these records:
 
 | Type | Name | Value | TTL |
 |---|---|---|---|
-| A | `@` (apex) | `75.2.60.5` (Netlify load balancer) | Auto |
+| A | `@` (apex) | Netlify apex IP from your site dashboard | Auto |
 | CNAME | `www` | your-netlify-site.netlify.app | Auto |
 | CNAME | `reseller` | your-netlify-site.netlify.app | Auto |
 | CNAME | `admin` | your-netlify-site.netlify.app | Auto |
-
-If DNS is on Cloudflare, every one of these records must be **DNS only** (grey cloud). If it is proxied (orange cloud), Cloudflare answers visitors with its own bot challenge and Netlify can't issue or renew SSL for that hostname.
 
 If you use Netlify DNS, Netlify creates the records automatically when you add the aliases.
 
@@ -93,11 +91,11 @@ If you use Netlify DNS, Netlify creates the records automatically when you add t
 
 ## 5. Redirect / rewrite rule (Netlify)
 
-No catch-all rewrite is needed. The Nitro `netlify` preset generates the `server` function with `path: "/*"` and `preferStatic: true`, so Netlify serves files from `dist/` first and sends every other request (on every domain alias) to the SSR app.
+No redirect rule is needed. The Nitro `netlify` preset builds a single `server` function that registers itself on `/*`, and static files in `dist` are served first.
 
-Do **not** add `/* /.netlify/functions-internal/server 200` to `public/_redirects`. `.netlify/functions-internal` is a build folder, not a URL. That rewrite is applied before the function and makes every page return Netlify's "Page not found".
+Do **not** add a catch-all rewrite such as `/*  /.netlify/functions/server  200` or `/*  /.netlify/functions-internal/server  200`. A function with its own route is not reachable at either of those URLs, so the rewrite makes every server-rendered page return Netlify's "Page not found".
 
-Also make sure **Site configuration → Build & deploy → Functions directory** is empty or `netlify/functions`. `netlify.toml` pins it to `netlify/functions`.
+Also do not add an `index.html` to `public/`: it would replace the server-rendered homepage with a blank page.
 
 ---
 
@@ -129,10 +127,10 @@ Path-based access still works on the main domain (`globalcart-onlineshop.com/adm
 ## Troubleshooting
 
 - **Portal loads the wrong layout** — check that the domain aliases are on the same Netlify site and that HTTPS is enabled for each alias.
-- **Every page shows Netlify's "Page not found"** — remove any `/* /.netlify/functions-internal/server 200` rule from `public/_redirects`; the server function already handles `/*`.
-- **A domain shows a Cloudflare "Just a moment..." page or a 403** — that hostname is proxied through Cloudflare. In Cloudflare DNS, set the `@`, `www`, `admin` and `reseller` records to **DNS only** (grey cloud) so traffic goes straight to Netlify.
-- **Pushes build fine but the live site doesn't change** — production deploys are locked. In Netlify, open **Deploys** and choose **Unlock to start auto publishing**, or publish the deploy you want.
-- **Build fails** — confirm Node 22 is selected. The `netlify` preset is pinned in `vite.config.ts`.
+- **Netlify "Page not found" on every page** — remove any catch-all `/*` rewrite from `netlify.toml` or `public/_redirects`; the server function routes itself.
+- **New deploys don't go live** — check **Deploys** in Netlify. If production shows "Auto publishing is locked", unlock it or publish the deploy you want.
+- **Cloudflare "Just a moment..." page or 403 on a domain** — the DNS record for that host is proxied through Cloudflare (orange cloud). In Cloudflare DNS, switch the apex, `www`, `admin`, and `reseller` records to **DNS only** (grey cloud) so traffic goes straight to Netlify.
+- **Build fails** — confirm Node 22 is selected and `NITRO_PRESET=netlify` is set.
 - **Supabase auth errors** — double-check `VITE_SUPABASE_PUBLISHABLE_KEY` matches the anon key exactly.
 
 ---

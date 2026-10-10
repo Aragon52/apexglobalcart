@@ -52,7 +52,7 @@ export function useUnifiedResellers() {
           supabase.from('sla_admins').select('*').limit(100),
           supabase.from('sla_staff').select('*').limit(100),
           supabase.from('retail_shops').select('*').limit(500),
-          supabase.from('orders').select('reseller_id, created_at').limit(1000)
+          supabase.from('orders').select('id, reseller_id, human_reseller_id, status, total_amount, total_cost, profit, profits, created_at').limit(5000)
         ]);
 
         const users = usersRes.data || [];
@@ -70,14 +70,46 @@ export function useUnifiedResellers() {
         retailShops.forEach(s => retailShopsMap.set(s.id, s));
         
         const latestOrderMap = new Map<string, string>();
+        const resellerOrderStatsMap = new Map<string, { unpicked: number; pending: number; earnings: number; count: number }>();
+        const getOrCreateStats = (key: string) => {
+          let s = resellerOrderStatsMap.get(key);
+          if (!s) {
+            s = { unpicked: 0, pending: 0, earnings: 0, count: 0 };
+            resellerOrderStatsMap.set(key, s);
+          }
+          return s;
+        };
+
         if (ordersRes && ordersRes.data) {
           ordersRes.data.forEach(o => {
-            if (o.reseller_id) {
+            const rId = String(o.reseller_id || '').trim().toLowerCase();
+            const hId = String(o.human_reseller_id || '').trim().toLowerCase();
+            const key = rId || hId;
+            if (key) {
               const oTime = o.created_at;
-              const existing = latestOrderMap.get(o.reseller_id);
+              const existing = latestOrderMap.get(key);
               if (!existing || new Date(oTime) > new Date(existing)) {
-                latestOrderMap.set(o.reseller_id, oTime);
+                latestOrderMap.set(key, oTime);
               }
+
+              const st = String(o.status || 'pending').trim().toLowerCase();
+              const amt = Number(o.total_amount ?? o.total_cost ?? 0);
+              const prf = Number(o.profit ?? o.profits ?? 0);
+
+              const statKeys = [key];
+              if (hId && hId !== key) statKeys.push(hId);
+
+              statKeys.forEach(k => {
+                const stat = getOrCreateStats(k);
+                stat.count += 1;
+                if (st === 'pending' || st === 'processing' || st === 'unpicked') {
+                  stat.unpicked += amt;
+                } else if (st === 'ongoing' || st === 'shipped' || st === 'in_progress') {
+                  stat.pending += amt;
+                } else if (st === 'completed') {
+                  stat.earnings += prf;
+                }
+              });
             }
           });
         }
@@ -171,14 +203,22 @@ export function useUnifiedResellers() {
 
           const totalDeposits = Number(profileData.total_deposits || 0);
           const totalWithdrawals = Number(profileData.total_withdrawals || 0);
+          const availableBalance = Number(profileData.balance || 0);
           const netDeposits = totalDeposits - totalWithdrawals;
           const regDate = (profileData.registration_date as string) || (userData.created_at as string) || '';
           
           const rawLvlStr = (retailShopData.level as string) || (profileData.level as string) || 'VIP-0';
           const explicitLvlNum = parseInt(String(rawLvlStr).match(/\d+/)?.[0] || '0', 10);
-          const resolvedLvlNum = calculateVipLevel(netDeposits, explicitLvlNum, regDate);
+          const qualificationFunds = Math.max(netDeposits, totalDeposits, availableBalance);
+          const resolvedLvlNum = calculateVipLevel(qualificationFunds, explicitLvlNum, regDate, availableBalance);
           const resolvedLevel = `VIP-${resolvedLvlNum}`;
           const resolvedProductLimit = (retailShopData.product_limit as number) || getVipProductLimit(resolvedLvlNum, regDate);
+
+          // Auto-heal dirty database entries in background if level has upgraded via balance/deposits
+          if (resolvedLvlNum > explicitLvlNum) {
+            supabase.from('reseller_profiles').update({ level: resolvedLevel, updated_at: new Date().toISOString() }).eq('id', profileData.id).then(() => {}, () => {});
+            supabase.from('retail_shops').upsert({ id: profileData.id, level: resolvedLevel, product_limit: resolvedProductLimit }, { onConflict: 'id' }).then(() => {}, () => {});
+          }
 
           return {
             id: profileData.id,
@@ -204,12 +244,51 @@ export function useUnifiedResellers() {
             resellerId: profileData.reseller_id as number,
             // Financial fields
             balance: Number(profileData.balance || 0),
-            pendingBalance: Number(profileData.pending_balance || 0),
-            unpickedBalance: Number(profileData.unpicked_balance || 0),
+            pendingBalance: (() => {
+              const pUid = String(profileData.id || '').toLowerCase();
+              const pNum = String(profileData.reseller_id || '').toLowerCase();
+              const stats = resellerOrderStatsMap.get(pUid) || (pNum ? resellerOrderStatsMap.get(pNum) : null);
+              const resolvedPending = stats && stats.count > 0 ? Number(stats.pending.toFixed(2)) : Number(profileData.pending_balance || 0);
+              const resolvedUnpicked = stats && stats.count > 0 ? Number(stats.unpicked.toFixed(2)) : Number(profileData.unpicked_balance || 0);
+              const resolvedEarnings = Number(Math.max(Number(profileData.total_earnings || 0), stats?.earnings || 0).toFixed(2));
+              const resolvedOrders = Math.max(Number(profileData.total_orders || 0), stats?.count || 0);
+
+              if (
+                Math.abs(Number(profileData.pending_balance || 0) - resolvedPending) > 0.01 ||
+                Math.abs(Number(profileData.unpicked_balance || 0) - resolvedUnpicked) > 0.01 ||
+                resolvedEarnings > Number(profileData.total_earnings || 0) ||
+                resolvedOrders > Number(profileData.total_orders || 0)
+              ) {
+                supabase.from('reseller_profiles').update({
+                  pending_balance: resolvedPending,
+                  unpicked_balance: resolvedUnpicked,
+                  total_earnings: resolvedEarnings,
+                  total_orders: resolvedOrders,
+                  updated_at: new Date().toISOString()
+                }).eq('id', profileData.id).then(() => {}, () => {});
+              }
+              return resolvedPending;
+            })(),
+            unpickedBalance: (() => {
+              const pUid = String(profileData.id || '').toLowerCase();
+              const pNum = String(profileData.reseller_id || '').toLowerCase();
+              const stats = resellerOrderStatsMap.get(pUid) || (pNum ? resellerOrderStatsMap.get(pNum) : null);
+              return stats && stats.count > 0 ? Number(stats.unpicked.toFixed(2)) : Number(profileData.unpicked_balance || 0);
+            })(),
             totalDeposits: totalDeposits,
             totalWithdrawals: totalWithdrawals,
-            totalEarnings: Number(profileData.total_earnings || 0),
-            totalOrders: Number(profileData.total_orders || 0),
+            totalEarnings: (() => {
+              const pUid = String(profileData.id || '').toLowerCase();
+              const pNum = String(profileData.reseller_id || '').toLowerCase();
+              const stats = resellerOrderStatsMap.get(pUid) || (pNum ? resellerOrderStatsMap.get(pNum) : null);
+              return Number(Math.max(Number(profileData.total_earnings || 0), stats?.earnings || 0).toFixed(2));
+            })(),
+            totalOrders: (() => {
+              const pUid = String(profileData.id || '').toLowerCase();
+              const pNum = String(profileData.reseller_id || '').toLowerCase();
+              const stats = resellerOrderStatsMap.get(pUid) || (pNum ? resellerOrderStatsMap.get(pNum) : null);
+              return Math.max(Number(profileData.total_orders || 0), stats?.count || 0);
+            })(),
             bankInfo: bankInfoVal as { bankName: string; accountName: string; accountNumber: string } | undefined,
             usdtAddress: usdtAddressVal,
             lastActive
