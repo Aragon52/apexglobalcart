@@ -130,21 +130,16 @@ export default function ARSPaymentInfoPage() {
       if (updateErr) throw updateErr;
 
       // Log a record in deposit_requests table for tracking
-      try {
-        await supabase.from('deposit_requests').insert({
-          resellerId: resellerId,
-          resellerDocId: resellerId,
-          resellerName: resellerName,
-          amount: amount,
-          status: 'Approved',
-          method: 'Bonus Match',
-          proofImage: 'bonus_topup',
-          remark: remark || `Deposit Match Bonus ($${amount})`,
-          createdAt: new Date().toISOString()
-        });
-      } catch (err) {
-        console.warn("Notice: Failed to insert deposit_requests audit log:", err);
-      }
+      // Only real columns: unknown ones made this record fail silently before.
+      const { error: logErr } = await supabase.from('deposit_requests').insert({
+        resellerDocId: resellerId,
+        amount: amount,
+        status: 'Approved',
+        screenshot: 'bonus_topup',
+        remark: remark || `Deposit Match Bonus ($${amount})`,
+        createdAt: new Date().toISOString()
+      });
+      if (logErr) console.error("Failed to record bonus deposit:", logErr);
 
       return { resellerName, amount, newBalance };
     },
