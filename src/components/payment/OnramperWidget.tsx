@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef } from "react";
+import { notifyFinancialRequest } from "@/services/push-service";
 import { 
   CreditCard, ShieldCheck, Zap, RefreshCw, ExternalLink, Sparkles, 
   CheckCircle2, AlertCircle, Headphones, Send, Upload, FileCheck, Globe, Code
@@ -203,15 +204,16 @@ export default function OnramperWidget({
         walletAddress || "CS Assigned Address"
       }${txRef ? ` | Ref/Order ID: ${txRef}` : ""}`;
 
-      const { error } = await supabase.from("deposit_requests").insert({
+      const { data: inserted, error } = await supabase.from("deposit_requests").insert({
         resellerDocId: resellerDocId,
         amount: currentAmount,
         status: "Pending",
         screenshot: screenshot || "",
         remark: remarkDetails,
-      });
+      }).select("id").single();
 
       if (error) throw error;
+      void notifyFinancialRequest("deposit_requests", inserted?.id);
 
       setSubmittedSuccess(true);
       toast({

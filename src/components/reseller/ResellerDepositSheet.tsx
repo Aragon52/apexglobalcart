@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { notifyFinancialRequest } from "@/services/push-service";
 import { Copy, Wallet, Headphones, AlertTriangle, Upload, ImageIcon, Zap, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -141,16 +142,19 @@ export default function ResellerDepositSheet({ open, onOpenChange, initialAmount
 
       const proofImageUrl = screenshot || "";
 
-      const { error } = await supabase
+      const { data: inserted, error } = await supabase
         .from("deposit_requests")
         .insert({
           resellerDocId: reseller.id,
           amount: amount,
           status: "Pending",
           screenshot: proofImageUrl,
-        });
+        })
+        .select("id")
+        .single();
 
       if (error) throw error;
+      void notifyFinancialRequest("deposit_requests", inserted?.id);
 
       toast({ title: t("reseller.depositSubmitted"), description: `$${depositAmount} ${t("reseller.depositRequestSent")}` });
       setDepositAmount("");

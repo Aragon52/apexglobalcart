@@ -3,9 +3,3 @@ importScripts("https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-com
 
 firebase.initializeApp(Object.fromEntries(new URL(self.location).searchParams));
 firebase.messaging();
-
-self.addEventListener("notificationclick", (event) => {
-  event.notification.close();
-  const link = event.notification?.data?.FCM_MSG?.data?.path || "/";
-  event.waitUntil(clients.openWindow(link));
-});
