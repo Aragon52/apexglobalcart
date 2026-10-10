@@ -5,7 +5,7 @@ import ResellerShop from "@/pages/reseller/ResellerShop";
 export const Route = createFileRoute("/reseller/shop")({
   head: () => ({
     meta: [
-      { title: "Reseller Shop Management — Apex Global Cart" },
+      { title: "Reseller Shop Management — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

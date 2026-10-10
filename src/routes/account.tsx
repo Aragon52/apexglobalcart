@@ -5,7 +5,7 @@ import Account from "@/pages/Account";
 export const Route = createFileRoute("/account")({
   head: () => ({
     meta: [
-      { title: "Account — User portal — Apex Global Cart" },
+      { title: "Account — User portal — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

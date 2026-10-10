@@ -6,7 +6,7 @@ import { RoleGuard } from "@/components/admin/RoleGuard";
 export const Route = createFileRoute("/admin/ars/withdrawal")({
   head: () => ({
     meta: [
-      { title: "Withdrawal — Admin portal — Apex Global Cart" },
+      { title: "Withdrawal — Admin portal — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

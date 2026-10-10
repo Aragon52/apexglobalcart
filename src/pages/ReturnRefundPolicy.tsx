@@ -8,8 +8,8 @@ export default function ReturnRefundPolicy() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Return & Refund Policy - Demo Project Disclosure - Apex Global Cart"
-        description="Review return eligibility, refund processes, buyer guarantee workflows, and demo environment notices for Apex Global Cart."
+        title="Return & Refund Policy - Demo Project Disclosure - Apex Global Onlineshop"
+        description="Review return eligibility, refund processes, buyer guarantee workflows, and demo environment notices for Apex Global Onlineshop."
         canonical="https://apexglobalonlineshop.com/returns-refunds"
         breadcrumbs={[
           { name: "Home", item: "/" },

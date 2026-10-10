@@ -5,7 +5,7 @@ import AdminMessengerPage from "@/pages/admin/AdminMessengerPage";
 export const Route = createFileRoute("/admin/messenger")({
   head: () => ({
     meta: [
-      { title: "Messenger — Admin portal — Apex Global Cart" },
+      { title: "Messenger — Admin portal — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

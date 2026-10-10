@@ -49,7 +49,7 @@ export default function ContactUs() {
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <SEO
         title="Contact Customer Support & Official Inquiry Desk"
-        description="Get 24/7 assistance from Apex Global Cart International Pte. Ltd. Contact our support team for order tracking, payment verification, and reseller inquiries."
+        description="Get 24/7 assistance from Apex Global Onlineshop International Pte. Ltd. Contact our support team for order tracking, payment verification, and reseller inquiries."
         canonical="https://apexglobalonlineshop.com/contact"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -119,7 +119,7 @@ export default function ContactUs() {
                 <div>
                   <div className="font-semibold text-foreground">Registered Corporate Office</div>
                   <div className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                    Apex Global Cart International Pte. Ltd.<br />
+                    Apex Global Onlineshop International Pte. Ltd.<br />
                     30 Cecil Street #21-05<br />
                     Prudential Tower, Singapore 048716
                   </div>

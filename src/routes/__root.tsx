@@ -84,27 +84,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { name: "apple-mobile-web-app-title", content: "Apex Global Cart" },
-      { title: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
+      { name: "apple-mobile-web-app-title", content: "Apex Global Onlineshop" },
+      { title: "Apex Global Onlineshop - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         name: "description",
         content:
-          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery.",
       },
       { name: "keywords", content: "online marketplace, global shopping, ecommerce, products, reseller portal" },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
+      { property: "og:title", content: "Apex Global Onlineshop - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         property: "og:description",
         content:
-          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://apexglobalonlineshop.com/" },
       { property: "og:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Apex Global Cart online marketplace" },
+      { property: "og:image:alt", content: "Apex Global Onlineshop online marketplace" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
     ],
@@ -156,7 +156,7 @@ function RootComponent() {
     "@graph": [
       {
         "@type": "Organization",
-        name: "Apex Global Cart",
+        name: "Apex Global Onlineshop",
         url: "https://apexglobalonlineshop.com/",
         logo: "https://apexglobalonlineshop.com/brand/logo-header.svg",
         contactPoint: {
@@ -167,7 +167,7 @@ function RootComponent() {
       },
       {
         "@type": "WebSite",
-        name: "Apex Global Cart",
+        name: "Apex Global Onlineshop",
         url: "https://apexglobalonlineshop.com/",
         description: "Global online marketplace for products, categories, and reseller stores.",
       },

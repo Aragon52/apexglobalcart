@@ -6,8 +6,8 @@ export default function PrivacyPolicy() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Privacy Policy & Demo Project Disclosure - Apex Global Cart"
-        description="Apex Global Cart International Pte. Ltd. Privacy Policy, Data Protection Principles, and Demonstration / Business Investor Pilot Scope Notice."
+        title="Privacy Policy & Demo Project Disclosure - Apex Global Onlineshop"
+        description="Apex Global Onlineshop International Pte. Ltd. Privacy Policy, Data Protection Principles, and Demonstration / Business Investor Pilot Scope Notice."
         canonical="https://apexglobalonlineshop.com/privacy"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
             <span>Demonstration Project &amp; Investor Showcase Disclosure</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            This entire application, platform, and operating environment (Apex Global Cart Online Shop / GCOS) is built and maintained solely as a comprehensive <strong>demonstration project and technology pilot</strong>. Its primary objective is to demonstrate, evaluate, and introduce a complete, operating headless e-commerce application architecture and multi-tier operational line-ups for the purpose of <strong>seeking business investor partnerships, strategic collaborators, and commercial evaluations</strong>.
+            This entire application, platform, and operating environment (Apex Global Onlineshop Online Shop / GCOS) is built and maintained solely as a comprehensive <strong>demonstration project and technology pilot</strong>. Its primary objective is to demonstrate, evaluate, and introduce a complete, operating headless e-commerce application architecture and multi-tier operational line-ups for the purpose of <strong>seeking business investor partnerships, strategic collaborators, and commercial evaluations</strong>.
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed">
             <strong>Simulated Environment &amp; Non-Financial Notice:</strong> Interacting with this platform involves no real financial transactions, binding commercial sales, or live monetary deals. All data processed during testing and demonstrations is strictly handled in accordance with privacy safeguards outlined below.
@@ -39,7 +39,7 @@ export default function PrivacyPolicy() {
         <div className="p-4 rounded-xl border border-primary/20 bg-primary/5 flex items-start gap-3 text-xs text-muted-foreground leading-relaxed">
           <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-foreground">Commitment to Data Sovereignty:</strong> Apex Global Cart International Pte. Ltd. respects user privacy and enforces technical principles aligned with the General Data Protection Regulation (GDPR, EU 2016/679), the California Consumer Privacy Act (CCPA), and the Singapore Personal Data Protection Act (PDPA 2012).
+            <strong className="text-foreground">Commitment to Data Sovereignty:</strong> Apex Global Onlineshop International Pte. Ltd. respects user privacy and enforces technical principles aligned with the General Data Protection Regulation (GDPR, EU 2016/679), the California Consumer Privacy Act (CCPA), and the Singapore Personal Data Protection Act (PDPA 2012).
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
               The data controller responsible for personal information and demonstration records is:
             </p>
             <div className="bg-card border border-border p-4 rounded-xl text-xs space-y-1 text-muted-foreground">
-              <p><strong className="text-foreground">Company / Organization:</strong> Apex Global Cart International Pte. Ltd.</p>
+              <p><strong className="text-foreground">Company / Organization:</strong> Apex Global Onlineshop International Pte. Ltd.</p>
               <p><strong className="text-foreground">Registration Reference (UEN):</strong> 202301984M</p>
               <p><strong className="text-foreground">Corporate Office:</strong> 30 Cecil Street #21-05, Prudential Tower, Singapore 048716</p>
               <p><strong className="text-foreground">Data Protection &amp; Investor Desk:</strong> dpo@globalcart-onlineshop.com / legal@globalcart-onlineshop.com</p>
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
 
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">Google sign-in and Google user data</h2>
-            <p className="text-sm text-muted-foreground">If you choose "Continue with Google", Apex Global Cart receives only your <strong>name, email address and profile picture</strong> from your Google account (the openid, email and profile scopes). We use this information only to create your account, sign you in and show your name and picture in your profile.</p>
+            <p className="text-sm text-muted-foreground">If you choose "Continue with Google", Apex Global Onlineshop receives only your <strong>name, email address and profile picture</strong> from your Google account (the openid, email and profile scopes). We use this information only to create your account, sign you in and show your name and picture in your profile.</p>
             <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
               <li>We do not access your Gmail, contacts, Drive, calendar or any other Google data.</li>
               <li>We do not sell, rent or share Google user data with third parties, and we do not use it for advertising.</li>

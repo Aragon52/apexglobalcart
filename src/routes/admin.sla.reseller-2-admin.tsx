@@ -6,7 +6,7 @@ import { RoleGuard } from "@/components/admin/RoleGuard";
 export const Route = createFileRoute("/admin/sla/reseller-2-admin")({
   head: () => ({
     meta: [
-      { title: "Reseller to admin — Admin portal — Apex Global Cart" },
+      { title: "Reseller to admin — Admin portal — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
