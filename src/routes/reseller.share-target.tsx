@@ -4,7 +4,7 @@ import ResellerShareTarget from "@/pages/reseller/ResellerShareTarget";
 export const Route = createFileRoute("/reseller/share-target")({
   head: () => ({
     meta: [
-      { title: "Share target — User portal — Apex Global Cart" },
+      { title: "Share target — Reseller portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
