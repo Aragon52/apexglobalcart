@@ -11,7 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function FAQ() {
   const faqs = [
     {
-      q: "What is the purpose of this Apex Global Cart Online Shop (GCOS) application?",
+      q: "What is the purpose of this Apex Global Cart Online Shop  application?",
       a: "This entire environment is developed and maintained as a comprehensive demonstration project and technology pilot. Its core purpose is to introduce and showcase a complete, fully operating headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups (such as ARS, ACH, and SLA governance) to prospective business partners and investors.",
     },
     {

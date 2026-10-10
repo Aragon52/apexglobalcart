@@ -107,7 +107,7 @@ export default function ResellerLogin() {
     >
       <SEO
         title="Reseller Sign In"
-        description="Sign in to your GCOS Reseller Portal to manage your shop, fulfill orders, customize themes, and track earnings."
+        description="Sign in to your Apex Global Cart Reseller Portal to manage your shop, fulfill orders, customize themes, and track earnings."
         portal="reseller"
         noindex={false}
       />

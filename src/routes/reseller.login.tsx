@@ -20,6 +20,11 @@ export const Route = createFileRoute("/reseller/login")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://apexglobalonlineshop.com/reseller/login" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://apexglobalonlineshop.com/brand/og-reseller.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Apex Global Cart Reseller Portal" },
+      { name: "twitter:image", content: "https://apexglobalonlineshop.com/brand/og-reseller.png" },
     ],
     links: [
       { rel: "canonical", href: "https://apexglobalonlineshop.com/reseller/login" },

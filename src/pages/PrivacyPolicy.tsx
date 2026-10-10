@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
             <span>Demonstration Project &amp; Investor Showcase Disclosure</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            This entire application, platform, and operating environment (Apex Global Cart Online Shop / GCOS) is built and maintained solely as a comprehensive <strong>demonstration project and technology pilot</strong>. Its primary objective is to demonstrate, evaluate, and introduce a complete, operating headless e-commerce application architecture and multi-tier operational line-ups for the purpose of <strong>seeking business investor partnerships, strategic collaborators, and commercial evaluations</strong>.
+            This entire application, platform, and operating environment (Apex Global Cart Online Shop) is built and maintained solely as a comprehensive <strong>demonstration project and technology pilot</strong>. Its primary objective is to demonstrate, evaluate, and introduce a complete, operating headless e-commerce application architecture and multi-tier operational line-ups for the purpose of <strong>seeking business investor partnerships, strategic collaborators, and commercial evaluations</strong>.
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed">
             <strong>Simulated Environment &amp; Non-Financial Notice:</strong> Interacting with this platform involves no real financial transactions, binding commercial sales, or live monetary deals. All data processed during testing and demonstrations is strictly handled in accordance with privacy safeguards outlined below.
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
 
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">Google sign-in and Google user data</h2>
-            <p className="text-sm text-muted-foreground">If you choose "Continue with Google", Apex Global Onlineshop (Apex Global Cart) receives only your <strong>name, email address and profile picture</strong> from your Google account (the openid, email and profile scopes). We use this information only to create your account, sign you in and show your name and picture in your profile.</p>
+            <p className="text-sm text-muted-foreground">If you choose "Continue with Google", Apex Global Cart receives only your <strong>name, email address and profile picture</strong> from your Google account (the openid, email and profile scopes). We use this information only to create your account, sign you in and show your name and picture in your profile.</p>
             <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
               <li>We do not access your Gmail, contacts, Drive, calendar or any other Google data.</li>
               <li>We do not sell, rent or share Google user data with third parties, and we do not use it for advertising.</li>

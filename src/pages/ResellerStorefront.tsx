@@ -146,7 +146,7 @@ export default function ResellerStorefront() {
       try {
         await navigator.share({
           title: shop?.shopName || "Reseller Store",
-          text: `Check out ${shop?.shopName || "this store"} on GCOS!`,
+          text: `Check out ${shop?.shopName || "this store"} on Apex Global Cart!`,
           url,
         });
         return;
@@ -284,7 +284,7 @@ export default function ResellerStorefront() {
         title={`${shop.shopName || "Reseller Store"} | Verified Reseller Store`}
         description={
           shop.shopDescription ||
-          `Shop exclusive products curated by ${shop.shopName} on GCOS Global Marketplace. Fast worldwide shipping & buyer protection.`
+          `Shop exclusive products curated by ${shop.shopName} on Apex Global Cart. Fast worldwide shipping & buyer protection.`
         }
         ogImage={shop.shopHeroBanner || shop.shopLogo}
         ogImageAlt={shop.shopName}

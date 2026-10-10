@@ -100,13 +100,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Apex Global Cart" },
       { property: "og:url", content: "https://apexglobalonlineshop.com/" },
-      { property: "og:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Apex Global Cart online marketplace" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
     ],
     links: [
       {

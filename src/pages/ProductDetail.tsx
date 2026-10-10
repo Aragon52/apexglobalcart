@@ -187,7 +187,7 @@ export default function ProductDetail() {
     <div className="min-h-screen">
       <SEO
         title={adjustedProduct.name}
-        description={adjustedProduct.description || `${adjustedProduct.name} - Shop at GCOS Global Marketplace with fast delivery and buyer protection.`}
+        description={adjustedProduct.description || `${adjustedProduct.name} - Shop at Apex Global Cart with fast delivery and buyer protection.`}
         ogType="product"
         ogImage={adjustedProduct.image}
         ogImageAlt={adjustedProduct.name}
@@ -197,7 +197,7 @@ export default function ProductDetail() {
           price: adjustedProduct.price,
           currency: "USD",
           availability: adjustedProduct.inStock !== false ? "InStock" : "OutOfStock",
-          brand: adjustedProduct.brand || "GCOS Verified",
+          brand: adjustedProduct.brand || "Apex Global Cart Verified",
           sku: adjustedProduct.id,
           category: adjustedProduct.category || "Uncategorized",
           rating: avgRating,
