@@ -298,7 +298,7 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
                 localStorage.removeItem("pending_auth_portal");
               }
 
-              const autoRegRes = await fetch("/api/register-reseller", {
+              const autoRegRes = await fetch("/api/public/register-reseller", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -587,7 +587,7 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
   const register = async (data: { firstName: string; lastName: string; emailOrPhone: string; password: string; shopName?: string; referralCode?: string; isPhone?: boolean }): Promise<{ success: boolean; error?: string }> => {
     try {
       const normalizedEmail = data.isPhone ? data.emailOrPhone.trim() : data.emailOrPhone.toLowerCase().trim();
-      const response = await fetch("/api/register-reseller", {
+      const response = await fetch("/api/public/register-reseller", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
