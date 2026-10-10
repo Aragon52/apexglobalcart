@@ -29,6 +29,13 @@
       "when": 1791600496804,
       "tag": "0003_harden_functions_and_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791600855165,
+      "tag": "0004_bind_upload_updates_to_owner",
+      "breakpoints": true
     }
   ]
 }
