@@ -1,19 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainLayout from "@/components/layout/MainLayout";
-import AboutUs from "@/pages/AboutUs";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Duplicate address: send visitors and crawlers to the main page.
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Us | Apex Global Cart Online Shop" },
-      { name: "description", content: "Corporate profile, registration credentials, and security standards for Apex Global Cart International Pte. Ltd." },
-      { property: "og:title", content: "About Us | Apex Global Cart Online Shop" },
-      { property: "og:description", content: "Learn about Apex Global Cart International Pte. Ltd. (GCOS) and our verified marketplace standards." },
-    ],
-  }),
-  component: () => (
-    <MainLayout>
-      <AboutUs />
-    </MainLayout>
-  ),
+  beforeLoad: () => {
+    throw redirect({ to: "/about-us", statusCode: 301 });
+  },
 });
