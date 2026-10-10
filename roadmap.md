@@ -14,3 +14,6 @@
 - [ ] Connect existing Supabase project: Project Settings → Connectors → Supabase (keeps current sign-ins and data)
 - [ ] Provide SUPABASE_SERVICE_ROLE_KEY via the Lovable secret form (needed by /api/admin/* endpoints)
 - [ ] Confirm whether external callers hit /api/sync (scraper sync jobs) and whether /.well-known/assetlinks.json is needed
+
+## Google sign-in (blocked)
+- [ ] Google sign-in for shop, reseller and admin portals (see .lovable/plan/google-sign-in-for-all-portals-plan-only-2026-10-10.md). Reseller referral code hidden and prefilled from the admin's link; no link = registration refused. Blocked until the database is separated from the live Supabase project.
