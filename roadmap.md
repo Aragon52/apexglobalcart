@@ -17,3 +17,4 @@
 
 ## Google sign-in (blocked)
 - [ ] Google sign-in for shop, reseller and admin portals (see .lovable/plan/google-sign-in-for-all-portals-plan-only-2026-10-10.md). Reseller referral code hidden and prefilled from the admin's link; no link = registration refused. Blocked until the database is separated from the live Supabase project.
+- [ ] Clone database into Lovable built-in database (plan: .lovable/plan/clone-the-database-into-lovable-s-built-in-database-2026-10-10.md). Blocked: user must remix this project and continue in the copy.
