@@ -13,7 +13,7 @@ export default function Staging() {
     <div className="container mx-auto py-12 px-4 max-w-6xl">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
-          Apex Global Cart Online Shop
+          Apex Global Onlineshop Online Shop
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Welcome to the staging environment. Explore the three distinct portals and their current working features.

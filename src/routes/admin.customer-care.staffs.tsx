@@ -5,7 +5,7 @@ import SLAUserPage from "@/pages/admin/SLAUserPage";
 export const Route = createFileRoute("/admin/customer-care/staffs")({
   head: () => ({
     meta: [
-      { title: "Staffs — Admin portal — Apex Global Cart" },
+      { title: "Staffs — Admin portal — Apex Global Onlineshop" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

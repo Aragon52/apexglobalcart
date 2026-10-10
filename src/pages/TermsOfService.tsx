@@ -6,8 +6,8 @@ export default function TermsOfService() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Terms of Service & Demo Project Agreement - Apex Global Cart"
-        description="Review the terms of use, demonstration project guidelines, investor showcase framework, and operating agreement for Apex Global Cart International Pte. Ltd."
+        title="Terms of Service & Demo Project Agreement - Apex Global Onlineshop"
+        description="Review the terms of use, demonstration project guidelines, investor showcase framework, and operating agreement for Apex Global Onlineshop International Pte. Ltd."
         canonical="https://apexglobalonlineshop.com/terms"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -40,14 +40,14 @@ export default function TermsOfService() {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">1. Agreement to Terms</h2>
             <p className="text-muted-foreground">
-              By accessing, browsing, testing, or reviewing the Apex Global Cart platform (Apex Global Cart Online Shop / GCOS), you acknowledge and agree to be bound by these Terms of Service and user agreements governing this demonstration environment operated under <strong>Apex Global Cart International Pte. Ltd.</strong> (Registration UEN: 202301984M).
+              By accessing, browsing, testing, or reviewing the Apex Global Onlineshop platform (Apex Global Onlineshop Online Shop / GCOS), you acknowledge and agree to be bound by these Terms of Service and user agreements governing this demonstration environment operated under <strong>Apex Global Onlineshop International Pte. Ltd.</strong> (Registration UEN: 202301984M).
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">2. Demonstration Purpose &amp; Operating Architecture</h2>
             <p className="text-muted-foreground">
-              Apex Global Cart exhibits a premier multi-merchant, headless e-commerce system featuring:
+              Apex Global Onlineshop exhibits a premier multi-merchant, headless e-commerce system featuring:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-xs text-muted-foreground">
               <li><strong>Headless Storefront &amp; Multi-Vendor Engine:</strong> Modular API-driven catalog, category routing, and dynamic reseller storefronts.</li>
@@ -80,7 +80,7 @@ export default function TermsOfService() {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">6. Intellectual Property &amp; Commercial Licensing</h2>
             <p className="text-muted-foreground text-xs">
-              The underlying software architecture, proprietary workflows, brand identity, user interface components, and operations systems are the intellectual property of Apex Global Cart International Pte. Ltd. Unauthorized commercial duplication or reverse engineering is prohibited.
+              The underlying software architecture, proprietary workflows, brand identity, user interface components, and operations systems are the intellectual property of Apex Global Onlineshop International Pte. Ltd. Unauthorized commercial duplication or reverse engineering is prohibited.
             </p>
           </section>
 

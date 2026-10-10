@@ -15,19 +15,19 @@ export const Route = createFileRoute("/")({
   },
   head: () => ({
     meta: [
-      { title: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
+      { title: "Apex Global Onlineshop - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         name: "description",
         content:
-          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery.",
       },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
-      { property: "og:title", content: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
+      { property: "og:title", content: "Apex Global Onlineshop - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         property: "og:description",
         content:
-          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
+          "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://apexglobalonlineshop.com/" },

@@ -53,19 +53,19 @@ export default function Index() {
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
-        title="Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere"
-        description="Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery."
+        title="Apex Global Onlineshop - Simplified and Enhanced Commerce System for Everyone Everything Everywhere"
+        description="Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery."
         canonical="https://apexglobalonlineshop.com/"
         ogType="website"
       />
-      <h1 className="sr-only">Apex Global Cart — shop verified reseller stores worldwide</h1>
+      <h1 className="sr-only">Apex Global Onlineshop — shop verified reseller stores worldwide</h1>
       <SeasonalDecorations />
       <HeroBanner />
       <section aria-labelledby="about-app" className="container mx-auto px-4 py-8">
         <div className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-3">
-          <h2 id="about-app" className="text-2xl font-bold text-foreground">Welcome to Apex Global Cart</h2>
+          <h2 id="about-app" className="text-2xl font-bold text-foreground">Welcome to Apex Global Onlineshop</h2>
           <p className="text-sm md:text-base text-muted-foreground">
-            Apex Global Cart is an online marketplace where shoppers buy electronics, fashion, home, beauty and sports products from verified reseller stores. Resellers use Apex Global Cart to open their own online shop, choose products from our catalogue and manage their orders. You can browse every product without an account; you only sign in to place orders, track deliveries or run a reseller shop.
+            Apex Global Onlineshop is an online marketplace where shoppers buy electronics, fashion, home, beauty and sports products from verified reseller stores. Resellers use Apex Global Onlineshop to open their own online shop, choose products from our catalogue and manage their orders. You can browse every product without an account; you only sign in to place orders, track deliveries or run a reseller shop.
           </p>
           <p className="text-sm text-muted-foreground">
             Sign in with email or with Google. We only use your name, email and profile picture to create and secure your account. Read our{" "}

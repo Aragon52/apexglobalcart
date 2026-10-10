@@ -1,8 +1,8 @@
 {
   "id": "com.globalcart.customer",
-  "name": "Apex Global Cart",
+  "name": "Apex Global Onlineshop",
   "short_name": "Apex Cart",
-  "description": "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery.",
+  "description": "Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Onlineshop, with secure checkout and worldwide delivery.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -22,14 +22,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Apex Global Cart shop on desktop"
+      "label": "Apex Global Onlineshop shop on desktop"
     },
     {
       "src": "/screenshots/shop-narrow.png",
       "sizes": "780x1688",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Apex Global Cart shop on mobile"
+      "label": "Apex Global Onlineshop shop on mobile"
     }
   ],
   "icons": [

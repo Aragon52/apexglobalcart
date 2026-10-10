@@ -3,7 +3,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import ProductDetail from "@/pages/ProductDetail";
 import { getProductSeo } from "@/lib/product-seo.functions";
 
-const SITE = "Apex Global Cart";
+const SITE = "Apex Global Onlineshop";
 
 export const Route = createFileRoute("/products/$id")({
   loader: async ({ params }) => {
