@@ -2,17 +2,17 @@
  * Host-based portal routing.
  *
  * Production hosting (Netlify) serves all three portals from one deployment:
- *   globalcart-onlineshop.com           -> customer portal  (routes at "/")
- *   reseller.globalcart-onlineshop.com  -> reseller portal   (internally "/reseller/*")
- *   admin.globalcart-onlineshop.com     -> admin portal      (internally "/admin/*")
+ *   apexglobalonlineshop.com           -> customer portal  (routes at "/")
+ *   reseller.apexglobalonlineshop.com  -> reseller portal   (internally "/reseller/*")
+ *   admin.apexglobalonlineshop.com     -> admin portal      (internally "/admin/*")
  *
  * The route tree always keeps the canonical "/admin" and "/reseller" prefixes.
  * The router rewrites URLs on the way in (browser/SSR request -> internal path)
  * and on the way out (internal path -> address bar), so a visitor on the admin
- * subdomain sees admin.globalcart-onlineshop.com/orders while the router matches
+ * subdomain sees admin.apexglobalonlineshop.com/orders while the router matches
  * the /admin/orders route.
  *
- * Path-based access (globalcart-onlineshop.com/admin/...) keeps working, which is
+ * Path-based access (apexglobalonlineshop.com/admin/...) keeps working, which is
  * what the Lovable preview and localhost use.
  */
 
