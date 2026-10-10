@@ -19,7 +19,6 @@ export default defineConfig({
         // Force React Email's parser onto entities v4.5.0 (v5+ removed lib/decode.js).
         "entities/lib/decode.js": path.resolve(process.cwd(), "node_modules/entities/lib/decode.js"),
         "entities/lib/encode.js": path.resolve(process.cwd(), "node_modules/entities/lib/encode.js"),
-        entities: path.resolve(process.cwd(), "node_modules/entities"),
       },
     },
     server: {
