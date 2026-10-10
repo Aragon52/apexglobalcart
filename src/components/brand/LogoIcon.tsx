@@ -20,7 +20,7 @@ const LogoIcon: FC<LogoIconProps> = ({ size, variant = "default", className = ""
   return (
     <img
       src={logoIcon}
-      alt="Apex Global Onlineshop"
+      alt="Apex Global Cart"
       width={resolvedSize}
       height={resolvedSize}
       className={`object-contain ${className}`}

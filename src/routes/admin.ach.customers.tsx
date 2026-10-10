@@ -5,7 +5,7 @@ import ACHCustomersPage from "@/pages/admin/ACHCustomersPage";
 export const Route = createFileRoute("/admin/ach/customers")({
   head: () => ({
     meta: [
-      { title: "Customer accounts — Admin portal — Apex Global Onlineshop" },
+      { title: "Customer accounts — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

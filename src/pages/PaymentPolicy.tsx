@@ -8,8 +8,8 @@ export default function PaymentPolicy() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Payment Policy & Demo Transaction Disclosure - Apex Global Onlineshop"
-        description="Understand payment protocols, PCI-DSS encryption, simulated transaction flows, and demonstration project guidelines at Apex Global Onlineshop."
+        title="Payment Policy & Demo Transaction Disclosure - Apex Global Cart"
+        description="Understand payment protocols, PCI-DSS encryption, simulated transaction flows, and demonstration project guidelines at Apex Global Cart."
         canonical="https://apexglobalonlineshop.com/payment-policy"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -61,7 +61,7 @@ export default function PaymentPolicy() {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">1. Supported Payment Gateways (Simulated Integration)</h2>
             <p className="text-muted-foreground text-xs">
-              Apex Global Onlineshop features an omnichannel checkout experience supporting major card networks, digital wallets, and decentralized settlement rails:
+              Apex Global Cart features an omnichannel checkout experience supporting major card networks, digital wallets, and decentralized settlement rails:
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               <div className="p-2.5 rounded-lg border border-border bg-card text-center font-medium">💳 Visa</div>

@@ -5,7 +5,7 @@ import Register from "@/pages/Register";
 export const Route = createFileRoute("/cart/register")({
   head: () => ({
     meta: [
-      { title: "Register — User portal — Apex Global Onlineshop" },
+      { title: "Register — User portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

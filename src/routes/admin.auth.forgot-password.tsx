@@ -4,7 +4,7 @@ import AdminForgotPassword from "@/pages/admin/AdminForgotPassword";
 export const Route = createFileRoute("/admin/auth/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Forgot password — Admin portal — Apex Global Onlineshop" },
+      { title: "Forgot password — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

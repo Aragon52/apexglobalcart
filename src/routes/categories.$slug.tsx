@@ -13,8 +13,8 @@ function categoryName(slug: string): string {
 export const Route = createFileRoute("/categories/$slug")({
   head: ({ params }) => {
     const name = categoryName(params.slug);
-    const title = `${name} — Shop deals & new arrivals | Apex Global Onlineshop`;
-    const description = `Shop top rated ${name.toLowerCase()} products, new arrivals and special promotions from verified reseller stores on Apex Global Onlineshop.`;
+    const title = `${name} — Shop deals & new arrivals | Apex Global Cart`;
+    const description = `Shop top rated ${name.toLowerCase()} products, new arrivals and special promotions from verified reseller stores on Apex Global Cart.`;
     return {
       meta: [
         { title },
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/categories/$slug")({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: `${name} | Apex Global Onlineshop`,
+            name: `${name} | Apex Global Cart`,
             description,
           }),
         },

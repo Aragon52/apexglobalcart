@@ -5,7 +5,7 @@ import SiteFrontAdvertisingPage from "@/pages/admin/SiteFrontAdvertisingPage";
 export const Route = createFileRoute("/admin/sla/site-advertising")({
   head: () => ({
     meta: [
-      { title: "Site advertising — Admin portal — Apex Global Onlineshop" },
+      { title: "Site advertising — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

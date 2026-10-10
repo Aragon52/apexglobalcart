@@ -298,7 +298,7 @@ export default function Categories() {
       <h1 className="sr-only">{selectedCategory !== "all" ? `${activeCategoryName} products` : "Browse product categories"}</h1>
       <SEO
         title={selectedCategory !== "all" ? `${activeCategoryName} - Products` : "Browse Categories & Products"}
-        description={`Explore premium products in ${activeCategoryName} on Apex Global Onlineshop. Compare prices, ratings, and verified seller offers.`}
+        description={`Explore premium products in ${activeCategoryName} on Apex Global Cart. Compare prices, ratings, and verified seller offers.`}
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Categories", item: "/categories" },

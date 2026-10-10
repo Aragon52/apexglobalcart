@@ -27,7 +27,7 @@ Key Features:
 - 🔔 Real-Time Order Alerts: Instant push notifications whenever a new customer order or commission arrives.
 - 🛠️ Store Customization: Personalize your storefront theme, custom banner, logo, and promotional discount campaigns.
 
-Join thousands of global merchants scaling their online stores with Apex Global Onlineshop OS.`,
+Join thousands of global merchants scaling their online stores with Apex Global Cart OS.`,
     packageName: "com.globalcart_onlineshop.reseller.twa",
     category: "Shopping / Business",
     contentRating: "Everyone (PEGI 3 / ESRB Everyone)",

@@ -137,7 +137,7 @@ export default function Footer() {
                 <LogoIcon variant="footer" />
               </Link>
               <p className="text-xs leading-relaxed" style={{ color: "hsl(var(--footer-text))" }}>
-                Apex Global Onlineshop International Pte. Ltd. is an officially registered marketplace operator providing transparent, high-security global retail infrastructure.
+                Apex Global Cart International Pte. Ltd. is an officially registered marketplace operator providing transparent, high-security global retail infrastructure.
               </p>
               
               <div className="pt-2 text-xs space-y-1.5" style={{ color: "hsl(var(--footer-text))" }}>
@@ -262,7 +262,7 @@ export default function Footer() {
 
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row text-[11px]" style={{ color: "hsl(var(--footer-text))" }}>
               <p>
-                &copy; 2026 Apex Global Onlineshop International Pte. Ltd. All rights reserved. Registered in Singapore (UEN: 202301984M).
+                &copy; 2026 Apex Global Cart International Pte. Ltd. All rights reserved. Registered in Singapore (UEN: 202301984M).
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link to="/legal" className="hover:underline">Legal Notice</Link>

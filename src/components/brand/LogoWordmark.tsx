@@ -17,7 +17,7 @@ const LogoWordmark: FC<LogoWordmarkProps> = ({ size = "md", className = "" }) =>
     <span className={`font-poppins font-bold tracking-tight leading-tight ${sizeMap[size]} ${className}`}>
       <span className="text-brand-orange">Apex </span>
       <span className="text-brand-blue">Global </span>
-      <span className="text-brand-green">Onlineshop</span>
+      <span className="text-brand-green">Cart</span>
     </span>
   );
 };
