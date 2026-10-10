@@ -72,7 +72,6 @@ export const LEVEL_PROFIT_MAP: Record<string, number> = {
 
 export interface LevelRequirement {
   level: string;
-  isSuspended?: boolean;
   profitMargin: number;
   productLimit: number;
   depositRequirement: number;
@@ -87,14 +86,20 @@ export const VIP_LEVELS: LevelRequirement[] = [
   { level: "VIP-5", profitMargin: 0.40, productLimit: 150, depositRequirement: 100000 },
 ];
 
+/** Normalizes stored level values like "5", "VIP 1" or "vip-2" to "VIP-n". */
+export function normalizeLevel(raw: unknown): string {
+  const digits = String(raw ?? "").replace(/[^0-9]/g, "");
+  const num = digits ? Math.min(parseInt(digits, 10), VIP_LEVELS.length - 1) : 0;
+  return `VIP-${num}`;
+}
+
 export function getLevelByDeposit(
   netDeposit: number, 
   currentLevelLabel: string = "VIP-0",
   registrationDate?: string | Date | null,
   availableBalance?: number
 ): LevelRequirement {
-  const cleanLevelStr = currentLevelLabel.replace(/[^0-9]/g, "");
-  const currentLevelNum = cleanLevelStr ? parseInt(cleanLevelStr, 10) : 0;
+  const currentLevelNum = parseInt(normalizeLevel(currentLevelLabel).slice(4), 10);
   const isNew = isNewResellerPromotionRuleActive(registrationDate);
   const qualificationAmount = Math.max(
     Number(netDeposit || 0),

@@ -2,11 +2,6 @@ import { useState, useEffect, useRef, type ReactNode } from "react";
 import { AdminAuthContext, type AdminSession } from "./admin-auth-context-hooks";
 import { supabase } from "./supabase";
 import {
-  registerOwnerLoginSession,
-  sendOwnerHeartbeat,
-  releaseOwnerSession,
-} from "./owner-session-manager";
-import {
   trackAdminSessionLogin,
   trackAdminSessionHeartbeat,
   trackAdminSessionLogout,
@@ -32,31 +27,13 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         trackAdminSessionHeartbeat(session);
       }, 30000);
 
-      // Ownership-specific 2-device concurrency check
-      let ownerInterval: any = null;
-      if (session.role === "Owner") {
-        sendOwnerHeartbeat();
-        ownerInterval = setInterval(async () => {
-          const isStillActive = await sendOwnerHeartbeat();
-          if (!isStillActive) {
-            console.warn("[ADMIN_AUTH] Ownership session was revoked or expired. Signing out...");
-            localStorage.removeItem("gcos_admin_session");
-            setSession(null);
-          }
-        }, 30000);
-      }
-
       const handleUnload = () => {
-        if (session.role === "Owner") {
-          releaseOwnerSession();
-        }
         trackAdminSessionLogout(session);
       };
       window.addEventListener("pagehide", handleUnload);
 
       return () => {
         clearInterval(generalInterval);
-        if (ownerInterval) clearInterval(ownerInterval);
         window.removeEventListener("pagehide", handleUnload);
       };
     }
@@ -360,14 +337,15 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         }
 
         // Enforce maximum 2 simultaneous login sessions for Ownership account
-        const sessionCheck = await registerOwnerLoginSession();
-        if (!sessionCheck.success) {
-          await supabase.auth.signOut();
+        // Strict rule: a slot frees only when a device taps "Log out" (its sign-in is revoked).
+        const { data: otherSessions, error: sessionCountErr } = await supabase.rpc("count_other_active_sessions");
+        if (sessionCountErr || Number(otherSessions ?? 0) >= 2) {
+          await supabase.auth.signOut({ scope: "local" });
           localStorage.removeItem("gcos_admin_session");
           setSession(null);
           return {
             success: false,
-            message: sessionCheck.message || "Maximum simultaneous login sessions reached (2/2 active devices). Please log out from another device to sign in here."
+            message: "Access denied: Maximum device limit (2) reached. To protect this account from unauthorized access, new logins are blocked. Please log out from one of your authorized devices first."
           };
         }
 
@@ -462,7 +440,6 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     if (session) {
       if (session.role === "Owner") {
-        await releaseOwnerSession();
       }
       await trackAdminSessionLogout(session);
     }
