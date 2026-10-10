@@ -5,7 +5,7 @@ interface TaglineSVGProps {
 }
 
 /**
- * Tagline SVG — "Everything You Need!" in Kaushan Script.
+ * Tagline SVG — "Commerce at its peak" in Kaushan Script.
  * Wide viewBox ensures full text is always visible without clipping.
  */
 const TaglineSVG: FC<TaglineSVGProps> = ({ className = '' }) => {
@@ -15,7 +15,7 @@ const TaglineSVG: FC<TaglineSVGProps> = ({ className = '' }) => {
       viewBox="0 0 1600 200"
       preserveAspectRatio="xMinYMid meet"
       className={className}
-      aria-label="Everything You Need!"
+      aria-label="Commerce at its peak"
       role="img"
     >
       <style>
@@ -32,7 +32,7 @@ const TaglineSVG: FC<TaglineSVGProps> = ({ className = '' }) => {
         textAnchor="start"
         className="tagline-text"
       >
-        Everything You Need!
+        Commerce at its peak
       </text>
     </svg>
   );
