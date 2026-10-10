@@ -196,7 +196,7 @@ export function useOrders(pageSize: number = 2000) {
       setCurrentPage(0);
       return combined;
     },
-    staleTime: 5000,
+    staleTime: 60_000,
   });
 
   return {
