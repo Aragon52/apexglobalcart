@@ -28,6 +28,8 @@ import { ProductSyncProvider } from "@/context/ProductSyncContext";
 import { SeasonalThemeProvider } from "@/lib/seasonal-theme-context";
 import { ErrorBoundary, ErrorFallbackView } from "@/components/ErrorBoundary";
 import { initPWAInstall } from "@/lib/pwa-install";
+import { registerAppServiceWorker } from "@/lib/pwa-register";
+import { OnlineStatusNotifier } from "@/components/pwa/online-status-notifier";
 
 function NotFoundComponent() {
   return (
@@ -189,6 +191,7 @@ function RootComponent() {
                             <AdminAuthProvider>
                               <Toaster />
                               <Sonner />
+                              <OnlineStatusNotifier />
                               <ErrorBoundary boundaryName="router_outlet" fullScreen={false}>
                                 <Outlet />
                               </ErrorBoundary>
