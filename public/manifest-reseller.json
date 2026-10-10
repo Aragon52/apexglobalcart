@@ -1,8 +1,8 @@
 {
   "id": "com.globalcart.reseller",
-  "name": "Apex Global Onlineshop Reseller Portal",
+  "name": "Apex Global Cart Reseller Portal",
   "short_name": "Apex Reseller",
-  "description": "Manage your online store, track orders and grow your global business on Apex Global Onlineshop.",
+  "description": "Manage your online store, track orders and grow your global business on Apex Global Cart.",
   "start_url": "/reseller/",
   "scope": "/reseller/",
   "display": "standalone",

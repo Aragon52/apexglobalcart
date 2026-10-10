@@ -322,7 +322,7 @@ export default function SLAOwnershipPage() {
                 <div className="flex h-14 w-14 mx-auto items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm mb-3">
                    <span className="text-xl font-bold text-white">GC</span>
                 </div>
-                <p className="text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase">Apex Global Onlineshop</p>
+                <p className="text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase">Apex Global Cart</p>
               </div>
             </div>
 

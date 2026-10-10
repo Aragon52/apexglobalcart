@@ -5,7 +5,7 @@ import Login from "@/pages/Login";
 export const Route = createFileRoute("/cart/login")({
   head: () => ({
     meta: [
-      { title: "Login — User portal — Apex Global Onlineshop" },
+      { title: "Login — User portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

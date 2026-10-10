@@ -5,16 +5,16 @@ import ResellerStorefront from "@/pages/ResellerStorefront";
 export const Route = createFileRoute("/store/$slug")({
   head: () => ({
     meta: [
-      { title: "Verified Reseller Storefront | Apex Global Onlineshop" },
+      { title: "Verified Reseller Storefront | Apex Global Cart" },
       {
         name: "description",
         content:
-          "Shop exclusive collections, authentic brands, and verified inventory directly from this independent reseller partner store on Apex Global Onlineshop.",
+          "Shop exclusive collections, authentic brands, and verified inventory directly from this independent reseller partner store on Apex Global Cart.",
       },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
-      { property: "og:title", content: "Verified Reseller Storefront | Apex Global Onlineshop" },
-      { property: "og:description", content: "Shop exclusive curated collections from verified partners on Apex Global Onlineshop." },
+      { property: "og:title", content: "Verified Reseller Storefront | Apex Global Cart" },
+      { property: "og:description", content: "Shop exclusive curated collections from verified partners on Apex Global Cart." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -4,7 +4,7 @@ import ResellerRegister from "@/pages/reseller/ResellerRegister";
 export const Route = createFileRoute("/reseller/register")({
   head: () => ({
     meta: [
-      { title: "Become a Verified Reseller Partner | Apex Global Onlineshop" },
+      { title: "Become a Verified Reseller Partner | Apex Global Cart" },
       {
         name: "description",
         content:
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/reseller/register")({
       },
       { name: "robots", content: "index, follow" },
       { name: "googlebot", content: "index, follow" },
-      { property: "og:title", content: "Become a Verified Reseller Partner | Apex Global Onlineshop" },
+      { property: "og:title", content: "Become a Verified Reseller Partner | Apex Global Cart" },
       {
         property: "og:description",
         content: "Register as a GCOS reseller partner today. Launch your custom online shop with zero inventory risk.",

@@ -13,7 +13,7 @@ export default function AboutUs() {
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <SEO
         title="About Us - Corporate Identity, Security & Headless Demo Project"
-        description="Learn about Apex Global Onlineshop International Pte. Ltd. (GCOS). An advanced headless e-commerce technology pilot and investor presentation environment showcasing multi-merchant capabilities."
+        description="Learn about Apex Global Cart International Pte. Ltd. (GCOS). An advanced headless e-commerce technology pilot and investor presentation environment showcasing multi-merchant capabilities."
         canonical="https://apexglobalonlineshop.com/about"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -27,10 +27,10 @@ export default function AboutUs() {
           Technology Pilot &amp; Corporate Profile
         </Badge>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
-          About Apex Global Onlineshop Online Shop
+          About Apex Global Cart Online Shop
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Operating under <strong className="text-foreground">Apex Global Onlineshop International Pte. Ltd.</strong>, GCOS demonstrates a complete headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups.
+          Operating under <strong className="text-foreground">Apex Global Cart International Pte. Ltd.</strong>, GCOS demonstrates a complete headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups.
         </p>
       </div>
 
@@ -77,7 +77,7 @@ export default function AboutUs() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-foreground">Our Core Architecture &amp; Vision</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Founded to advance headless commerce standards, Apex Global Onlineshop connects quality product suppliers, vetted reseller entrepreneurs, and end consumers through a high-performance, modular application framework.
+            Founded to advance headless commerce standards, Apex Global Cart connects quality product suppliers, vetted reseller entrepreneurs, and end consumers through a high-performance, modular application framework.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Every transaction is safeguarded by escrow-based fulfillment standards: funds are held until the customer receives and verifies the ordered products according to stated specifications.
@@ -105,7 +105,7 @@ export default function AboutUs() {
           <div className="space-y-2.5 text-xs">
             <div className="flex justify-between py-1.5 border-b border-border">
               <span className="text-muted-foreground">Legal Entity:</span>
-              <span className="font-semibold text-foreground">Apex Global Onlineshop International Pte. Ltd.</span>
+              <span className="font-semibold text-foreground">Apex Global Cart International Pte. Ltd.</span>
             </div>
             <div className="flex justify-between py-1.5 border-b border-border">
               <span className="text-muted-foreground">ACRA Registration (UEN):</span>
