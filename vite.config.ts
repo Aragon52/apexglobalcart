@@ -8,8 +8,6 @@ import path from "node:path";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { VitePWA } from "vite-plugin-pwa";
 
-const SUPABASE_REST = /^https:\/\/[a-z0-9]+\.supabase\.co\/rest\/v1\//;
-
 export default defineConfig({
   // Pin the production artifact to the Netlify function used by netlify.toml.
   // Lovable builds override this to their configured Cloudflare preset.
@@ -21,6 +19,7 @@ export default defineConfig({
       VitePWA({
         strategies: "generateSW",
         registerType: "autoUpdate",
+        // Workbox serializes these callbacks into the worker, so they must not use outer variables.
         // Registration happens only in src/lib/pwa-register.ts.
         injectRegister: null,
         // Manifests are hand-maintained in /public (one per portal).
@@ -65,7 +64,7 @@ export default defineConfig({
             {
               // Catalogue reads stay viewable offline.
               urlPattern: ({ url, request }) =>
-                request.method === "GET" && SUPABASE_REST.test(url.href) && /\/rest\/v1\/(products|categories|seasonal_themes)/.test(url.pathname),
+                request.method === "GET" && /\.supabase\.co$/.test(url.hostname) && /\/rest\/v1\/(products|categories|seasonal_themes)/.test(url.pathname),
               handler: "NetworkFirst",
               method: "GET",
               options: {
@@ -78,7 +77,7 @@ export default defineConfig({
             {
               // Chat and support messages sent while offline are retried when the connection returns.
               urlPattern: ({ url }) =>
-                SUPABASE_REST.test(url.href) && /\/rest\/v1\/(support_messages|reseller_chat_messages)/.test(url.pathname),
+                /\.supabase\.co$/.test(url.hostname) && /\/rest\/v1\/(support_messages|reseller_chat_messages)/.test(url.pathname),
               handler: "NetworkOnly",
               method: "POST",
               options: {
