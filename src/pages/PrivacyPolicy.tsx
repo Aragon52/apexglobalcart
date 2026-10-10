@@ -111,6 +111,40 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
+            <h2 className="text-xl font-bold text-foreground">Information we collect</h2>
+            <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
+              <li><strong>Account details:</strong> name, email address, phone number and password (stored only in scrambled form) when you register as a shopper, reseller or staff member.</li>
+              <li><strong>Order and shop details:</strong> delivery address, items ordered, order history, reseller shop name, logo and banner.</li>
+              <li><strong>Support messages:</strong> chats and images you send to our support team or between resellers and staff.</li>
+              <li><strong>Device and security data:</strong> browser type, approximate location (city and country based on IP address) and sign-in times, used to protect accounts.</li>
+              <li><strong>Cookies and local storage:</strong> used to keep you signed in, remember your cart and language, and allow offline browsing.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-foreground">Google sign-in and Google user data</h2>
+            <p className="text-sm text-muted-foreground">If you choose "Continue with Google", Apex Global Cart receives only your <strong>name, email address and profile picture</strong> from your Google account (the openid, email and profile scopes). We use this information only to create your account, sign you in and show your name and picture in your profile.</p>
+            <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
+              <li>We do not access your Gmail, contacts, Drive, calendar or any other Google data.</li>
+              <li>We do not sell, rent or share Google user data with third parties, and we do not use it for advertising.</li>
+              <li>We do not use Google user data to train artificial intelligence or machine learning models, and we never use it to create generated images of any person.</li>
+              <li>Our use of information received from Google APIs follows the <a className="text-primary underline" href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+              <li>You can remove our access at any time at myaccount.google.com/permissions, and ask us to delete your account and data using the contact details below.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-foreground">How we use, store and share data</h2>
+            <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
+              <li><strong>Use:</strong> to run your account, process orders, operate reseller shops, provide customer support, send account emails (such as confirmations and password resets) and prevent fraud.</li>
+              <li><strong>Storage:</strong> data is stored on secure cloud servers with encrypted connections (HTTPS) and access limited to authorised staff.</li>
+              <li><strong>Sharing:</strong> only with service providers needed to run the platform (hosting, email delivery, payment processing) and when required by law. We never sell personal data.</li>
+              <li><strong>Retention:</strong> we keep data while your account is active and delete it within 30 days of a verified deletion request, unless the law requires us to keep it longer.</li>
+              <li><strong>Children:</strong> the service is not intended for people under 16.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">6. Contact for Privacy &amp; Investor Inquiries</h2>
             <p className="text-muted-foreground text-xs">
               To submit data requests or for questions regarding the commercial rollout and investment opportunities of this headless e-commerce architecture, contact:
