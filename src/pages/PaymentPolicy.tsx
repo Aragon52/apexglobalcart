@@ -10,7 +10,7 @@ export default function PaymentPolicy() {
       <SEO
         title="Payment Policy & Demo Transaction Disclosure - Apex Global Cart"
         description="Understand payment protocols, PCI-DSS encryption, simulated transaction flows, and demonstration project guidelines at Apex Global Cart."
-        canonical="https://globalcart-onlineshop.com/payment-policy"
+        canonical="https://apexglobalonlineshop.com/payment-policy"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Payment Policy", item: "/payment-policy" },

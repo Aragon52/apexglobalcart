@@ -102,4 +102,4 @@ Disallow: /_server/
 Allow: /
 
 Host: globalcart-onlineshop.com
-Sitemap: https://globalcart-onlineshop.com/sitemap.xml
+Sitemap: https://apexglobalonlineshop.com/sitemap.xml

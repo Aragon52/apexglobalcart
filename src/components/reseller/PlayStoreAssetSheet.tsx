@@ -31,7 +31,7 @@ Join thousands of global merchants scaling their online stores with Apex Global 
     packageName: "com.globalcart_onlineshop.reseller.twa",
     category: "Shopping / Business",
     contentRating: "Everyone (PEGI 3 / ESRB Everyone)",
-    privacyPolicy: "https://globalcart-onlineshop.com/reseller/privacy",
+    privacyPolicy: "https://apexglobalonlineshop.com/reseller/privacy",
     supportEmail: "support@globalcart-onlineshop.com"
   };
 

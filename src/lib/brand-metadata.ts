@@ -71,7 +71,7 @@ export function generateMetaTags(
       image: config.ogImage,
       imageAlt: config.ogImageAlt,
       type: 'website' as const,
-      url: portal === 'reseller' ? 'https://reseller.globalcart-onlineshop.com/' : 'https://globalcart-onlineshop.com/',
+      url: portal === 'reseller' ? 'https://reseller.apexglobalonlineshop.com/' : 'https://apexglobalonlineshop.com/',
     },
     twitter: {
       card: 'summary_large_image' as const,

@@ -55,7 +55,7 @@ export default function Index() {
       <SEO
         title="GCOS | Global Online Marketplace"
         description="Shop premium products from verified sellers worldwide. Discover reseller stores, enjoy secure checkout, and get world-class customer support."
-        canonical="https://globalcart-onlineshop.com/"
+        canonical="https://apexglobalonlineshop.com/"
         ogType="website"
       />
       <SeasonalDecorations />

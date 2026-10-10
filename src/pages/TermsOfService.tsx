@@ -8,7 +8,7 @@ export default function TermsOfService() {
       <SEO
         title="Terms of Service & Demo Project Agreement - Apex Global Cart"
         description="Review the terms of use, demonstration project guidelines, investor showcase framework, and operating agreement for Apex Global Cart International Pte. Ltd."
-        canonical="https://globalcart-onlineshop.com/terms"
+        canonical="https://apexglobalonlineshop.com/terms"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Terms of Service", item: "/terms" },

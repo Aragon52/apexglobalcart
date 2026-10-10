@@ -45,7 +45,7 @@ export default function FAQ() {
       <SEO
         title="Frequently Asked Questions (FAQ) & Investor FAQ - Apex Global Cart"
         description="Find answers regarding Apex Global Cart's headless architecture, demonstration pilot scope, investor presentation details, and platform security."
-        canonical="https://globalcart-onlineshop.com/faq"
+        canonical="https://apexglobalonlineshop.com/faq"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "FAQ", item: "/faq" },

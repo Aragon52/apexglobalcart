@@ -18,11 +18,11 @@ export const Route = createFileRoute("/reseller/register")({
         content: "Register as a GCOS reseller partner today. Launch your custom online shop with zero inventory risk.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://globalcart-onlineshop.com/reseller/register" },
+      { property: "og:url", content: "https://apexglobalonlineshop.com/reseller/register" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://globalcart-onlineshop.com/reseller/register" },
+      { rel: "canonical", href: "https://apexglobalonlineshop.com/reseller/register" },
     ],
   }),
   component: ResellerRegisterRoutePage,

@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
       <SEO
         title="Privacy Policy & Demo Project Disclosure - Apex Global Cart"
         description="Apex Global Cart International Pte. Ltd. Privacy Policy, Data Protection Principles, and Demonstration / Business Investor Pilot Scope Notice."
-        canonical="https://globalcart-onlineshop.com/privacy"
+        canonical="https://apexglobalonlineshop.com/privacy"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Privacy Policy", item: "/privacy" },

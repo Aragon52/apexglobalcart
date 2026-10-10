@@ -14,7 +14,7 @@ export default function AboutUs() {
       <SEO
         title="About Us - Corporate Identity, Security & Headless Demo Project"
         description="Learn about Apex Global Cart International Pte. Ltd. (GCOS). An advanced headless e-commerce technology pilot and investor presentation environment showcasing multi-merchant capabilities."
-        canonical="https://globalcart-onlineshop.com/about"
+        canonical="https://apexglobalonlineshop.com/about"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "About Us", item: "/about" },
