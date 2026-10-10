@@ -115,6 +115,7 @@ export function useDbSystemSettings() {
 export interface LegacySlaAdmin {
   id: string;
   accountId: string;
+  inviteCode: string;
   name: string;
   role: "Admin";
   email: string;
