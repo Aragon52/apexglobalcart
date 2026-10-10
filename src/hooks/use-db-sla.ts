@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 export interface DbSlaAdmin {
   id: string;
   account_id: string;
+  invite_code?: string | null;
   name: string;
   email: string;
   phone: string;
@@ -19,6 +20,7 @@ export interface DbSlaStaff {
   id: string;
   staff_id: string;
   referral_id: string;
+  invite_code?: string | null;
   name: string;
   email: string;
   phone: string;
@@ -128,6 +130,7 @@ export function dbAdminToLegacy(a: DbSlaAdmin): LegacySlaAdmin {
   return {
     id: a.id,
     accountId: a.account_id,
+    inviteCode: a.invite_code ?? "",
     name: a.name,
     role: "Admin",
     email: a.email,
@@ -144,6 +147,7 @@ export interface LegacySlaStaff {
   id: string;
   staffId: string;
   referralId: string;
+  inviteCode: string;
   name: string;
   email: string;
   phone: string;
@@ -167,6 +171,7 @@ export function dbStaffToLegacy(s: DbSlaStaff & { sla_admins?: { account_id: str
     id: s.id,
     staffId: staffIdResolved,
     referralId: s.referral_id || "",
+    inviteCode: s.invite_code || s.referral_id || "",
     name: s.name,
     email: s.email,
     phone: s.phone ?? "",
