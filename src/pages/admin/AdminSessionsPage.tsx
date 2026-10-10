@@ -593,7 +593,7 @@ export default function AdminSessionsPage() {
                           ) : (
                             <Laptop className="h-4 w-4 text-primary" />
                           )}
-                          <span className="text-xs text-foreground font-medium">{sess.deviceLabel}</span>
+                          <span className="text-xs text-foreground font-medium">{sess.deviceLabel}{sess.location ? ` · ${sess.location}` : ""}</span>
                         </div>
                       </TableCell>
 
@@ -788,7 +788,7 @@ export default function AdminSessionsPage() {
                           <div>
                             <div className="text-xs font-semibold text-foreground">{sess.deviceLabel}</div>
                             <div className="text-[11px] text-muted-foreground font-mono">
-                              IP: {sess.ipAddress} · Logged: {new Date(sess.loginAt).toLocaleTimeString()}
+                              IP: {sess.ipAddress}{sess.location ? ` (${sess.location})` : ""} · Logged: {new Date(sess.loginAt).toLocaleTimeString()}
                             </div>
                           </div>
                         </div>
