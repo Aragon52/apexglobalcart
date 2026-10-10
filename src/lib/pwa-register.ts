@@ -42,7 +42,49 @@ export function registerAppServiceWorker(): void {
     return;
   }
 
-  navigator.serviceWorker.register(SW_PATH).catch(() => {
-    // Offline support is optional; the site still works without it.
+  navigator.serviceWorker
+    .register(SW_PATH)
+    .then((registration) => watchForUpdates(registration))
+    .catch(() => {
+      // Offline support is optional; the site still works without it.
+    });
+}
+
+const UPDATE_CHECK_MS = 15 * 60 * 1000;
+
+function announceUpdate(worker: ServiceWorker): void {
+  let reloading = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (reloading) return;
+    reloading = true;
+    window.location.reload();
   });
+  void import("sonner").then(({ toast }) => {
+    toast("A new version is available", {
+      id: "app-update",
+      description: "Refresh to load the latest Apex Global Cart update.",
+      duration: Infinity,
+      action: { label: "Refresh", onClick: () => worker.postMessage({ type: "SKIP_WAITING" }) },
+    });
+  });
+}
+
+function watchForUpdates(registration: ServiceWorkerRegistration): void {
+  // An update may already be waiting from an earlier visit.
+  if (registration.waiting && navigator.serviceWorker.controller) announceUpdate(registration.waiting);
+
+  registration.addEventListener("updatefound", () => {
+    const installing = registration.installing;
+    if (!installing) return;
+    installing.addEventListener("statechange", () => {
+      // Only prompt when replacing an existing version, not on first install.
+      if (installing.state === "installed" && navigator.serviceWorker.controller) announceUpdate(installing);
+    });
+  });
+
+  const check = () => {
+    if (document.visibilityState === "visible") void registration.update().catch(() => undefined);
+  };
+  setInterval(check, UPDATE_CHECK_MS);
+  document.addEventListener("visibilitychange", check);
 }

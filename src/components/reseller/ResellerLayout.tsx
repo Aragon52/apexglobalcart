@@ -16,6 +16,7 @@ import PromotionalBonusBanner from "./PromotionalBonusBanner";
 import DepositAlertBanner from "./DepositAlertBanner";
 import { useDepositAlerts } from "@/hooks/use-deposit-alerts";
 import { PWAInstallButton } from "@/components/pwa/PWAInstallButton";
+import { EnableAlertsPrompt } from "@/components/pwa/enable-alerts-prompt";
 
 const PUBLIC_PATHS_CANONICAL = ["/reseller/login", "/reseller/register", "/login", "/register"];
 
@@ -121,6 +122,7 @@ export default function ResellerLayout({ children }: { children: React.ReactNode
   return (
     <div className="flex min-h-screen bg-background overflow-x-hidden">
       {isSuspended && !isMessagesPage && <ResellerSuspendedOverlay />}
+      <EnableAlertsPrompt audience="reseller" />
       <NotificationDialog open={showNotifications} onClose={() => setShowNotifications(false)} />
       <ResellerSidebar />
       <div className="flex-1 flex flex-col min-h-screen min-w-0">

@@ -18,7 +18,7 @@ export default defineConfig({
     plugins: [
       VitePWA({
         strategies: "generateSW",
-        registerType: "autoUpdate",
+        registerType: "prompt",
         // Workbox serializes these callbacks into the worker, so they must not use outer variables.
         // Registration happens only in src/lib/pwa-register.ts.
         injectRegister: null,
@@ -33,7 +33,8 @@ export default defineConfig({
           navigateFallback: null,
           cleanupOutdatedCaches: true,
           clientsClaim: true,
-          skipWaiting: true,
+          // New versions wait until the visitor taps "Refresh" (see src/lib/pwa-register.ts).
+          skipWaiting: false,
           runtimeCaching: [
             {
               // Pages: always try the network first; fall back to cache, then the offline page.
