@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { useReseller } from "@/lib/reseller-context-hooks";
 import { playNotificationSound, startTabFlash } from "@/hooks/use-notifications";
 import { toast } from "sonner";
+import { showBrowserNotification } from "@/lib/browser-notify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@/lib/router-compat";
 import { resellerPath } from "@/lib/subdomain";
@@ -56,6 +57,7 @@ export function useDepositAlerts() {
             queryClient.invalidateQueries({ queryKey: ["broadcast_notifications_unread"] });
             queryClient.invalidateQueries({ queryKey: ["broadcast_notifications_all"] });
 
+            void showBrowserNotification("Deposit approved", `Your deposit of $${amount.toLocaleString()} has been credited to your balance.`);
             toast.success("Deposit Approved & Balance Updated! 🎉", {
               description: `Your deposit of $${amount.toLocaleString()} has been approved. Your balance is now updated!`,
               duration: 8000,
@@ -71,6 +73,7 @@ export function useDepositAlerts() {
             queryClient.invalidateQueries({ queryKey: ["reseller_profile"] });
             queryClient.invalidateQueries({ queryKey: ["deposit-requests"] });
 
+            void showBrowserNotification("Deposit rejected", `Your deposit request of $${amount.toLocaleString()} was rejected.`);
             toast.error("Deposit Request Rejected", {
               description: `Your deposit request of $${amount.toLocaleString()} was rejected.${
                 newRecord.remark ? ` Reason: ${newRecord.remark}` : ""
@@ -79,6 +82,36 @@ export function useDepositAlerts() {
             });
           }
         }
+      )
+      .subscribe();
+
+    // Withdrawal status changes -> in-app toast + browser alert
+    const withdrawalChannel = supabase
+      .channel(`public:withdrawal_requests:${activeResellerId}`)
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "withdrawal_requests", filter: `resellerDocId=eq.${activeResellerId}` },
+        (payload) => {
+          const oldStatus = String((payload.old as { status?: string } | null)?.status ?? "").toLowerCase();
+          const next = payload.new as { status?: string; amount?: number; remark?: string } | null;
+          const newStatus = String(next?.status ?? "").toLowerCase();
+          if (!next || newStatus === oldStatus) return;
+          const amount = Number(next.amount || 0).toLocaleString();
+          if (newStatus === "approved" || newStatus === "completed") {
+            playNotificationSound();
+            if (refreshProfile) refreshProfile();
+            void showBrowserNotification("Withdrawal approved", `Your withdrawal of $${amount} has been approved.`);
+            toast.success("Withdrawal approved", { description: `Your withdrawal of $${amount} has been approved.`, duration: 8000 });
+          } else if (newStatus === "rejected") {
+            playNotificationSound();
+            if (refreshProfile) refreshProfile();
+            void showBrowserNotification("Withdrawal rejected", `Your withdrawal of $${amount} was rejected.`);
+            toast.error("Withdrawal rejected", {
+              description: `Your withdrawal of $${amount} was rejected.${next.remark ? ` Reason: ${next.remark}` : ""}`,
+              duration: 8000,
+            });
+          }
+        },
       )
       .subscribe();
 
@@ -126,6 +159,7 @@ export function useDepositAlerts() {
     return () => {
       clearTimeout(timer);
       supabase.removeChannel(depositChannel);
+      supabase.removeChannel(withdrawalChannel);
       supabase.removeChannel(notifChannel);
     };
   }, [activeResellerId, queryClient, refreshProfile, navigate]);

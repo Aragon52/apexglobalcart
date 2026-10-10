@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
+import { showBrowserNotification } from "@/lib/browser-notify";
+import { EnableAlertsPrompt } from "@/components/pwa/enable-alerts-prompt";
 
 export function AdminGlobalNotifications() {
   useEffect(() => {
@@ -41,6 +43,9 @@ export function AdminGlobalNotifications() {
 
             playNotificationSound();
             if (document.hidden) startTabFlash(title);
+            if (tableName === "deposit_requests" || tableName === "withdrawal_requests") {
+              void showBrowserNotification(title, body);
+            }
           }
         })
         .subscribe();
@@ -121,7 +126,7 @@ export function AdminGlobalNotifications() {
     };
   }, []);
 
-  return null;
+  return <EnableAlertsPrompt audience="admin" />;
 }
 
 
