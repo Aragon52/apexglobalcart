@@ -5,7 +5,7 @@ import ARSTrackOrdersPage from "@/pages/admin/ARSTrackOrdersPage";
 export const Route = createFileRoute("/admin/ars/orders")({
   head: () => ({
     meta: [
-      { title: "Orders — Admin portal — Apex Global Cart" },
+      { title: "Reseller orders — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
