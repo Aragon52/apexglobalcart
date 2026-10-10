@@ -32,6 +32,7 @@ import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
 import { Route as VerificationComplianceRouteImport } from './routes/verification-compliance'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminSplatRouteImport } from './routes/admin.$'
+import { Route as AdminAdminSessionsRouteImport } from './routes/admin.admin-sessions'
 import { Route as AdminAdminsRouteImport } from './routes/admin.admins'
 import { Route as AdminAlertsRouteImport } from './routes/admin.alerts'
 import { Route as AdminAuditLogsRouteImport } from './routes/admin.audit-logs'
@@ -88,7 +89,8 @@ import { Route as AdminSlaReseller2AdminRouteImport } from './routes/admin.sla.r
 import { Route as AdminSlaSiteAdvertisingRouteImport } from './routes/admin.sla.site-advertising'
 import { Route as AdminSlaSqcOrdersRouteImport } from './routes/admin.sla.sqc-orders'
 import { Route as AdminSlaStaffRouteImport } from './routes/admin.sla.staff'
-import { Route as ApipublicRegisterResellerRouteImport } from './routes/api/(public)/register-reseller'
+import { Route as AdminSystemSessionsRouteImport } from './routes/admin.system.sessions'
+import { Route as ApiAdminBackupStatusRouteImport } from './routes/api/admin/backup-status'
 import { Route as ApiAdminCreateAdminRouteImport } from './routes/api/admin/create-admin'
 import { Route as ApiAdminCreateResellerRouteImport } from './routes/api/admin/create-reseller'
 import { Route as ApiAdminDeleteResellerRouteImport } from './routes/api/admin/delete-reseller'
@@ -97,7 +99,7 @@ import { Route as ApiAdminResetResellerPasswordRouteImport } from './routes/api/
 import { Route as ApiAdminUpdateOrderStatusRouteImport } from './routes/api/admin/update-order-status'
 import { Route as ApiAdminVerifyAllRouteImport } from './routes/api/admin/verify-all'
 import { Route as ResellerProfileCustomizeRouteImport } from './routes/reseller.profile_.customize'
-import { Route as ApipublicResellerRequestResetRouteImport } from './routes/api/(public)/reseller/request-reset'
+import { Route as ApiPublicResellerUpdateProfileRouteImport } from './routes/api/public/reseller/update-profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -212,6 +214,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminSplatRoute = AdminSplatRouteImport.update({
   id: '/admin/$',
   path: '/admin/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAdminSessionsRoute = AdminAdminSessionsRouteImport.update({
+  id: '/admin/admin-sessions',
+  path: '/admin/admin-sessions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAdminsRoute = AdminAdminsRouteImport.update({
@@ -497,12 +504,16 @@ const AdminSlaStaffRoute = AdminSlaStaffRouteImport.update({
   path: '/admin/sla/staff',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApipublicRegisterResellerRoute =
-  ApipublicRegisterResellerRouteImport.update({
-    id: '/api/(public)/register-reseller',
-    path: '/api/register-reseller',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const AdminSystemSessionsRoute = AdminSystemSessionsRouteImport.update({
+  id: '/sessions',
+  path: '/sessions',
+  getParentRoute: () => AdminSystemRoute,
+} as any)
+const ApiAdminBackupStatusRoute = ApiAdminBackupStatusRouteImport.update({
+  id: '/api/admin/backup-status',
+  path: '/api/admin/backup-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAdminCreateAdminRoute = ApiAdminCreateAdminRouteImport.update({
   id: '/api/admin/create-admin',
   path: '/api/admin/create-admin',
@@ -546,10 +557,10 @@ const ResellerProfileCustomizeRoute =
     path: '/reseller/profile/customize',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApipublicResellerRequestResetRoute =
-  ApipublicResellerRequestResetRouteImport.update({
-    id: '/api/(public)/reseller/request-reset',
-    path: '/api/reseller/request-reset',
+const ApiPublicResellerUpdateProfileRoute =
+  ApiPublicResellerUpdateProfileRouteImport.update({
+    id: '/api/public/reseller/update-profile',
+    path: '/api/public/reseller/update-profile',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -576,6 +587,7 @@ export interface FileRoutesByFullPath {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/verification-compliance': typeof VerificationComplianceRoute
   '/admin/$': typeof AdminSplatRoute
+  '/admin/admin-sessions': typeof AdminAdminSessionsRoute
   '/admin/admins': typeof AdminAdminsRoute
   '/admin/alerts': typeof AdminAlertsRoute
   '/admin/audit-logs': typeof AdminAuditLogsRoute
@@ -590,7 +602,7 @@ export interface FileRoutesByFullPath {
   '/admin/resellers': typeof AdminResellersRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/security': typeof AdminSecurityRoute
-  '/admin/system': typeof AdminSystemRoute
+  '/admin/system': typeof AdminSystemRouteWithChildren
   '/admin/system-logs': typeof AdminSystemLogsRoute
   '/api/health': typeof ApiHealthRoute
   '/api/scrape': typeof ApiScrapeRoute
@@ -633,7 +645,8 @@ export interface FileRoutesByFullPath {
   '/admin/sla/site-advertising': typeof AdminSlaSiteAdvertisingRoute
   '/admin/sla/sqc-orders': typeof AdminSlaSqcOrdersRoute
   '/admin/sla/staff': typeof AdminSlaStaffRoute
-  '/api/register-reseller': typeof ApipublicRegisterResellerRoute
+  '/admin/system/sessions': typeof AdminSystemSessionsRoute
+  '/api/admin/backup-status': typeof ApiAdminBackupStatusRoute
   '/api/admin/create-admin': typeof ApiAdminCreateAdminRoute
   '/api/admin/create-reseller': typeof ApiAdminCreateResellerRoute
   '/api/admin/delete-reseller': typeof ApiAdminDeleteResellerRoute
@@ -642,7 +655,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
-  '/api/reseller/request-reset': typeof ApipublicResellerRequestResetRoute
+  '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -667,6 +680,7 @@ export interface FileRoutesByTo {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/verification-compliance': typeof VerificationComplianceRoute
   '/admin/$': typeof AdminSplatRoute
+  '/admin/admin-sessions': typeof AdminAdminSessionsRoute
   '/admin/admins': typeof AdminAdminsRoute
   '/admin/alerts': typeof AdminAlertsRoute
   '/admin/audit-logs': typeof AdminAuditLogsRoute
@@ -681,7 +695,7 @@ export interface FileRoutesByTo {
   '/admin/resellers': typeof AdminResellersRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/security': typeof AdminSecurityRoute
-  '/admin/system': typeof AdminSystemRoute
+  '/admin/system': typeof AdminSystemRouteWithChildren
   '/admin/system-logs': typeof AdminSystemLogsRoute
   '/api/health': typeof ApiHealthRoute
   '/api/scrape': typeof ApiScrapeRoute
@@ -724,7 +738,8 @@ export interface FileRoutesByTo {
   '/admin/sla/site-advertising': typeof AdminSlaSiteAdvertisingRoute
   '/admin/sla/sqc-orders': typeof AdminSlaSqcOrdersRoute
   '/admin/sla/staff': typeof AdminSlaStaffRoute
-  '/api/register-reseller': typeof ApipublicRegisterResellerRoute
+  '/admin/system/sessions': typeof AdminSystemSessionsRoute
+  '/api/admin/backup-status': typeof ApiAdminBackupStatusRoute
   '/api/admin/create-admin': typeof ApiAdminCreateAdminRoute
   '/api/admin/create-reseller': typeof ApiAdminCreateResellerRoute
   '/api/admin/delete-reseller': typeof ApiAdminDeleteResellerRoute
@@ -733,7 +748,7 @@ export interface FileRoutesByTo {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
-  '/api/reseller/request-reset': typeof ApipublicResellerRequestResetRoute
+  '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -759,6 +774,7 @@ export interface FileRoutesById {
   '/terms-of-service': typeof TermsOfServiceRoute
   '/verification-compliance': typeof VerificationComplianceRoute
   '/admin/$': typeof AdminSplatRoute
+  '/admin/admin-sessions': typeof AdminAdminSessionsRoute
   '/admin/admins': typeof AdminAdminsRoute
   '/admin/alerts': typeof AdminAlertsRoute
   '/admin/audit-logs': typeof AdminAuditLogsRoute
@@ -773,7 +789,7 @@ export interface FileRoutesById {
   '/admin/resellers': typeof AdminResellersRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/security': typeof AdminSecurityRoute
-  '/admin/system': typeof AdminSystemRoute
+  '/admin/system': typeof AdminSystemRouteWithChildren
   '/admin/system-logs': typeof AdminSystemLogsRoute
   '/api/health': typeof ApiHealthRoute
   '/api/scrape': typeof ApiScrapeRoute
@@ -816,7 +832,8 @@ export interface FileRoutesById {
   '/admin/sla/site-advertising': typeof AdminSlaSiteAdvertisingRoute
   '/admin/sla/sqc-orders': typeof AdminSlaSqcOrdersRoute
   '/admin/sla/staff': typeof AdminSlaStaffRoute
-  '/api/(public)/register-reseller': typeof ApipublicRegisterResellerRoute
+  '/admin/system/sessions': typeof AdminSystemSessionsRoute
+  '/api/admin/backup-status': typeof ApiAdminBackupStatusRoute
   '/api/admin/create-admin': typeof ApiAdminCreateAdminRoute
   '/api/admin/create-reseller': typeof ApiAdminCreateResellerRoute
   '/api/admin/delete-reseller': typeof ApiAdminDeleteResellerRoute
@@ -825,7 +842,7 @@ export interface FileRoutesById {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/reseller/profile_/customize': typeof ResellerProfileCustomizeRoute
-  '/api/(public)/reseller/request-reset': typeof ApipublicResellerRequestResetRoute
+  '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -852,6 +869,7 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/verification-compliance'
     | '/admin/$'
+    | '/admin/admin-sessions'
     | '/admin/admins'
     | '/admin/alerts'
     | '/admin/audit-logs'
@@ -909,7 +927,8 @@ export interface FileRouteTypes {
     | '/admin/sla/site-advertising'
     | '/admin/sla/sqc-orders'
     | '/admin/sla/staff'
-    | '/api/register-reseller'
+    | '/admin/system/sessions'
+    | '/api/admin/backup-status'
     | '/api/admin/create-admin'
     | '/api/admin/create-reseller'
     | '/api/admin/delete-reseller'
@@ -918,7 +937,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/reseller/profile/customize'
-    | '/api/reseller/request-reset'
+    | '/api/public/reseller/update-profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -943,6 +962,7 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/verification-compliance'
     | '/admin/$'
+    | '/admin/admin-sessions'
     | '/admin/admins'
     | '/admin/alerts'
     | '/admin/audit-logs'
@@ -1000,7 +1020,8 @@ export interface FileRouteTypes {
     | '/admin/sla/site-advertising'
     | '/admin/sla/sqc-orders'
     | '/admin/sla/staff'
-    | '/api/register-reseller'
+    | '/admin/system/sessions'
+    | '/api/admin/backup-status'
     | '/api/admin/create-admin'
     | '/api/admin/create-reseller'
     | '/api/admin/delete-reseller'
@@ -1009,7 +1030,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/reseller/profile/customize'
-    | '/api/reseller/request-reset'
+    | '/api/public/reseller/update-profile'
   id:
     | '__root__'
     | '/'
@@ -1034,6 +1055,7 @@ export interface FileRouteTypes {
     | '/terms-of-service'
     | '/verification-compliance'
     | '/admin/$'
+    | '/admin/admin-sessions'
     | '/admin/admins'
     | '/admin/alerts'
     | '/admin/audit-logs'
@@ -1091,7 +1113,8 @@ export interface FileRouteTypes {
     | '/admin/sla/site-advertising'
     | '/admin/sla/sqc-orders'
     | '/admin/sla/staff'
-    | '/api/(public)/register-reseller'
+    | '/admin/system/sessions'
+    | '/api/admin/backup-status'
     | '/api/admin/create-admin'
     | '/api/admin/create-reseller'
     | '/api/admin/delete-reseller'
@@ -1100,7 +1123,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/reseller/profile_/customize'
-    | '/api/(public)/reseller/request-reset'
+    | '/api/public/reseller/update-profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1126,6 +1149,7 @@ export interface RootRouteChildren {
   TermsOfServiceRoute: typeof TermsOfServiceRoute
   VerificationComplianceRoute: typeof VerificationComplianceRoute
   AdminSplatRoute: typeof AdminSplatRoute
+  AdminAdminSessionsRoute: typeof AdminAdminSessionsRoute
   AdminAdminsRoute: typeof AdminAdminsRoute
   AdminAlertsRoute: typeof AdminAlertsRoute
   AdminAuditLogsRoute: typeof AdminAuditLogsRoute
@@ -1140,7 +1164,7 @@ export interface RootRouteChildren {
   AdminResellersRoute: typeof AdminResellersRoute
   AdminRolesRoute: typeof AdminRolesRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
-  AdminSystemRoute: typeof AdminSystemRoute
+  AdminSystemRoute: typeof AdminSystemRouteWithChildren
   AdminSystemLogsRoute: typeof AdminSystemLogsRoute
   ApiHealthRoute: typeof ApiHealthRoute
   ApiScrapeRoute: typeof ApiScrapeRoute
@@ -1180,7 +1204,7 @@ export interface RootRouteChildren {
   AdminSlaSiteAdvertisingRoute: typeof AdminSlaSiteAdvertisingRoute
   AdminSlaSqcOrdersRoute: typeof AdminSlaSqcOrdersRoute
   AdminSlaStaffRoute: typeof AdminSlaStaffRoute
-  ApipublicRegisterResellerRoute: typeof ApipublicRegisterResellerRoute
+  ApiAdminBackupStatusRoute: typeof ApiAdminBackupStatusRoute
   ApiAdminCreateAdminRoute: typeof ApiAdminCreateAdminRoute
   ApiAdminCreateResellerRoute: typeof ApiAdminCreateResellerRoute
   ApiAdminDeleteResellerRoute: typeof ApiAdminDeleteResellerRoute
@@ -1189,7 +1213,7 @@ export interface RootRouteChildren {
   ApiAdminUpdateOrderStatusRoute: typeof ApiAdminUpdateOrderStatusRoute
   ApiAdminVerifyAllRoute: typeof ApiAdminVerifyAllRoute
   ResellerProfileCustomizeRoute: typeof ResellerProfileCustomizeRoute
-  ApipublicResellerRequestResetRoute: typeof ApipublicResellerRequestResetRoute
+  ApiPublicResellerUpdateProfileRoute: typeof ApiPublicResellerUpdateProfileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1353,6 +1377,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/$'
       fullPath: '/admin/$'
       preLoaderRoute: typeof AdminSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/admin-sessions': {
+      id: '/admin/admin-sessions'
+      path: '/admin/admin-sessions'
+      fullPath: '/admin/admin-sessions'
+      preLoaderRoute: typeof AdminAdminSessionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/admins': {
@@ -1747,11 +1778,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSlaStaffRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/(public)/register-reseller': {
-      id: '/api/(public)/register-reseller'
-      path: '/api/register-reseller'
-      fullPath: '/api/register-reseller'
-      preLoaderRoute: typeof ApipublicRegisterResellerRouteImport
+    '/admin/system/sessions': {
+      id: '/admin/system/sessions'
+      path: '/sessions'
+      fullPath: '/admin/system/sessions'
+      preLoaderRoute: typeof AdminSystemSessionsRouteImport
+      parentRoute: typeof AdminSystemRoute
+    }
+    '/api/admin/backup-status': {
+      id: '/api/admin/backup-status'
+      path: '/api/admin/backup-status'
+      fullPath: '/api/admin/backup-status'
+      preLoaderRoute: typeof ApiAdminBackupStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/admin/create-admin': {
@@ -1810,11 +1848,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResellerProfileCustomizeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/(public)/reseller/request-reset': {
-      id: '/api/(public)/reseller/request-reset'
-      path: '/api/reseller/request-reset'
-      fullPath: '/api/reseller/request-reset'
-      preLoaderRoute: typeof ApipublicResellerRequestResetRouteImport
+    '/api/public/reseller/update-profile': {
+      id: '/api/public/reseller/update-profile'
+      path: '/api/public/reseller/update-profile'
+      fullPath: '/api/public/reseller/update-profile'
+      preLoaderRoute: typeof ApiPublicResellerUpdateProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -1844,6 +1882,18 @@ const CategoriesRouteWithChildren = CategoriesRoute._addFileChildren(
   CategoriesRouteChildren,
 )
 
+interface AdminSystemRouteChildren {
+  AdminSystemSessionsRoute: typeof AdminSystemSessionsRoute
+}
+
+const AdminSystemRouteChildren: AdminSystemRouteChildren = {
+  AdminSystemSessionsRoute: AdminSystemSessionsRoute,
+}
+
+const AdminSystemRouteWithChildren = AdminSystemRoute._addFileChildren(
+  AdminSystemRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -1867,6 +1917,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsOfServiceRoute: TermsOfServiceRoute,
   VerificationComplianceRoute: VerificationComplianceRoute,
   AdminSplatRoute: AdminSplatRoute,
+  AdminAdminSessionsRoute: AdminAdminSessionsRoute,
   AdminAdminsRoute: AdminAdminsRoute,
   AdminAlertsRoute: AdminAlertsRoute,
   AdminAuditLogsRoute: AdminAuditLogsRoute,
@@ -1881,7 +1932,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminResellersRoute: AdminResellersRoute,
   AdminRolesRoute: AdminRolesRoute,
   AdminSecurityRoute: AdminSecurityRoute,
-  AdminSystemRoute: AdminSystemRoute,
+  AdminSystemRoute: AdminSystemRouteWithChildren,
   AdminSystemLogsRoute: AdminSystemLogsRoute,
   ApiHealthRoute: ApiHealthRoute,
   ApiScrapeRoute: ApiScrapeRoute,
@@ -1921,7 +1972,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSlaSiteAdvertisingRoute: AdminSlaSiteAdvertisingRoute,
   AdminSlaSqcOrdersRoute: AdminSlaSqcOrdersRoute,
   AdminSlaStaffRoute: AdminSlaStaffRoute,
-  ApipublicRegisterResellerRoute: ApipublicRegisterResellerRoute,
+  ApiAdminBackupStatusRoute: ApiAdminBackupStatusRoute,
   ApiAdminCreateAdminRoute: ApiAdminCreateAdminRoute,
   ApiAdminCreateResellerRoute: ApiAdminCreateResellerRoute,
   ApiAdminDeleteResellerRoute: ApiAdminDeleteResellerRoute,
@@ -1930,7 +1981,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdminUpdateOrderStatusRoute: ApiAdminUpdateOrderStatusRoute,
   ApiAdminVerifyAllRoute: ApiAdminVerifyAllRoute,
   ResellerProfileCustomizeRoute: ResellerProfileCustomizeRoute,
-  ApipublicResellerRequestResetRoute: ApipublicResellerRequestResetRoute,
+  ApiPublicResellerUpdateProfileRoute: ApiPublicResellerUpdateProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
