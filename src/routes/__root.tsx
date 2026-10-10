@@ -82,8 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { name: "apple-mobile-web-app-title", content: "GCOS" },
-      { title: "GCOS | Global online marketplace" },
+      { name: "apple-mobile-web-app-title", content: "Apex Global Cart" },
+      { title: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
       {
         name: "description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "keywords", content: "online marketplace, global shopping, ecommerce, products, reseller portal" },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "GCOS | Global online marketplace" },
+      { property: "og:title", content: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
       {
         property: "og:description",
         content:
@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "GCOS Global online marketplace" },
+      { property: "og:image:alt", content: "Apex Global Cart online marketplace" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://apexglobalonlineshop.com/brand/og-customer.png" },
     ],
@@ -180,7 +180,7 @@ function RootComponent() {
     "@graph": [
       {
         "@type": "Organization",
-        name: "GCOS",
+        name: "Apex Global Cart",
         url: "https://apexglobalonlineshop.com/",
         logo: "https://apexglobalonlineshop.com/brand/logo-header.svg",
         contactPoint: {
@@ -191,7 +191,7 @@ function RootComponent() {
       },
       {
         "@type": "WebSite",
-        name: "GCOS",
+        name: "Apex Global Cart",
         url: "https://apexglobalonlineshop.com/",
         description: "Global online marketplace for products, categories, and reseller stores.",
       },

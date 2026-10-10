@@ -14,7 +14,7 @@ export const Route = createFileRoute("/products/$id")({
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { property: "og:title", content: "Product Details | Apex Global Cart" },
-      { property: "og:description", content: "View product specifications and customer reviews on GCOS." },
+      { property: "og:description", content: "View product specifications and customer reviews on Apex Global Cart." },
       { property: "og:type", content: "product" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

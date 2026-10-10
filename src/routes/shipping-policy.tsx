@@ -5,10 +5,10 @@ import ShippingPolicy from "@/pages/ShippingPolicy";
 export const Route = createFileRoute("/shipping-policy")({
   head: () => ({
     meta: [
-      { title: "Shipping Policy | GCOS" },
-      { name: "description", content: "Learn how GCOS shipping, delivery estimates, customs, and delivery support work." },
-      { property: "og:title", content: "Shipping Policy | GCOS" },
-      { property: "og:description", content: "Learn how GCOS shipping and delivery support work." },
+      { title: "Shipping Policy | Apex Global Cart" },
+      { name: "description", content: "Learn how Apex Global Cart shipping, delivery estimates, customs, and delivery support work." },
+      { property: "og:title", content: "Shipping Policy | Apex Global Cart" },
+      { property: "og:description", content: "Learn how Apex Global Cart shipping and delivery support work." },
     ],
   }),
   component: () => <MainLayout><ShippingPolicy /></MainLayout>,
