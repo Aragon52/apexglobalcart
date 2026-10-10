@@ -83,7 +83,7 @@ export default function ResellerRegister() {
     >
       <SEO
         title="Become a Reseller - Open Your Global Store"
-        description="Launch your digital storefront with zero upfront inventory on GCOS. Instant setup, profit sharing, and marketing boost tools."
+        description="Launch your digital storefront with zero upfront inventory on Apex Global Cart. Instant setup, profit sharing, and marketing boost tools."
         portal="reseller"
       />
       <div className="absolute inset-0 bg-black/30" />

@@ -101,5 +101,5 @@ Disallow: /_serverFn/
 Disallow: /_server/
 Allow: /
 
-Host: globalcart-onlineshop.com
+Host: apexglobalonlineshop.com
 Sitemap: https://apexglobalonlineshop.com/sitemap.xml

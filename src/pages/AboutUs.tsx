@@ -13,7 +13,7 @@ export default function AboutUs() {
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <SEO
         title="About Us - Corporate Identity, Security & Headless Demo Project"
-        description="Learn about Apex Global Cart International Pte. Ltd. (GCOS). An advanced headless e-commerce technology pilot and investor presentation environment showcasing multi-merchant capabilities."
+        description="Learn about Apex Global Cart International Pte. Ltd. . An advanced headless e-commerce technology pilot and investor presentation environment showcasing multi-merchant capabilities."
         canonical="https://apexglobalonlineshop.com/about"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -30,7 +30,7 @@ export default function AboutUs() {
           About Apex Global Cart Online Shop
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Operating under <strong className="text-foreground">Apex Global Cart International Pte. Ltd.</strong>, GCOS demonstrates a complete headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups.
+          Operating under <strong className="text-foreground">Apex Global Cart International Pte. Ltd.</strong>, Apex Global Cart demonstrates a complete headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups.
         </p>
       </div>
 

@@ -40,7 +40,7 @@ export default function TermsOfService() {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">1. Agreement to Terms</h2>
             <p className="text-muted-foreground">
-              By accessing, browsing, testing, or reviewing the Apex Global Cart platform (Apex Global Cart Online Shop / GCOS), you acknowledge and agree to be bound by these Terms of Service and user agreements governing this demonstration environment operated under <strong>Apex Global Cart International Pte. Ltd.</strong> (Registration UEN: 202301984M).
+              By accessing, browsing, testing, or reviewing the Apex Global Cart platform (Apex Global Cart Online Shop), you acknowledge and agree to be bound by these Terms of Service and user agreements governing this demonstration environment operated under <strong>Apex Global Cart International Pte. Ltd.</strong> (Registration UEN: 202301984M).
             </p>
           </section>
 

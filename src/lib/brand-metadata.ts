@@ -17,12 +17,12 @@ export interface BrandConfig {
 
 const brandConfigs: Record<Portal, BrandConfig> = {
   customer: {
-    title: 'GCOS | Global online marketplace',
+    title: 'Apex Global Cart | Shop verified reseller stores worldwide',
     description:
       'Shop premium products from verified sellers worldwide. Discover reseller stores, enjoy secure checkout, and get world-class customer support.',
     themeColor: '#0B1B3F',
     ogImage: '/brand/og-customer.png',
-    ogImageAlt: 'GCOS Global online marketplace',
+    ogImageAlt: 'Apex Global Cart online marketplace',
     manifestPath: '/manifest.json',
     keywords: [
       'online marketplace',
@@ -33,12 +33,12 @@ const brandConfigs: Record<Portal, BrandConfig> = {
     ],
   },
   reseller: {
-    title: 'GCOS Reseller Portal | Grow Your Global Store',
+    title: 'Apex Global Cart Reseller Portal | Grow your global store',
     description:
-      'Manage your online store, track orders, boost sales with our marketing tools, and grow your global business on the GCOS marketplace.',
+      'Manage your online store, track orders, boost sales with our marketing tools, and grow your global business on Apex Global Cart.',
     themeColor: '#0B1B3F',
     ogImage: '/brand/og-reseller.png',
-    ogImageAlt: 'GCOS Reseller Portal dashboard',
+    ogImageAlt: 'Apex Global Cart Reseller Portal',
     manifestPath: '/manifest-reseller.json',
     keywords: [
       'reseller platform',

@@ -152,8 +152,8 @@ export function useSEO(props: SEOProps) {
     let finalTitle = brand.title;
 
     if (rawTitle) {
-      const brandSuffix = props.portal === "reseller" ? "GCOS Reseller Portal" : "GCOS Global Marketplace";
-      if (rawTitle.toLowerCase().includes("gcos")) {
+      const brandSuffix = props.portal === "reseller" ? "Apex Global Cart Reseller" : "Apex Global Cart";
+      if (rawTitle.toLowerCase().includes("apex global cart")) {
         finalTitle = rawTitle;
       } else {
         finalTitle = `${rawTitle} | ${brandSuffix}`;
@@ -203,7 +203,7 @@ export function useSEO(props: SEOProps) {
     setMetaTag("property", "og:description", finalDescription);
     setMetaTag("property", "og:type", props.ogType || (props.product ? "product" : "website"));
     setMetaTag("property", "og:url", canonicalUrl);
-    setMetaTag("property", "og:site_name", props.portal === "reseller" ? "GCOS Reseller" : "GCOS");
+    setMetaTag("property", "og:site_name", props.portal === "reseller" ? "Apex Global Cart Reseller" : "Apex Global Cart");
     setMetaTag("property", "og:image", absoluteOgImage);
     setMetaTag("property", "og:image:alt", ogImageAlt);
     if (props.ogImageWidth) setMetaTag("property", "og:image:width", String(props.ogImageWidth));

@@ -64,7 +64,6 @@ export default function Index() {
       <section aria-labelledby="about-app" className="container mx-auto px-4 py-8">
         <div className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-3">
           <h2 id="about-app" className="text-2xl font-bold text-foreground">Welcome to Apex Global Cart</h2>
-          <p className="text-sm font-medium text-foreground">Apex Global Onlineshop — the official online shop of Apex Global Cart at apexglobalonlineshop.com</p>
           <p className="text-sm md:text-base text-muted-foreground">
             Apex Global Cart is an online marketplace where shoppers buy electronics, fashion, home, beauty and sports products from verified reseller stores. Resellers use Apex Global Cart to open their own online shop, choose products from our catalogue and manage their orders. You can browse every product without an account; you only sign in to place orders, track deliveries or run a reseller shop.
           </p>
