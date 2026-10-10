@@ -10,7 +10,7 @@ export default function ShippingPolicy() {
       <SEO
         title="Shipping & Delivery Policy - Demo Project Disclosure - Apex Global Cart"
         description="Review shipping coverage, international dispatch guidelines, logistics tracking integrations, and demo project notices for Apex Global Cart."
-        canonical="https://globalcart-onlineshop.com/shipping-policy"
+        canonical="https://apexglobalonlineshop.com/shipping-policy"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Shipping Policy", item: "/shipping-policy" },

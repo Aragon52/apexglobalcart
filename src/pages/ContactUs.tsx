@@ -50,7 +50,7 @@ export default function ContactUs() {
       <SEO
         title="Contact Customer Support & Official Inquiry Desk"
         description="Get 24/7 assistance from Apex Global Cart International Pte. Ltd. Contact our support team for order tracking, payment verification, and reseller inquiries."
-        canonical="https://globalcart-onlineshop.com/contact"
+        canonical="https://apexglobalonlineshop.com/contact"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Contact Us", item: "/contact" },

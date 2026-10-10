@@ -8,7 +8,7 @@ export default function VerificationCompliance() {
       <SEO
         title="Verification & Compliance - Demo Project Standards - Apex Global Cart"
         description="Learn about merchant verification, KYC compliance, trust architecture, and the demonstration pilot framework at Apex Global Cart."
-        canonical="https://globalcart-onlineshop.com/verification-compliance"
+        canonical="https://apexglobalonlineshop.com/verification-compliance"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Verification & Compliance", item: "/verification-compliance" },

@@ -18,11 +18,11 @@ export const Route = createFileRoute("/reseller/login")({
         content: "Sign in to your GCOS reseller partner portal to manage your storefront and earnings.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://globalcart-onlineshop.com/reseller/login" },
+      { property: "og:url", content: "https://apexglobalonlineshop.com/reseller/login" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://globalcart-onlineshop.com/reseller/login" },
+      { rel: "canonical", href: "https://apexglobalonlineshop.com/reseller/login" },
     ],
   }),
   component: ResellerLoginRoutePage,

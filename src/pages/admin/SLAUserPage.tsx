@@ -144,9 +144,9 @@ export default function SLAUserPage() {
       }
       
       // In production, use the hardcoded domain which is the intended reseller portal
-      return `https://reseller.globalcart-onlineshop.com/register?ref=${referralId}`;
+      return `https://reseller.apexglobalonlineshop.com/register?ref=${referralId}`;
     } catch (e) {
-      return `https://reseller.globalcart-onlineshop.com/register?ref=${referralId}`;
+      return `https://reseller.apexglobalonlineshop.com/register?ref=${referralId}`;
     }
   };
 

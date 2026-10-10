@@ -10,7 +10,7 @@ export default function ReturnRefundPolicy() {
       <SEO
         title="Return & Refund Policy - Demo Project Disclosure - Apex Global Cart"
         description="Review return eligibility, refund processes, buyer guarantee workflows, and demo environment notices for Apex Global Cart."
-        canonical="https://globalcart-onlineshop.com/returns-refunds"
+        canonical="https://apexglobalonlineshop.com/returns-refunds"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Return & Refund Policy", item: "/returns-refunds" },

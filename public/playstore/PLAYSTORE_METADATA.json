@@ -6,9 +6,9 @@
     "default_language": "en-US",
     "category": "Shopping / Business",
     "content_rating": "Everyone (PEGI 3 / ESRB Everyone)",
-    "privacy_policy_url": "https://globalcart-onlineshop.com/reseller/privacy",
+    "privacy_policy_url": "https://apexglobalonlineshop.com/reseller/privacy",
     "support_email": "support@globalcart-onlineshop.com",
-    "website_url": "https://globalcart-onlineshop.com/reseller"
+    "website_url": "https://apexglobalonlineshop.com/reseller"
   },
   "asset_specifications_verified": {
     "hi_res_icon": "512x512 32-bit PNG (Included in store_listing/playstore-icon-512x512.png)",
@@ -18,7 +18,7 @@
   },
   "trusted_web_activity": {
     "package_name": "com.globalcart.reseller",
-    "start_url": "https://globalcart-onlineshop.com/reseller/",
+    "start_url": "https://apexglobalonlineshop.com/reseller/",
     "assetlinks_json_path": "/public/.well-known/assetlinks.json"
   }
 }
