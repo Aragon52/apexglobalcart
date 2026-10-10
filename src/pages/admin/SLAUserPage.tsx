@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useDbSlaStaff, dbStaffToLegacy, type LegacySlaStaff } from "@/hooks/use-db-sla";
 import { useAdminAccess } from "@/hooks/use-admin-access";
-import { resellerPath, resellerPrefix } from "@/lib/subdomain";
+import { buildReferralLink } from "@/lib/referral-link";
 import { useAdminAuth } from "@/lib/admin-auth-context-hooks";
 import { PermissionManagerModal } from "@/components/admin/PermissionManagerModal";
 import { Search, Mail, Phone, MoreVertical, X, Users, Copy, Link, Check, Trash2, ShieldAlert, ShieldCheck } from "lucide-react";
@@ -131,24 +131,7 @@ export default function SLAUserPage() {
     },
   });
 
-  const getReferralLink = (referralId: string) => {
-    try {
-      const host = window.location.hostname;
-      const protocol = window.location.protocol;
-      
-      // If we're on a dev/preview host
-      if (host.includes('ais-dev-') || host.includes('ais-pre-') || host === 'localhost' || host === '127.0.0.1') {
-        const prefix = resellerPrefix();
-        // Construct the full URL for the preview environment
-        return `${protocol}//${host}${prefix}/register?ref=${referralId}`;
-      }
-      
-      // In production, use the hardcoded domain which is the intended reseller portal
-      return `https://reseller.apexglobalonlineshop.com/register?ref=${referralId}`;
-    } catch (e) {
-      return `https://reseller.apexglobalonlineshop.com/register?ref=${referralId}`;
-    }
-  };
+  const getReferralLink = (code: string) => buildReferralLink(code);
 
   return (
     <div className="flex gap-6 animate-fade-in">
@@ -193,7 +176,7 @@ export default function SLAUserPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b bg-muted/50">
-                    {["Staff Member", "Referral ID", "Referral Link", "Contact", "Department", "Created By", "Status", ""].map((h) => (
+                    {["Staff Member", "Referral code", "Referral Link", "Contact", "Department", "Created By", "Status", ""].map((h) => (
                       <th key={h} className="thead-label text-left p-3.5 first:pl-5">{h}</th>
                     ))}
                   </tr>
@@ -218,15 +201,15 @@ export default function SLAUserPage() {
                       </td>
                       <td className="p-3.5">
                         <div className="flex items-center gap-1.5">
-                          <span className="font-mono text-xs font-medium text-foreground">{staff.referralId}</span>
-                          <CopyButton text={staff.referralId} label="Referral ID" />
+                          <span className="font-mono text-xs font-medium text-foreground">{staff.inviteCode}</span>
+                          <CopyButton text={staff.inviteCode} label="Referral code" />
                         </div>
                       </td>
                       <td className="p-3.5">
                         <div className="flex items-center gap-1.5 max-w-[200px]">
                           <Link className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                          <span className="text-xs text-muted-foreground truncate">{getReferralLink(staff.referralId)}</span>
-                          <CopyButton text={getReferralLink(staff.referralId)} label="Referral Link" />
+                          <span className="text-xs text-muted-foreground truncate">{getReferralLink(staff.inviteCode)}</span>
+                          <CopyButton text={getReferralLink(staff.inviteCode)} label="Referral Link" />
                         </div>
                       </td>
                       <td className="p-3.5">
@@ -363,18 +346,18 @@ export default function SLAUserPage() {
                   <span className="text-foreground font-mono font-medium">{selectedStaff.staffId}</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-muted-foreground">Referral ID</span>
+                  <span className="text-muted-foreground">Referral code</span>
                   <div className="flex items-center gap-1">
-                    <span className="text-foreground font-mono font-medium">{selectedStaff.referralId}</span>
-                    <CopyButton text={selectedStaff.referralId} label="Referral ID" />
+                    <span className="text-foreground font-mono font-medium">{selectedStaff.inviteCode}</span>
+                    <CopyButton text={selectedStaff.inviteCode} label="Referral code" />
                   </div>
                 </div>
                 <div className="text-xs">
                   <span className="text-muted-foreground block mb-1">Referral Link</span>
                   <div className="flex items-center gap-1 rounded-md bg-muted px-2 py-1.5">
                     <Link className="h-3 w-3 text-muted-foreground shrink-0" />
-                    <span className="text-foreground text-[10px] font-mono truncate flex-1">{getReferralLink(selectedStaff.referralId)}</span>
-                    <CopyButton text={getReferralLink(selectedStaff.referralId)} label="Referral Link" />
+                    <span className="text-foreground text-[10px] font-mono truncate flex-1">{getReferralLink(selectedStaff.inviteCode)}</span>
+                    <CopyButton text={getReferralLink(selectedStaff.inviteCode)} label="Referral Link" />
                   </div>
                 </div>
                 <div className="flex justify-between text-xs">

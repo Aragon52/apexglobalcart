@@ -830,6 +830,7 @@ export type Database = {
           created_at: string | null
           email: string | null
           id: string
+          invite_code: string | null
           name: string | null
           permissions: string[] | null
           phone: string | null
@@ -840,6 +841,7 @@ export type Database = {
           created_at?: string | null
           email?: string | null
           id?: string
+          invite_code?: string | null
           name?: string | null
           permissions?: string[] | null
           phone?: string | null
@@ -850,6 +852,7 @@ export type Database = {
           created_at?: string | null
           email?: string | null
           id?: string
+          invite_code?: string | null
           name?: string | null
           permissions?: string[] | null
           phone?: string | null
@@ -864,6 +867,7 @@ export type Database = {
           department: string | null
           email: string | null
           id: string
+          invite_code: string | null
           name: string | null
           permissions: string[] | null
           phone: string | null
@@ -878,6 +882,7 @@ export type Database = {
           department?: string | null
           email?: string | null
           id?: string
+          invite_code?: string | null
           name?: string | null
           permissions?: string[] | null
           phone?: string | null
@@ -892,6 +897,7 @@ export type Database = {
           department?: string | null
           email?: string | null
           id?: string
+          invite_code?: string | null
           name?: string | null
           permissions?: string[] | null
           phone?: string | null
@@ -1120,6 +1126,7 @@ export type Database = {
     }
     Functions: {
       count_other_active_sessions: { Args: never; Returns: number }
+      generate_invite_code: { Args: never; Returns: string }
       get_public_reseller_profile: {
         Args: { _key: string }
         Returns: {

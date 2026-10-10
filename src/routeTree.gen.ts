@@ -98,6 +98,7 @@ import { Route as ApiAdminDeleteStaffRouteImport } from './routes/api/admin/dele
 import { Route as ApiAdminResetResellerPasswordRouteImport } from './routes/api/admin/reset-reseller-password'
 import { Route as ApiAdminUpdateOrderStatusRouteImport } from './routes/api/admin/update-order-status'
 import { Route as ApiAdminVerifyAllRouteImport } from './routes/api/admin/verify-all'
+import { Route as ApiPublicRegisterResellerRouteImport } from './routes/api/public/register-reseller'
 import { Route as ResellerProfileCustomizeRouteImport } from './routes/reseller.profile_.customize'
 import { Route as ApiPublicResellerUpdateProfileRouteImport } from './routes/api/public/reseller/update-profile'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -554,6 +555,12 @@ const ApiAdminVerifyAllRoute = ApiAdminVerifyAllRouteImport.update({
   path: '/api/admin/verify-all',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicRegisterResellerRoute =
+  ApiPublicRegisterResellerRouteImport.update({
+    id: '/api/public/register-reseller',
+    path: '/api/public/register-reseller',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResellerProfileCustomizeRoute =
   ResellerProfileCustomizeRouteImport.update({
     id: '/reseller/profile_/customize',
@@ -673,6 +680,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/reset-reseller-password': typeof ApiAdminResetResellerPasswordRoute
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
+  '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -769,6 +777,7 @@ export interface FileRoutesByTo {
   '/api/admin/reset-reseller-password': typeof ApiAdminResetResellerPasswordRoute
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
+  '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -866,6 +875,7 @@ export interface FileRoutesById {
   '/api/admin/reset-reseller-password': typeof ApiAdminResetResellerPasswordRoute
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
+  '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
   '/reseller/profile_/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -964,6 +974,7 @@ export interface FileRouteTypes {
     | '/api/admin/reset-reseller-password'
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
+    | '/api/public/register-reseller'
     | '/reseller/profile/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1060,6 +1071,7 @@ export interface FileRouteTypes {
     | '/api/admin/reset-reseller-password'
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
+    | '/api/public/register-reseller'
     | '/reseller/profile/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1156,6 +1168,7 @@ export interface FileRouteTypes {
     | '/api/admin/reset-reseller-password'
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
+    | '/api/public/register-reseller'
     | '/reseller/profile_/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1249,6 +1262,7 @@ export interface RootRouteChildren {
   ApiAdminResetResellerPasswordRoute: typeof ApiAdminResetResellerPasswordRoute
   ApiAdminUpdateOrderStatusRoute: typeof ApiAdminUpdateOrderStatusRoute
   ApiAdminVerifyAllRoute: typeof ApiAdminVerifyAllRoute
+  ApiPublicRegisterResellerRoute: typeof ApiPublicRegisterResellerRoute
   ResellerProfileCustomizeRoute: typeof ResellerProfileCustomizeRoute
   ApiPublicResellerUpdateProfileRoute: typeof ApiPublicResellerUpdateProfileRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -1881,6 +1895,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminVerifyAllRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/register-reseller': {
+      id: '/api/public/register-reseller'
+      path: '/api/public/register-reseller'
+      fullPath: '/api/public/register-reseller'
+      preLoaderRoute: typeof ApiPublicRegisterResellerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reseller/profile_/customize': {
       id: '/reseller/profile_/customize'
       path: '/reseller/profile/customize'
@@ -2041,6 +2062,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdminResetResellerPasswordRoute: ApiAdminResetResellerPasswordRoute,
   ApiAdminUpdateOrderStatusRoute: ApiAdminUpdateOrderStatusRoute,
   ApiAdminVerifyAllRoute: ApiAdminVerifyAllRoute,
+  ApiPublicRegisterResellerRoute: ApiPublicRegisterResellerRoute,
   ResellerProfileCustomizeRoute: ResellerProfileCustomizeRoute,
   ApiPublicResellerUpdateProfileRoute: ApiPublicResellerUpdateProfileRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
