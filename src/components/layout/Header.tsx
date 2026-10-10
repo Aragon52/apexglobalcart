@@ -10,7 +10,6 @@ import { useUnreadSupport } from '@/hooks/use-support';
 import LogoIcon from '@/components/brand/LogoIcon';
 import LogoWordmark from '@/components/brand/LogoWordmark';
 import TaglineSVG from '@/components/brand/TaglineSVG';
-import WorldMapBackground from '@/components/brand/WorldMapBackground';
 import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES } from '@/lib/i18n';
 import { resellerPath } from '@/lib/subdomain';
@@ -117,11 +116,10 @@ export default function Header() {
               {showMobileMenu ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
             <Link to="/" className="relative flex items-start gap-1 sm:gap-1.5 min-w-0 overflow-hidden">
-              <WorldMapBackground opacity={0.12} />
               <LogoIcon variant="header" className="flex-shrink-0 mt-0.5 relative z-10 ml-auto" />
               <div className="flex flex-col items-start min-w-0 leading-none relative z-10">
                 <LogoWordmark size="sm" className="sm:hidden" />
-                <LogoWordmark size="md" className="hidden sm:block" />
+                <LogoWordmark size="sm" className="hidden sm:block sm:text-2xl" />
                 <TaglineSVG className="w-full mt-0.5 sm:mt-1 h-[16px] sm:h-[20px] md:h-[22px]" />
               </div>
             </Link>
