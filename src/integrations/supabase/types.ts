@@ -694,9 +694,12 @@ export type Database = {
           level: string | null
           product_limit: number | null
           reseller_id: number | null
+          shop_hero_banner: string | null
+          shop_logo: string | null
           shop_name: string | null
           shop_slug: string | null
           star_rating: number | null
+          store_theme: string | null
         }
         Insert: {
           created_at?: string | null
@@ -706,9 +709,12 @@ export type Database = {
           level?: string | null
           product_limit?: number | null
           reseller_id?: number | null
+          shop_hero_banner?: string | null
+          shop_logo?: string | null
           shop_name?: string | null
           shop_slug?: string | null
           star_rating?: number | null
+          store_theme?: string | null
         }
         Update: {
           created_at?: string | null
@@ -718,9 +724,12 @@ export type Database = {
           level?: string | null
           product_limit?: number | null
           reseller_id?: number | null
+          shop_hero_banner?: string | null
+          shop_logo?: string | null
           shop_name?: string | null
           shop_slug?: string | null
           star_rating?: number | null
+          store_theme?: string | null
         }
         Relationships: [
           {
@@ -856,6 +865,7 @@ export type Database = {
           email: string | null
           id: string
           name: string | null
+          permissions: string[] | null
           phone: string | null
           referral_id: string | null
           staff_id: string | null
@@ -869,6 +879,7 @@ export type Database = {
           email?: string | null
           id?: string
           name?: string | null
+          permissions?: string[] | null
           phone?: string | null
           referral_id?: string | null
           staff_id?: string | null
@@ -882,6 +893,7 @@ export type Database = {
           email?: string | null
           id?: string
           name?: string | null
+          permissions?: string[] | null
           phone?: string | null
           referral_id?: string | null
           staff_id?: string | null
@@ -1003,6 +1015,7 @@ export type Database = {
       }
       users: {
         Row: {
+          avatar_url: string | null
           created_at: string | null
           email: string | null
           first_name: string | null
@@ -1012,6 +1025,7 @@ export type Database = {
           role: string | null
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           first_name?: string | null
@@ -1021,6 +1035,7 @@ export type Database = {
           role?: string | null
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           first_name?: string | null
