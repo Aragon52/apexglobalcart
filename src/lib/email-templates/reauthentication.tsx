@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { EmailFooter } from './email-footer'
 
 import {
   Body,
@@ -27,6 +28,7 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
           This code will expire shortly. If you didn't request this, you can
           safely ignore this email.
         </Text>
+        <EmailFooter />
       </Container>
     </Body>
   </Html>

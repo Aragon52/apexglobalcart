@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { EmailFooter } from './email-footer'
 
 import {
   Body,
@@ -39,6 +40,7 @@ export const RecoveryEmail = ({
           If you didn't request a password reset, you can safely ignore this
           email. Your password will not be changed.
         </Text>
+        <EmailFooter />
       </Container>
     </Body>
   </Html>
