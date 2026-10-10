@@ -49,6 +49,10 @@ export default function ResellerRegister() {
       setError(t("reseller.passwordsDoNotMatch", { defaultValue: "Passwords do not match" }));
       return;
     }
+    if (!referralCode.trim()) {
+      setError("A valid invite code from your admin is required.");
+      return;
+    }
     if (!agreeTerms) {
       setError(t("auth.mustAgreeTerms", { defaultValue: "Please agree to the Reseller Agreement, Terms of Service & Privacy Policy to continue" }));
       return;
@@ -198,15 +202,16 @@ export default function ResellerRegister() {
           </div>
 
           <div>
-            <label className="text-xs font-medium text-white/80 mb-1 block">{t("reseller.referralCode", { defaultValue: "Referral Code (Optional)" })}</label>
+            <label className="text-xs font-medium text-white/80 mb-1 block">{t("reseller.referralCode", { defaultValue: "Referral Code" })} (Required)</label>
             <div className={inputBoxClass}>
               <Tag className={iconClass} />
               <input 
                 disabled={submitting}
+                required
                 value={referralCode} 
                 onChange={e => setReferralCode(e.target.value)} 
                 className={inputClass} 
-                placeholder={t("reseller.enterReferralCode", { defaultValue: "Referral code (if any)" })} 
+                placeholder={t("reseller.enterReferralCode", { defaultValue: "Enter your admin invite code" })} 
                 readOnly={!!searchParams.get("ref")}
               />
             </div>

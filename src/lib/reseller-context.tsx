@@ -606,18 +606,20 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
 
   const register = async (data: { firstName: string; lastName: string; emailOrPhone: string; password: string; shopName?: string; referralCode?: string; isPhone?: boolean }): Promise<{ success: boolean; error?: string }> => {
     try {
-      const normalizedEmail = data.isPhone ? data.emailOrPhone.trim() : data.emailOrPhone.toLowerCase().trim();
+      const normalizedInput = data.emailOrPhone.trim();
+      const isPhone = data.isPhone ?? !normalizedInput.includes("@");
+      const identifier = isPhone ? normalizedInput.replace(/\s+/g, "") : normalizedInput.toLowerCase();
       const response = await fetch("/api/public/register-reseller", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           firstName: data.firstName.trim(),
           lastName: data.lastName.trim(),
-          emailOrPhone: normalizedEmail,
+          emailOrPhone: identifier,
           password: data.password,
           shopName: data.shopName,
           referralCode: data.referralCode,
-          isPhone: data.isPhone || false,
+          isPhone,
         }),
       });
 
@@ -632,16 +634,16 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Automatically sign them in on the client side after successful registration
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: data.isPhone ? undefined : normalizedEmail,
-        password: data.password,
-      });
+      const credentials = isPhone
+        ? { phone: identifier, password: data.password }
+        : { email: identifier, password: data.password };
+      const { error: signInError } = await supabase.auth.signInWithPassword(credentials);
 
       if (signInError) {
         console.warn("Auto sign-in failed after registration:", signInError);
       }
 
-      await fetchProfile(resData.userId, data.isPhone ? null : normalizedEmail);
+      await fetchProfile(resData.userId, isPhone ? null : identifier);
       return { success: true };
     } catch (e: unknown) {
       console.error("Registration error details:", e);
