@@ -275,8 +275,13 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
           try {
             const { data: authUserData } = await supabase.auth.getUser();
             const authUser = authUserData?.user;
+            // Only auto-provision when this sign-in started from the reseller portal's
+            // Google button. Admins, staff and shoppers share the same login session,
+            // so provisioning (and the sign-out on failure) must never run for them.
+            const startedResellerGoogleFlow =
+              typeof window !== "undefined" && localStorage.getItem("pending_auth_portal") === "reseller";
 
-            if (authUser && authUser.id === userId) {
+            if (authUser && authUser.id === userId && startedResellerGoogleFlow) {
               console.log(`[RESELLER_CONTEXT] Authenticated user confirmed for UID: ${userId}. Auto-provisioning reseller store...`);
               const meta = (authUser.user_metadata || {}) as Record<string, any>;
               const fullName = (meta.full_name || meta.name || "").trim();
