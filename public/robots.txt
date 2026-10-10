@@ -1,5 +1,5 @@
 # ==============================================================================
-# GCOS Marketplace Robots Exclusion Protocol
+# Apex Global Cart Robots Exclusion Protocol
 # Prohibits crawling and indexing of sensitive administrative and internal pages
 # while allowing indexing of all public marketplace products, stores, and legal pages.
 # ==============================================================================
