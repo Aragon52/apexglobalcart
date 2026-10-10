@@ -5,7 +5,7 @@ import ResellerShopCustomization from "@/pages/reseller/ResellerShopCustomizatio
 export const Route = createFileRoute("/reseller/profile_/customize")({
   head: () => ({
     meta: [
-      { title: "User Portal — Apex Global Cart" },
+      { title: "Profile_ customize — User portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

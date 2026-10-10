@@ -5,7 +5,7 @@ import AdminAuditLogsPage from "@/pages/admin/AdminAuditLogsPage";
 export const Route = createFileRoute("/admin/audit-logs")({
   head: () => ({
     meta: [
-      { title: "Admin portal — Apex Global Cart" },
+      { title: "Audit logs — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

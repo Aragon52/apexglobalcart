@@ -5,7 +5,7 @@ import SeasonalCampaignsPage from "@/pages/admin/SeasonalCampaignsPage";
 export const Route = createFileRoute("/admin/campaigns")({
   head: () => ({
     meta: [
-      { title: "Admin portal — Apex Global Cart" },
+      { title: "Campaigns — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

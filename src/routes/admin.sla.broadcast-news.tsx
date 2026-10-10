@@ -5,7 +5,7 @@ import BroadcastNewsPage from "@/pages/admin/BroadcastNewsPage";
 export const Route = createFileRoute("/admin/sla/broadcast-news")({
   head: () => ({
     meta: [
-      { title: "Admin portal — Apex Global Cart" },
+      { title: "Sla broadcast news — Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
