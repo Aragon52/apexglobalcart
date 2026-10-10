@@ -161,9 +161,9 @@ function CategorySlideshow({ categories }: { categories: { id: string; name: str
                   <span className="mb-2 md:mb-3 inline-block rounded-full bg-primary/90 px-3 py-1 md:px-4 md:py-1.5 text-[10px] md:text-xs font-bold uppercase tracking-wider text-primary-foreground">
                     {t('common.featured')}
                   </span>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tight text-white leading-tight">
                     {t(`common.${cat.slug}`, { defaultValue: cat.name })}
-                  </h1>
+                  </h2>
                   <p className="mt-1 md:mt-2 text-sm md:text-base lg:text-lg text-white/80">
                     {cat.count ? t('common.productsFound', { count: cat.count }) : t('common.exploreCollection')}
                   </p>

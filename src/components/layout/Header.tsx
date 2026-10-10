@@ -142,7 +142,7 @@ export default function Header() {
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadSupport}</span>
               )}
             </button>
-            <Link to="/cart" className="relative p-1">
+            <Link to="/cart" aria-label="Shopping cart" className="relative p-1">
               <ShoppingCart className="h-5 w-5 text-muted-foreground" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{totalItems}</span>
@@ -247,7 +247,7 @@ export default function Header() {
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{unreadSupport}</span>
               )}
             </button>
-            <Link to="/cart" className="relative p-1 hover:text-primary transition-colors">
+            <Link to="/cart" aria-label="Shopping cart" className="relative p-1 hover:text-primary transition-colors">
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">{totalItems}</span>

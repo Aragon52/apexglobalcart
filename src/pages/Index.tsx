@@ -58,6 +58,7 @@ export default function Index() {
         canonical="https://apexglobalonlineshop.com/"
         ogType="website"
       />
+      <h1 className="sr-only">Apex Global Cart — shop verified reseller stores worldwide</h1>
       <SeasonalDecorations />
       <HeroBanner />
       <TrustSection />
