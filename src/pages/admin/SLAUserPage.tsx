@@ -176,7 +176,7 @@ export default function SLAUserPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b bg-muted/50">
-                    {["Staff Member", "Referral ID", "Referral Link", "Contact", "Department", "Created By", "Status", ""].map((h) => (
+                    {["Staff Member", "Referral code", "Referral Link", "Contact", "Department", "Created By", "Status", ""].map((h) => (
                       <th key={h} className="thead-label text-left p-3.5 first:pl-5">{h}</th>
                     ))}
                   </tr>
@@ -202,7 +202,7 @@ export default function SLAUserPage() {
                       <td className="p-3.5">
                         <div className="flex items-center gap-1.5">
                           <span className="font-mono text-xs font-medium text-foreground">{staff.inviteCode}</span>
-                          <CopyButton text={staff.inviteCode} label="Referral ID" />
+                          <CopyButton text={staff.inviteCode} label="Referral code" />
                         </div>
                       </td>
                       <td className="p-3.5">
@@ -346,10 +346,10 @@ export default function SLAUserPage() {
                   <span className="text-foreground font-mono font-medium">{selectedStaff.staffId}</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-muted-foreground">Referral ID</span>
+                  <span className="text-muted-foreground">Referral code</span>
                   <div className="flex items-center gap-1">
                     <span className="text-foreground font-mono font-medium">{selectedStaff.inviteCode}</span>
-                    <CopyButton text={selectedStaff.inviteCode} label="Referral ID" />
+                    <CopyButton text={selectedStaff.inviteCode} label="Referral code" />
                   </div>
                 </div>
                 <div className="text-xs">
