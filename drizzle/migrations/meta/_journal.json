@@ -64,6 +64,13 @@
       "when": 1791604122900,
       "tag": "0008_invite_code_grant",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1791614294952,
+      "tag": "0009_speed_up_access_rules",
+      "breakpoints": true
     }
   ]
 }
