@@ -298,18 +298,33 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
                 localStorage.removeItem("pending_auth_portal");
               }
 
+              const { data: sessionData } = await supabase.auth.getSession();
               const autoRegRes = await fetch("/api/public/register-reseller", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${sessionData.session?.access_token ?? ""}`,
+                },
                 body: JSON.stringify({
                   firstName,
                   lastName,
                   emailOrPhone: authUser.email || email,
                   shopName: `${firstName}'s Store`,
                   referralCode: pendingRef || undefined,
-                  uid: userId,
+                  viaGoogle: true,
                 }),
               });
+
+              if (!autoRegRes.ok) {
+                const failure = (await autoRegRes.json().catch(() => null)) as { error?: string } | null;
+                if (typeof window !== "undefined") {
+                  sessionStorage.setItem(
+                    "reseller_google_error",
+                    failure?.error ?? "To join as a reseller with Google, please open the referral link from your admin first.",
+                  );
+                }
+                await supabase.auth.signOut();
+              }
 
               if (autoRegRes.ok) {
                 console.log(`[RESELLER_CONTEXT] Auto-registration succeeded for Google user UID: ${userId}`);
@@ -638,19 +653,9 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("pending_auth_portal", "reseller");
       }
 
-      const redirectUrl = window.location.origin + resellerPath("/reseller/dashboard");
-
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: redirectUrl,
-          queryParams: {
-            access_type: "offline",
-            prompt: "select_account",
-          },
-        },
-      });
-
+      const { signInWithGoogle: startGoogle } = await import("@/lib/google-sign-in");
+      const result = await startGoogle(resellerPath("/reseller/login"));
+      const error = result.error ? new Error(result.error) : null;
       if (error) throw error;
       return {};
     } catch (err: any) {
