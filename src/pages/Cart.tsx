@@ -66,11 +66,8 @@ export default function Cart() {
             setResellerName(shop.shop_name || "Seller");
           } else {
             // Fallback to reseller_profiles
-            const { data: profile } = await supabase
-              .from('reseller_profiles')
-              .select('shop_name')
-              .eq('id', targetId)
-              .single();
+            const { data: profileRows } = await supabase.rpc('get_public_reseller_profile', { _key: targetId });
+            const profile = Array.isArray(profileRows) ? profileRows[0] : null;
               
             if (profile) {
               setResellerName(profile.shop_name || "Seller");
@@ -127,11 +124,10 @@ export default function Cart() {
       let humanResellerId = "";
 
       if (resellerId) {
-        const { data: profile } = await supabase
-          .from('reseller_profiles')
-          .select('*')
-          .eq('id', resellerId)
-          .single();
+        const { data: profileRows } = await supabase.rpc('get_public_reseller_profile', { _key: resellerId });
+        const profile = Array.isArray(profileRows) ? profileRows[0] : null;
+        const { data: refRows } = await supabase.rpc('get_reseller_order_refs', { _reseller_id: resellerId });
+        const refs = Array.isArray(refRows) ? refRows[0] : null;
           
         if (profile) {
           resellerData = profile;
@@ -143,8 +139,8 @@ export default function Cart() {
           // So serviceCost = totalPrice / (1 + profitMargin)
           serviceCost = subtotal / (1 + profitMargin);
           
-          referralId = profile.referred_by_staff_id || "";
-          memberOfAdminId = profile.member_of_admin_id || "";
+          referralId = refs?.referred_by_staff_id || "";
+          memberOfAdminId = refs?.member_of_admin_id || "";
           humanResellerId = profile.reseller_id ? `GRS${profile.reseller_id}` : resellerId;
 
           // Fetch staff/admin names
@@ -226,15 +222,6 @@ export default function Cart() {
             }
           })
         }).catch(err => console.error("[FCM] Failed to send push notification:", err));
-      }
-
-      // 3. Update Reseller Balance if applicable
-      if (resellerId && resellerData) {
-        await supabase.from('reseller_profiles').update({
-          unpicked_balance: (resellerData.unpicked_balance || 0) + total,
-          total_orders: (resellerData.total_orders || 0) + 1,
-          updated_at: new Date().toISOString()
-        }).eq('id', resellerId);
       }
 
       toast({

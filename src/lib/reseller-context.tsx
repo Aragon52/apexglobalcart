@@ -878,17 +878,10 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
     if (reseller && (reseller.id === slug || reseller.shopSlug === slug)) return reseller;
 
     try {
-      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug);
-      let query = supabase.from('reseller_profiles').select('*');
-      
-      if (isUuid) {
-        query = query.or(`shop_slug.eq.${slug},id.eq.${slug}`);
-      } else {
-        query = query.eq('shop_slug', slug);
-      }
-
-      const { data: profileData, error } = await query.limit(1).maybeSingle();
+      // Public-safe lookup: returns shop details only (no phone, balances or payment info)
+      const { data: rows, error } = await supabase.rpc('get_public_reseller_profile', { _key: slug });
       if (error) throw error;
+      const profileData = Array.isArray(rows) ? rows[0] : null;
       if (!profileData) return null;
 
       const { data: shopData } = await supabase
@@ -933,12 +926,8 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
 
   const fetchResellerById = async (userId: string, shopData: Record<string, unknown>): Promise<ResellerProfile | null> => {
     try {
-      const { data: selectionData } = await supabase
-        .from('reseller_product_selection')
-        .select('product_id')
-        .eq('reseller_id', userId);
-      
-      const selectedProductIds = selectionData ? selectionData.map(d => d.product_id) : [];
+      const { data: selectionData } = await supabase.rpc('get_reseller_product_ids', { _reseller_id: userId });
+      const selectedProductIds: string[] = Array.isArray(selectionData) ? (selectionData as string[]) : [];
 
       let custom: CustomSettings = {};
       try {
