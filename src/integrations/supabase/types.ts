@@ -1120,6 +1120,33 @@ export type Database = {
     }
     Functions: {
       count_other_active_sessions: { Args: never; Returns: number }
+      get_public_reseller_profile: {
+        Args: { _key: string }
+        Returns: {
+          created_at: string
+          credit_score: number
+          first_name: string
+          id: string
+          last_name: string
+          level: string
+          payment_method: string
+          product_limit: number
+          profile_picture: string
+          registration_date: string
+          reseller_id: number
+          shop_hero_banner: string
+          shop_logo: string
+          shop_name: string
+          shop_slug: string
+          star_rating: number
+          store_theme: string
+          verified: boolean
+        }[]
+      }
+      get_reseller_product_ids: {
+        Args: { _reseller_id: string }
+        Returns: string[]
+      }
       is_admin: { Args: { user_id: string }; Returns: boolean }
       is_owner: { Args: { _user_id: string }; Returns: boolean }
       is_sla_user: { Args: { user_id: string }; Returns: boolean }
