@@ -155,12 +155,12 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
       document.addEventListener('visibilitychange', onFocusOrVisible);
     }
 
-    // Polling fallback every 10 seconds while logged in
+    // Polling fallback every 2 minutes while logged in and the tab is visible
     pollInterval = setInterval(() => {
-      if (currentUserRef.current && mounted) {
+      if (currentUserRef.current && mounted && document.visibilityState === 'visible') {
         void triggerFullReload(currentUserRef.current);
       }
-    }, 10000);
+    }, 120_000);
 
     const initializeResellerSession = async () => {
       try {
