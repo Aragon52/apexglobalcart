@@ -38,6 +38,19 @@ export const Route = createFileRoute("/api/admin/update-order-status")({
           const previousStatus = String(orderData.status || "").toLowerCase();
           const newStatus = body.status;
 
+          // Verify the caller: admin/staff may set any status; a reseller may only pick up their own pending order.
+          const token = (request.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
+          if (!token) return Response.json({ error: "Unauthorized" }, { status: 401 });
+          const { data: authData, error: authErr } = await supabase.auth.getUser(token);
+          if (authErr || !authData.user) return Response.json({ error: "Unauthorized" }, { status: 401 });
+          const callerId = authData.user.id;
+          const { data: isSla } = await supabase.rpc("is_sla_user", { user_id: callerId });
+          if (!isSla) {
+            const ownsOrder = String(orderData.reseller_id ?? "") === callerId;
+            const isPickup = newStatus === "Ongoing" && (previousStatus === "pending" || previousStatus === "processing");
+            if (!ownsOrder || !isPickup) return Response.json({ error: "Forbidden" }, { status: 403 });
+          }
+
           const updateData: Record<string, unknown> = {
             status: newStatus,
             updated_at: new Date().toISOString(),

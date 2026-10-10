@@ -1212,6 +1212,10 @@ export type Database = {
           user_id: string
         }[]
       }
+      request_withdrawal: {
+        Args: { _account_info: string; _amount: number; _method: string }
+        Returns: string
+      }
       revoke_admin_session: {
         Args: { _session_id: string }
         Returns: undefined

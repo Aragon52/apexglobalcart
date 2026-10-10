@@ -112,52 +112,24 @@ export default function ResellerWithdrawalSheet({ open, onOpenChange }: Reseller
     
     setSubmitting(true);
     try {
-      // Refresh reseller data to get latest balance
-      const { data: profile, error: profileError } = await supabase
-        .from('reseller_profiles')
-        .select('balance')
-        .eq('id', reseller.id)
-        .single();
-
-      if (profileError || !profile) {
-        toast({ title: t("common.error"), description: "Could not fetch reseller profile.", variant: "destructive" });
-        return;
-      }
-
-      if (num > (profile.balance || 0)) {
-        toast({ title: t("common.insufficientBalance"), description: t("common.withdrawalExceedsBalance"), variant: "destructive" });
-        return;
-      }
-
-      // 1. Deduct balance
-      const { error: updateError } = await supabase
-        .from('reseller_profiles')
-        .update({
-          balance: (profile.balance || 0) - num,
-          updated_at: new Date().toISOString()
+      // Balance check, deduction and request creation happen atomically in the database
+      const { data: insertedId, error: rpcError } = await supabase.rpc("request_withdrawal", {
+        _amount: num,
+        _method: reseller.usdtAddress ? "USDT (TRC20)" : "Bank Transfer",
+        _account_info: JSON.stringify({
+          usdtAddress: reseller.usdtAddress,
+          bankInfo: reseller.bankInfo
         })
-        .eq('id', reseller.id);
+      });
 
-      if (updateError) throw updateError;
-
-      // 2. Create withdrawal request
-      const { data: inserted, error: insertError } = await supabase
-        .from("withdrawal_requests")
-        .insert({
-          resellerDocId: reseller.id,
-          amount: num,
-          status: "Pending",
-          method: reseller.usdtAddress ? "USDT (TRC20)" : "Bank Transfer",
-          account_info: JSON.stringify({
-            usdtAddress: reseller.usdtAddress,
-            bankInfo: reseller.bankInfo
-          })
-        })
-        .select("id")
-        .single();
-
-      if (insertError) throw insertError;
-      void notifyFinancialRequest("withdrawal_requests", inserted?.id);
+      if (rpcError) {
+        if (rpcError.message.includes("insufficient_balance")) {
+          toast({ title: t("common.insufficientBalance"), description: t("common.withdrawalExceedsBalance"), variant: "destructive" });
+          return;
+        }
+        throw rpcError;
+      }
+      void notifyFinancialRequest("withdrawal_requests", insertedId ?? undefined);
 
       toast({ title: t("reseller.withdrawalRequested"), description: `${t("reseller.withdrawalOf")} $${num.toFixed(2)} ${t("reseller.withdrawalSubmitted")}` });
       setAmount("");
