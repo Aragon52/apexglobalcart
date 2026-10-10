@@ -191,8 +191,7 @@ export function AppSidebar() {
             open ? "w-auto opacity-100" : "w-0 opacity-0"
           )}>
             <span className="text-sm font-bold tracking-tight">
-              <span className="text-brand-green">Global</span>
-              <span className="text-brand-gold">Cart</span>
+              <span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span>
             </span>
             <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Admin Console</span>
           </div>
