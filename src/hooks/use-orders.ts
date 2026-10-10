@@ -212,22 +212,27 @@ export function useUpdateOrderStatus() {
   
   return useMutation({
     mutationFn: async ({ orderId, status }: { orderId: string; status: Order["status"] }) => {
-      // 1. First attempt to update via admin API endpoint (runs server-side with service-role permissions)
+      // 1. First attempt to update via the server endpoint (verifies the caller, then applies balance changes)
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData.session?.access_token ?? "";
+      let response: Response | null = null;
       try {
-        const response = await fetch("/api/admin/update-order-status", {
+        response = await fetch("/api/admin/update-order-status", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
           body: JSON.stringify({ orderId, status }),
         });
-
-        if (response.ok) {
-          const resData = await response.json();
-          if (resData.success) {
-            return;
-          }
-        }
       } catch (apiErr) {
         console.warn("[USE_ORDERS] API endpoint update failed, falling back to direct Supabase:", apiErr);
+      }
+      if (response) {
+        if (response.status === 401 || response.status === 403) {
+          throw new Error("You are not allowed to change this order");
+        }
+        if (response.ok) {
+          const resData = await response.json();
+          if (resData.success) return;
+        }
       }
 
       // 2. Direct fallback
