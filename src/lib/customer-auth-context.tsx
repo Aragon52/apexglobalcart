@@ -75,6 +75,30 @@ export function CustomerAuthProvider({ children }: { children: ReactNode }) {
         .eq('id', userId)
         .single();
 
+      if (userError && userError.code === 'PGRST116') {
+        // First Google sign-in: create the shopper record from the Google profile.
+        const { data: authData } = await supabase.auth.getUser();
+        const meta = (authData.user?.user_metadata ?? {}) as Record<string, unknown>;
+        const fullName = String(meta.full_name ?? meta.name ?? '').trim();
+        const [first = 'Customer', ...rest] = fullName ? fullName.split(' ') : [];
+        const { data: created } = await supabase
+          .from('users')
+          .insert({ id: userId, email, first_name: first, last_name: rest.join(' '), role: 'customer', created_at: new Date().toISOString() })
+          .select('*')
+          .maybeSingle();
+        if (!created) {
+          setUser(null);
+          return;
+        }
+        setUser({
+          id: userId,
+          name: fullName || 'Customer',
+          email,
+          customerId: `GCID-${userId.substring(0, 6).toUpperCase()}`
+        });
+        return;
+      }
+
       if (userError) {
         console.error("Customer profile fetch failed:", userError);
         setUser(null);

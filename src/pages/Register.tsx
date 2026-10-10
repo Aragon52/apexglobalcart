@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GoogleButton } from "@/components/auth/google-button";
+import { signInWithGoogle } from "@/lib/google-sign-in";
 import { Link, useNavigate } from "@/lib/router-compat";
 import { useTranslation } from "react-i18next";
 import { useCustomerAuth } from "@/lib/customer-auth-context-hooks";
@@ -161,6 +163,14 @@ export default function Register() {
                 {loading ? t("common.creatingAccount") : t("common.register")}
               </button>
             </form>
+            <div className="flex items-center gap-3 py-1"><span className="h-px flex-1 bg-border" /><span className="text-xs text-muted-foreground">or</span><span className="h-px flex-1 bg-border" /></div>
+            <GoogleButton
+              label="Sign up with Google"
+              onClick={async () => {
+                const result = await signInWithGoogle("/cart/login");
+                if (result.error) setError(result.error);
+              }}
+            />
 
             <div className="space-y-1 text-sm">
               <p className="text-muted-foreground">
