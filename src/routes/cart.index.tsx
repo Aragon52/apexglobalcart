@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import MainLayout from "@/components/layout/MainLayout";
 import Cart from "@/pages/Cart";
 
-export const Route = createFileRoute("/cart")({
+export const Route = createFileRoute("/cart/")({
   head: () => ({
     meta: [
       { title: "Cart — User portal — Apex Global Cart" },
