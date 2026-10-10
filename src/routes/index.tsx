@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   },
   head: () => ({
     meta: [
-      { title: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
+      { title: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         name: "description",
         content:
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
-      { property: "og:title", content: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
+      { property: "og:title", content: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         property: "og:description",
         content:

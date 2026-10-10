@@ -53,7 +53,7 @@ export default function Index() {
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
-        title="Apex Global Cart — Shop Verified Reseller Stores Worldwide"
+        title="Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere"
         description="Shop electronics, fashion, home, beauty and sports from verified reseller stores on Apex Global Cart, with secure checkout and worldwide delivery."
         canonical="https://apexglobalonlineshop.com/"
         ogType="website"
