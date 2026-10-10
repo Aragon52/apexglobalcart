@@ -33,9 +33,7 @@ export default function ResellerRegisterModal({ open, onOpenChange, initialRefer
   const [showVerification, setShowVerification] = useState(false);
 
   useEffect(() => {
-    if (initialReferralCode) {
-      setReferralCode(initialReferralCode);
-    }
+    setReferralCode(initialReferralCode);
   }, [initialReferralCode]);
 
   const set = (key: string, value: string) => setForm(prev => ({ ...prev, [key]: value }));
@@ -59,6 +57,10 @@ export default function ResellerRegisterModal({ open, onOpenChange, initialRefer
     }
     if (form.password !== confirmPassword) {
       setError(t('auth.passwordsDoNotMatch', { defaultValue: "Passwords do not match" }));
+      return;
+    }
+    if (!referralCode.trim()) {
+      setError("A valid invite code from your admin is required.");
       return;
     }
     if (!agreeTerms) {
@@ -197,18 +199,26 @@ export default function ResellerRegisterModal({ open, onOpenChange, initialRefer
               </div>
             </div>
 
-            {referralCode && (
-              <div className="space-y-1">
-                <Label className="text-xs font-medium text-white/70">{t('reseller.referralCode', { defaultValue: "Referral Code" })}</Label>
-                <div className="relative">
-                  <Tag className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
-                  <div className="pl-10 h-10 flex items-center bg-white/5 border border-white/10 rounded-md text-primary font-bold cursor-not-allowed select-all text-sm">
-                    {referralCode}
-                  </div>
-                </div>
-                <p className="mt-1 text-[11px] text-primary">{t('reseller.referralApplied', { defaultValue: "Referral applied" })}</p>
+            <div className="space-y-1">
+              <Label className="text-xs font-medium text-white/70">
+                {t('reseller.referralCode', { defaultValue: "Referral Code" })} (Required)
+              </Label>
+              <div className="relative">
+                <Tag className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30" />
+                <Input
+                  required
+                  disabled={submitting}
+                  value={referralCode}
+                  onChange={e => setReferralCode(e.target.value)}
+                  readOnly={!!initialReferralCode}
+                  className="pl-10 bg-white/5 border-white/10 focus:border-primary/50 text-white text-sm"
+                  placeholder="Enter your admin invite code"
+                />
               </div>
-            )}
+              {referralCode && (
+                <p className="mt-1 text-[11px] text-primary">{t('reseller.referralApplied', { defaultValue: "Referral applied" })}</p>
+              )}
+            </div>
 
             {/* Agreement Checkbox (Checked by default) */}
             <label className="flex items-start gap-2.5 cursor-pointer pt-1 text-xs text-white/80 select-none">
