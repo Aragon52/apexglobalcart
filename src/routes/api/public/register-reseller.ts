@@ -190,11 +190,17 @@ export const Route = createFileRoute("/api/public/register-reseller")({
             : { email: identifier, password: body.password, email_confirm: true },
         );
         if (authError || !authData.user) {
-          const exists = authError?.message.toLowerCase().includes("already");
-          return Response.json(
-            { error: exists ? "An account with these details already exists. Please sign in instead." : "We couldn't create your account. Please try again." },
-            { status: exists ? 409 : 500 },
-          );
+          const message = authError?.message.toLowerCase() ?? "";
+          if (message.includes("already")) {
+            return Response.json({ error: "An account with these details already exists. Please sign in instead." }, { status: 409 });
+          }
+          if (message.includes("password")) {
+            return Response.json(
+              { error: "This password is too easy to guess. Please choose a stronger one with letters, numbers and symbols." },
+              { status: 422 },
+            );
+          }
+          return Response.json({ error: "We couldn't create your account. Please try again." }, { status: 500 });
         }
 
         const userId = authData.user.id;
