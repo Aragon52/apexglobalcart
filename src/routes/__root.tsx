@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { name: "apple-mobile-web-app-title", content: "Apex Global Cart" },
-      { title: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
+      { title: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         name: "description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "keywords", content: "online marketplace, global shopping, ecommerce, products, reseller portal" },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Apex Global Cart — Shop Verified Reseller Stores Worldwide" },
+      { property: "og:title", content: "Apex Global Cart - Simplified and Enhanced Commerce System for Everyone Everything Everywhere" },
       {
         property: "og:description",
         content:
