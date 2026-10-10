@@ -1143,6 +1143,13 @@ export type Database = {
           verified: boolean
         }[]
       }
+      get_reseller_order_refs: {
+        Args: { _reseller_id: string }
+        Returns: {
+          member_of_admin_id: string
+          referred_by_staff_id: string
+        }[]
+      }
       get_reseller_product_ids: {
         Args: { _reseller_id: string }
         Returns: string[]
