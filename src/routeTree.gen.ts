@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AccountRouteImport } from './routes/account'
-import { Route as CartRouteImport } from './routes/cart'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
@@ -53,6 +52,7 @@ import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as ApiScrapeRouteImport } from './routes/api/scrape'
 import { Route as ApiSendNotificationRouteImport } from './routes/api/send-notification'
 import { Route as ApiSyncRouteImport } from './routes/api/sync'
+import { Route as CartIndexRouteImport } from './routes/cart.index'
 import { Route as CartLoginRouteImport } from './routes/cart.login'
 import { Route as CartRegisterRouteImport } from './routes/cart.register'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
@@ -123,11 +123,6 @@ const AboutUsRoute = AboutUsRouteImport.update({
 const AccountRoute = AccountRouteImport.update({
   id: '/account',
   path: '/account',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesRoute = CategoriesRouteImport.update({
@@ -325,15 +320,20 @@ const ApiSyncRoute = ApiSyncRouteImport.update({
   path: '/api/sync',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CartIndexRoute = CartIndexRouteImport.update({
+  id: '/cart/',
+  path: '/cart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartLoginRoute = CartLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => CartRoute,
+  id: '/cart/login',
+  path: '/cart/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CartRegisterRoute = CartRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => CartRoute,
+  id: '/cart/register',
+  path: '/cart/register',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   id: '/$slug',
@@ -595,7 +595,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/cart': typeof CartRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
@@ -650,6 +649,7 @@ export interface FileRoutesByFullPath {
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/cart/': typeof CartIndexRoute
   '/reseller/': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -692,7 +692,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/cart': typeof CartRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
@@ -747,6 +746,7 @@ export interface FileRoutesByTo {
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/cart': typeof CartIndexRoute
   '/reseller': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -790,7 +790,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/cart': typeof CartRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
@@ -845,6 +844,7 @@ export interface FileRoutesById {
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/cart/': typeof CartIndexRoute
   '/reseller/': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -889,7 +889,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/cart'
     | '/categories'
     | '/contact'
     | '/contact-us'
@@ -944,6 +943,7 @@ export interface FileRouteTypes {
     | '/reseller/shop'
     | '/store/$slug'
     | '/admin/'
+    | '/cart/'
     | '/reseller/'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -986,7 +986,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/cart'
     | '/categories'
     | '/contact'
     | '/contact-us'
@@ -1041,6 +1040,7 @@ export interface FileRouteTypes {
     | '/reseller/shop'
     | '/store/$slug'
     | '/admin'
+    | '/cart'
     | '/reseller'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -1083,7 +1083,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/cart'
     | '/categories'
     | '/contact'
     | '/contact-us'
@@ -1138,6 +1137,7 @@ export interface FileRouteTypes {
     | '/reseller/shop'
     | '/store/$slug'
     | '/admin/'
+    | '/cart/'
     | '/reseller/'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -1181,7 +1181,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AboutUsRoute: typeof AboutUsRoute
   AccountRoute: typeof AccountRoute
-  CartRoute: typeof CartRouteWithChildren
   CategoriesRoute: typeof CategoriesRouteWithChildren
   ContactRoute: typeof ContactRoute
   ContactUsRoute: typeof ContactUsRoute
@@ -1220,6 +1219,8 @@ export interface RootRouteChildren {
   ApiScrapeRoute: typeof ApiScrapeRoute
   ApiSendNotificationRoute: typeof ApiSendNotificationRoute
   ApiSyncRoute: typeof ApiSyncRoute
+  CartLoginRoute: typeof CartLoginRoute
+  CartRegisterRoute: typeof CartRegisterRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ResellerSplatRoute: typeof ResellerSplatRoute
   ResellerAdBoostRoute: typeof ResellerAdBoostRoute
@@ -1233,6 +1234,7 @@ export interface RootRouteChildren {
   ResellerShopRoute: typeof ResellerShopRoute
   StoreSlugRoute: typeof StoreSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  CartIndexRoute: typeof CartIndexRoute
   ResellerIndexRoute: typeof ResellerIndexRoute
   AdminAchCustomersRoute: typeof AdminAchCustomersRoute
   AdminAchFinancialRoute: typeof AdminAchFinancialRoute
@@ -1298,13 +1300,6 @@ declare module '@tanstack/react-router' {
       path: '/account'
       fullPath: '/account'
       preLoaderRoute: typeof AccountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories': {
@@ -1580,19 +1575,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSyncRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cart/': {
+      id: '/cart/'
+      path: '/cart'
+      fullPath: '/cart/'
+      preLoaderRoute: typeof CartIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart/login': {
       id: '/cart/login'
-      path: '/login'
+      path: '/cart/login'
       fullPath: '/cart/login'
       preLoaderRoute: typeof CartLoginRouteImport
-      parentRoute: typeof CartRoute
+      parentRoute: typeof rootRouteImport
     }
     '/cart/register': {
       id: '/cart/register'
-      path: '/register'
+      path: '/cart/register'
       fullPath: '/cart/register'
       preLoaderRoute: typeof CartRegisterRouteImport
-      parentRoute: typeof CartRoute
+      parentRoute: typeof rootRouteImport
     }
     '/categories/$slug': {
       id: '/categories/$slug'
@@ -1940,18 +1942,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface CartRouteChildren {
-  CartLoginRoute: typeof CartLoginRoute
-  CartRegisterRoute: typeof CartRegisterRoute
-}
-
-const CartRouteChildren: CartRouteChildren = {
-  CartLoginRoute: CartLoginRoute,
-  CartRegisterRoute: CartRegisterRoute,
-}
-
-const CartRouteWithChildren = CartRoute._addFileChildren(CartRouteChildren)
-
 interface CategoriesRouteChildren {
   CategoriesSlugRoute: typeof CategoriesSlugRoute
 }
@@ -1981,7 +1971,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AboutUsRoute: AboutUsRoute,
   AccountRoute: AccountRoute,
-  CartRoute: CartRouteWithChildren,
   CategoriesRoute: CategoriesRouteWithChildren,
   ContactRoute: ContactRoute,
   ContactUsRoute: ContactUsRoute,
@@ -2020,6 +2009,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiScrapeRoute: ApiScrapeRoute,
   ApiSendNotificationRoute: ApiSendNotificationRoute,
   ApiSyncRoute: ApiSyncRoute,
+  CartLoginRoute: CartLoginRoute,
+  CartRegisterRoute: CartRegisterRoute,
   ProductsIdRoute: ProductsIdRoute,
   ResellerSplatRoute: ResellerSplatRoute,
   ResellerAdBoostRoute: ResellerAdBoostRoute,
@@ -2033,6 +2024,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResellerShopRoute: ResellerShopRoute,
   StoreSlugRoute: StoreSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
+  CartIndexRoute: CartIndexRoute,
   ResellerIndexRoute: ResellerIndexRoute,
   AdminAchCustomersRoute: AdminAchCustomersRoute,
   AdminAchFinancialRoute: AdminAchFinancialRoute,
