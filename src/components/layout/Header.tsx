@@ -119,7 +119,7 @@ export default function Header() {
               <LogoIcon variant="header" className="flex-shrink-0 mt-0.5 relative z-10 ml-auto" />
               <div className="flex flex-col items-start min-w-0 leading-none relative z-10">
                 <LogoWordmark size="sm" className="sm:hidden" />
-                <LogoWordmark size="sm" className="hidden sm:block sm:text-2xl" />
+                <LogoWordmark size="sm" className="hidden sm:block sm:text-lg" />
                 <TaglineSVG className="w-full mt-0.5 sm:mt-1 h-[16px] sm:h-[20px] md:h-[22px]" />
               </div>
             </Link>

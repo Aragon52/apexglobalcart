@@ -6,10 +6,10 @@ interface LogoWordmarkProps {
 }
 
 const sizeMap = {
-  sm: "text-xl",
-  md: "text-3xl",
-  lg: "text-5xl",
-  xl: "text-7xl",
+  sm: "text-base",
+  md: "text-2xl",
+  lg: "text-4xl",
+  xl: "text-6xl",
 };
 
 const LogoWordmark: FC<LogoWordmarkProps> = ({ size = "md", className = "" }) => {
