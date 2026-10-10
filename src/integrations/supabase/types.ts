@@ -390,6 +390,27 @@ export type Database = {
         }
         Relationships: []
       }
+      push_tokens: {
+        Row: {
+          created_at: string
+          portal: string
+          token: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          portal?: string
+          token: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          portal?: string
+          token?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       reseller_chat_messages: {
         Row: {
           content: string | null
