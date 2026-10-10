@@ -27,33 +27,8 @@ export default function ResellerLogin() {
 
   const referralCode = searchParams.get('ref') || '';
 
-  const handleForgotPassword = async () => {
-    if (!emailOrPhone.trim()) {
-      setError(t("reseller.enterEmailOrPhoneForReset", { defaultValue: "Please enter your email or phone number above to reset password" }));
-      return;
-    }
-    setSubmitting(true);
-    setError("");
-    try {
-      const response = await fetch('/api/reseller/request-reset', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ emailOrPhone: emailOrPhone.trim() }),
-      });
-      if (response.ok) {
-        setResetSent(true);
-        toast.success(t("reseller.resetRequestSent", { defaultValue: "Password reset request submitted. Support team notified." }));
-        setShowSupport(true);
-      } else {
-        const data = await response.json();
-        setError(data.error || t("reseller.resetRequestFailed", { defaultValue: "Reset request failed" }));
-      }
-    } catch (err) {
-      console.error(err);
-      setError(t("reseller.resetRequestFailed", { defaultValue: "Reset request failed" }));
-    } finally {
-      setSubmitting(false);
-    }
+  const handleForgotPassword = () => {
+    navigate(resellerPath("/reseller/forgot-password"));
   };
 
   useEffect(() => {

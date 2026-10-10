@@ -17,6 +17,7 @@ import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as LegalNoticeRouteImport } from './routes/legal-notice'
 import { Route as OrdersRouteImport } from './routes/orders'
@@ -24,6 +25,7 @@ import { Route as PaymentPolicyRouteImport } from './routes/payment-policy'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ReturnsRefundsRouteImport } from './routes/returns-refunds'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -61,11 +63,13 @@ import { Route as ResellerIndexRouteImport } from './routes/reseller.index'
 import { Route as ResellerSplatRouteImport } from './routes/reseller.$'
 import { Route as ResellerAdBoostRouteImport } from './routes/reseller.ad-boost'
 import { Route as ResellerDashboardRouteImport } from './routes/reseller.dashboard'
+import { Route as ResellerForgotPasswordRouteImport } from './routes/reseller.forgot-password'
 import { Route as ResellerLoginRouteImport } from './routes/reseller.login'
 import { Route as ResellerMessagesRouteImport } from './routes/reseller.messages'
 import { Route as ResellerOrdersRouteImport } from './routes/reseller.orders'
 import { Route as ResellerProfileRouteImport } from './routes/reseller.profile'
 import { Route as ResellerRegisterRouteImport } from './routes/reseller.register'
+import { Route as ResellerResetPasswordRouteImport } from './routes/reseller.reset-password'
 import { Route as ResellerShareTargetRouteImport } from './routes/reseller.share-target'
 import { Route as ResellerShopRouteImport } from './routes/reseller.shop'
 import { Route as StoreSlugRouteImport } from './routes/store.$slug'
@@ -77,6 +81,7 @@ import { Route as AdminArsPaymentInfoRouteImport } from './routes/admin.ars.paym
 import { Route as AdminArsRetailShopsRouteImport } from './routes/admin.ars.retail-shops'
 import { Route as AdminArsWithdrawalRouteImport } from './routes/admin.ars.withdrawal'
 import { Route as AdminAuthForgotPasswordRouteImport } from './routes/admin.auth.forgot-password'
+import { Route as AdminAuthResetPasswordRouteImport } from './routes/admin.auth.reset-password'
 import { Route as AdminAuthSignInRouteImport } from './routes/admin.auth.sign-in'
 import { Route as AdminCustomerCareOrderServicesRouteImport } from './routes/admin.customer-care.order-services'
 import { Route as AdminCustomerCareResellerProfileRouteImport } from './routes/admin.customer-care.reseller-profile'
@@ -145,6 +150,11 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegalRoute = LegalRouteImport.update({
   id: '/legal',
   path: '/legal',
@@ -178,6 +188,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
 const RefundPolicyRoute = RefundPolicyRouteImport.update({
   id: '/refund-policy',
   path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReturnsRefundsRoute = ReturnsRefundsRouteImport.update({
@@ -365,6 +380,11 @@ const ResellerDashboardRoute = ResellerDashboardRouteImport.update({
   path: '/reseller/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResellerForgotPasswordRoute = ResellerForgotPasswordRouteImport.update({
+  id: '/reseller/forgot-password',
+  path: '/reseller/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResellerLoginRoute = ResellerLoginRouteImport.update({
   id: '/reseller/login',
   path: '/reseller/login',
@@ -388,6 +408,11 @@ const ResellerProfileRoute = ResellerProfileRouteImport.update({
 const ResellerRegisterRoute = ResellerRegisterRouteImport.update({
   id: '/reseller/register',
   path: '/reseller/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResellerResetPasswordRoute = ResellerResetPasswordRouteImport.update({
+  id: '/reseller/reset-password',
+  path: '/reseller/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResellerShareTargetRoute = ResellerShareTargetRouteImport.update({
@@ -443,6 +468,11 @@ const AdminArsWithdrawalRoute = AdminArsWithdrawalRouteImport.update({
 const AdminAuthForgotPasswordRoute = AdminAuthForgotPasswordRouteImport.update({
   id: '/admin/auth/forgot-password',
   path: '/admin/auth/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuthResetPasswordRoute = AdminAuthResetPasswordRouteImport.update({
+  id: '/admin/auth/reset-password',
+  path: '/admin/auth/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAuthSignInRoute = AdminAuthSignInRouteImport.update({
@@ -599,6 +629,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/legal': typeof LegalRoute
   '/legal-notice': typeof LegalNoticeRoute
   '/orders': typeof OrdersRoute
@@ -606,6 +637,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/returns-refunds': typeof ReturnsRefundsRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/terms': typeof TermsRoute
@@ -640,11 +672,13 @@ export interface FileRoutesByFullPath {
   '/reseller/$': typeof ResellerSplatRoute
   '/reseller/ad-boost': typeof ResellerAdBoostRoute
   '/reseller/dashboard': typeof ResellerDashboardRoute
+  '/reseller/forgot-password': typeof ResellerForgotPasswordRoute
   '/reseller/login': typeof ResellerLoginRoute
   '/reseller/messages': typeof ResellerMessagesRoute
   '/reseller/orders': typeof ResellerOrdersRoute
   '/reseller/profile': typeof ResellerProfileRoute
   '/reseller/register': typeof ResellerRegisterRoute
+  '/reseller/reset-password': typeof ResellerResetPasswordRoute
   '/reseller/share-target': typeof ResellerShareTargetRoute
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
@@ -659,6 +693,7 @@ export interface FileRoutesByFullPath {
   '/admin/ars/retail-shops': typeof AdminArsRetailShopsRoute
   '/admin/ars/withdrawal': typeof AdminArsWithdrawalRoute
   '/admin/auth/forgot-password': typeof AdminAuthForgotPasswordRoute
+  '/admin/auth/reset-password': typeof AdminAuthResetPasswordRoute
   '/admin/auth/sign-in': typeof AdminAuthSignInRoute
   '/admin/customer-care/order-services': typeof AdminCustomerCareOrderServicesRoute
   '/admin/customer-care/reseller-profile': typeof AdminCustomerCareResellerProfileRoute
@@ -696,6 +731,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/legal': typeof LegalRoute
   '/legal-notice': typeof LegalNoticeRoute
   '/orders': typeof OrdersRoute
@@ -703,6 +739,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/returns-refunds': typeof ReturnsRefundsRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/terms': typeof TermsRoute
@@ -737,11 +774,13 @@ export interface FileRoutesByTo {
   '/reseller/$': typeof ResellerSplatRoute
   '/reseller/ad-boost': typeof ResellerAdBoostRoute
   '/reseller/dashboard': typeof ResellerDashboardRoute
+  '/reseller/forgot-password': typeof ResellerForgotPasswordRoute
   '/reseller/login': typeof ResellerLoginRoute
   '/reseller/messages': typeof ResellerMessagesRoute
   '/reseller/orders': typeof ResellerOrdersRoute
   '/reseller/profile': typeof ResellerProfileRoute
   '/reseller/register': typeof ResellerRegisterRoute
+  '/reseller/reset-password': typeof ResellerResetPasswordRoute
   '/reseller/share-target': typeof ResellerShareTargetRoute
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
@@ -756,6 +795,7 @@ export interface FileRoutesByTo {
   '/admin/ars/retail-shops': typeof AdminArsRetailShopsRoute
   '/admin/ars/withdrawal': typeof AdminArsWithdrawalRoute
   '/admin/auth/forgot-password': typeof AdminAuthForgotPasswordRoute
+  '/admin/auth/reset-password': typeof AdminAuthResetPasswordRoute
   '/admin/auth/sign-in': typeof AdminAuthSignInRoute
   '/admin/customer-care/order-services': typeof AdminCustomerCareOrderServicesRoute
   '/admin/customer-care/reseller-profile': typeof AdminCustomerCareResellerProfileRoute
@@ -794,6 +834,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/legal': typeof LegalRoute
   '/legal-notice': typeof LegalNoticeRoute
   '/orders': typeof OrdersRoute
@@ -801,6 +842,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/returns-refunds': typeof ReturnsRefundsRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/terms': typeof TermsRoute
@@ -835,11 +877,13 @@ export interface FileRoutesById {
   '/reseller/$': typeof ResellerSplatRoute
   '/reseller/ad-boost': typeof ResellerAdBoostRoute
   '/reseller/dashboard': typeof ResellerDashboardRoute
+  '/reseller/forgot-password': typeof ResellerForgotPasswordRoute
   '/reseller/login': typeof ResellerLoginRoute
   '/reseller/messages': typeof ResellerMessagesRoute
   '/reseller/orders': typeof ResellerOrdersRoute
   '/reseller/profile': typeof ResellerProfileRoute
   '/reseller/register': typeof ResellerRegisterRoute
+  '/reseller/reset-password': typeof ResellerResetPasswordRoute
   '/reseller/share-target': typeof ResellerShareTargetRoute
   '/reseller/shop': typeof ResellerShopRoute
   '/store/$slug': typeof StoreSlugRoute
@@ -854,6 +898,7 @@ export interface FileRoutesById {
   '/admin/ars/retail-shops': typeof AdminArsRetailShopsRoute
   '/admin/ars/withdrawal': typeof AdminArsWithdrawalRoute
   '/admin/auth/forgot-password': typeof AdminAuthForgotPasswordRoute
+  '/admin/auth/reset-password': typeof AdminAuthResetPasswordRoute
   '/admin/auth/sign-in': typeof AdminAuthSignInRoute
   '/admin/customer-care/order-services': typeof AdminCustomerCareOrderServicesRoute
   '/admin/customer-care/reseller-profile': typeof AdminCustomerCareResellerProfileRoute
@@ -893,6 +938,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/contact-us'
     | '/faq'
+    | '/forgot-password'
     | '/legal'
     | '/legal-notice'
     | '/orders'
@@ -900,6 +946,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/reset-password'
     | '/returns-refunds'
     | '/shipping-policy'
     | '/terms'
@@ -934,11 +981,13 @@ export interface FileRouteTypes {
     | '/reseller/$'
     | '/reseller/ad-boost'
     | '/reseller/dashboard'
+    | '/reseller/forgot-password'
     | '/reseller/login'
     | '/reseller/messages'
     | '/reseller/orders'
     | '/reseller/profile'
     | '/reseller/register'
+    | '/reseller/reset-password'
     | '/reseller/share-target'
     | '/reseller/shop'
     | '/store/$slug'
@@ -953,6 +1002,7 @@ export interface FileRouteTypes {
     | '/admin/ars/retail-shops'
     | '/admin/ars/withdrawal'
     | '/admin/auth/forgot-password'
+    | '/admin/auth/reset-password'
     | '/admin/auth/sign-in'
     | '/admin/customer-care/order-services'
     | '/admin/customer-care/reseller-profile'
@@ -990,6 +1040,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/contact-us'
     | '/faq'
+    | '/forgot-password'
     | '/legal'
     | '/legal-notice'
     | '/orders'
@@ -997,6 +1048,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/reset-password'
     | '/returns-refunds'
     | '/shipping-policy'
     | '/terms'
@@ -1031,11 +1083,13 @@ export interface FileRouteTypes {
     | '/reseller/$'
     | '/reseller/ad-boost'
     | '/reseller/dashboard'
+    | '/reseller/forgot-password'
     | '/reseller/login'
     | '/reseller/messages'
     | '/reseller/orders'
     | '/reseller/profile'
     | '/reseller/register'
+    | '/reseller/reset-password'
     | '/reseller/share-target'
     | '/reseller/shop'
     | '/store/$slug'
@@ -1050,6 +1104,7 @@ export interface FileRouteTypes {
     | '/admin/ars/retail-shops'
     | '/admin/ars/withdrawal'
     | '/admin/auth/forgot-password'
+    | '/admin/auth/reset-password'
     | '/admin/auth/sign-in'
     | '/admin/customer-care/order-services'
     | '/admin/customer-care/reseller-profile'
@@ -1087,6 +1142,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/contact-us'
     | '/faq'
+    | '/forgot-password'
     | '/legal'
     | '/legal-notice'
     | '/orders'
@@ -1094,6 +1150,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/privacy-policy'
     | '/refund-policy'
+    | '/reset-password'
     | '/returns-refunds'
     | '/shipping-policy'
     | '/terms'
@@ -1128,11 +1185,13 @@ export interface FileRouteTypes {
     | '/reseller/$'
     | '/reseller/ad-boost'
     | '/reseller/dashboard'
+    | '/reseller/forgot-password'
     | '/reseller/login'
     | '/reseller/messages'
     | '/reseller/orders'
     | '/reseller/profile'
     | '/reseller/register'
+    | '/reseller/reset-password'
     | '/reseller/share-target'
     | '/reseller/shop'
     | '/store/$slug'
@@ -1147,6 +1206,7 @@ export interface FileRouteTypes {
     | '/admin/ars/retail-shops'
     | '/admin/ars/withdrawal'
     | '/admin/auth/forgot-password'
+    | '/admin/auth/reset-password'
     | '/admin/auth/sign-in'
     | '/admin/customer-care/order-services'
     | '/admin/customer-care/reseller-profile'
@@ -1185,6 +1245,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ContactUsRoute: typeof ContactUsRoute
   FaqRoute: typeof FaqRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LegalRoute: typeof LegalRoute
   LegalNoticeRoute: typeof LegalNoticeRoute
   OrdersRoute: typeof OrdersRoute
@@ -1192,6 +1253,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ReturnsRefundsRoute: typeof ReturnsRefundsRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   TermsRoute: typeof TermsRoute
@@ -1225,11 +1287,13 @@ export interface RootRouteChildren {
   ResellerSplatRoute: typeof ResellerSplatRoute
   ResellerAdBoostRoute: typeof ResellerAdBoostRoute
   ResellerDashboardRoute: typeof ResellerDashboardRoute
+  ResellerForgotPasswordRoute: typeof ResellerForgotPasswordRoute
   ResellerLoginRoute: typeof ResellerLoginRoute
   ResellerMessagesRoute: typeof ResellerMessagesRoute
   ResellerOrdersRoute: typeof ResellerOrdersRoute
   ResellerProfileRoute: typeof ResellerProfileRoute
   ResellerRegisterRoute: typeof ResellerRegisterRoute
+  ResellerResetPasswordRoute: typeof ResellerResetPasswordRoute
   ResellerShareTargetRoute: typeof ResellerShareTargetRoute
   ResellerShopRoute: typeof ResellerShopRoute
   StoreSlugRoute: typeof StoreSlugRoute
@@ -1244,6 +1308,7 @@ export interface RootRouteChildren {
   AdminArsRetailShopsRoute: typeof AdminArsRetailShopsRoute
   AdminArsWithdrawalRoute: typeof AdminArsWithdrawalRoute
   AdminAuthForgotPasswordRoute: typeof AdminAuthForgotPasswordRoute
+  AdminAuthResetPasswordRoute: typeof AdminAuthResetPasswordRoute
   AdminAuthSignInRoute: typeof AdminAuthSignInRoute
   AdminCustomerCareOrderServicesRoute: typeof AdminCustomerCareOrderServicesRoute
   AdminCustomerCareResellerProfileRoute: typeof AdminCustomerCareResellerProfileRoute
@@ -1330,6 +1395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal': {
       id: '/legal'
       path: '/legal'
@@ -1377,6 +1449,13 @@ declare module '@tanstack/react-router' {
       path: '/refund-policy'
       fullPath: '/refund-policy'
       preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/returns-refunds': {
@@ -1638,6 +1717,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResellerDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reseller/forgot-password': {
+      id: '/reseller/forgot-password'
+      path: '/reseller/forgot-password'
+      fullPath: '/reseller/forgot-password'
+      preLoaderRoute: typeof ResellerForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reseller/login': {
       id: '/reseller/login'
       path: '/reseller/login'
@@ -1671,6 +1757,13 @@ declare module '@tanstack/react-router' {
       path: '/reseller/register'
       fullPath: '/reseller/register'
       preLoaderRoute: typeof ResellerRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reseller/reset-password': {
+      id: '/reseller/reset-password'
+      path: '/reseller/reset-password'
+      fullPath: '/reseller/reset-password'
+      preLoaderRoute: typeof ResellerResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reseller/share-target': {
@@ -1748,6 +1841,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/auth/forgot-password'
       fullPath: '/admin/auth/forgot-password'
       preLoaderRoute: typeof AdminAuthForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/auth/reset-password': {
+      id: '/admin/auth/reset-password'
+      path: '/admin/auth/reset-password'
+      fullPath: '/admin/auth/reset-password'
+      preLoaderRoute: typeof AdminAuthResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/auth/sign-in': {
@@ -1975,6 +2075,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ContactUsRoute: ContactUsRoute,
   FaqRoute: FaqRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LegalRoute: LegalRoute,
   LegalNoticeRoute: LegalNoticeRoute,
   OrdersRoute: OrdersRoute,
@@ -1982,6 +2083,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ReturnsRefundsRoute: ReturnsRefundsRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
   TermsRoute: TermsRoute,
@@ -2015,11 +2117,13 @@ const rootRouteChildren: RootRouteChildren = {
   ResellerSplatRoute: ResellerSplatRoute,
   ResellerAdBoostRoute: ResellerAdBoostRoute,
   ResellerDashboardRoute: ResellerDashboardRoute,
+  ResellerForgotPasswordRoute: ResellerForgotPasswordRoute,
   ResellerLoginRoute: ResellerLoginRoute,
   ResellerMessagesRoute: ResellerMessagesRoute,
   ResellerOrdersRoute: ResellerOrdersRoute,
   ResellerProfileRoute: ResellerProfileRoute,
   ResellerRegisterRoute: ResellerRegisterRoute,
+  ResellerResetPasswordRoute: ResellerResetPasswordRoute,
   ResellerShareTargetRoute: ResellerShareTargetRoute,
   ResellerShopRoute: ResellerShopRoute,
   StoreSlugRoute: StoreSlugRoute,
@@ -2034,6 +2138,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminArsRetailShopsRoute: AdminArsRetailShopsRoute,
   AdminArsWithdrawalRoute: AdminArsWithdrawalRoute,
   AdminAuthForgotPasswordRoute: AdminAuthForgotPasswordRoute,
+  AdminAuthResetPasswordRoute: AdminAuthResetPasswordRoute,
   AdminAuthSignInRoute: AdminAuthSignInRoute,
   AdminCustomerCareOrderServicesRoute: AdminCustomerCareOrderServicesRoute,
   AdminCustomerCareResellerProfileRoute: AdminCustomerCareResellerProfileRoute,
