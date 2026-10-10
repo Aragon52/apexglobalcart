@@ -13,7 +13,7 @@ const bodySchema = z.object({
   shopHeroBanner: z.string().optional().nullable(),
   storeTheme: z.string().optional(),
   usdtAddress: z.string().optional().nullable(),
-  bankInfo: z.any().optional(),
+  bankInfo: z.unknown().optional(),
 });
 
 export const Route = createFileRoute("/api/public/reseller/update-profile")({
@@ -48,6 +48,14 @@ export const Route = createFileRoute("/api/public/reseller/update-profile")({
         const supabase = createClient(supabaseUrl, supabaseServiceKey, {
           auth: { persistSession: false, autoRefreshToken: false },
         });
+
+        // Only the signed-in reseller may update their own profile.
+        const token = (request.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
+        if (!token) return Response.json({ error: "Unauthorized" }, { status: 401 });
+        const { data: caller, error: callerErr } = await supabase.auth.getUser(token);
+        if (callerErr || !caller.user || caller.user.id !== resellerId) {
+          return Response.json({ error: "Forbidden" }, { status: 403 });
+        }
 
         try {
           const profileUpdates: Record<string, unknown> = {};
