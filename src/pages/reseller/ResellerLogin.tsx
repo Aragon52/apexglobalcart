@@ -108,8 +108,7 @@ export default function ResellerLogin() {
             <LogoIcon size={52} />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center justify-center gap-1.5 font-poppins">
-            <span className="text-[#F1C40F]">Global</span>
-            <span className="text-[#2ECC71]">Cart</span>
+            <span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span>
             <span className="text-[11px] font-semibold uppercase tracking-wider text-white/90 bg-white/15 px-2 py-0.5 rounded-full ml-1 border border-white/20">
               Reseller
             </span>
@@ -193,7 +192,7 @@ export default function ResellerLogin() {
 
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 pt-2 border-t border-white/10">
           <LogoIcon size={14} />
-          <span>GlobalCart Merchant Protection & Instant Access</span>
+          <span>Apex Global Cart Merchant Protection & Instant Access</span>
         </div>
       </div>
 

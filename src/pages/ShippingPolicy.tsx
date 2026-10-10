@@ -8,8 +8,8 @@ export default function ShippingPolicy() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Shipping & Delivery Policy - Demo Project Disclosure - GlobalCart"
-        description="Review shipping coverage, international dispatch guidelines, logistics tracking integrations, and demo project notices for GlobalCart."
+        title="Shipping & Delivery Policy - Demo Project Disclosure - Apex Global Cart"
+        description="Review shipping coverage, international dispatch guidelines, logistics tracking integrations, and demo project notices for Apex Global Cart."
         canonical="https://globalcart-onlineshop.com/shipping-policy"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -42,7 +42,7 @@ export default function ShippingPolicy() {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-foreground">1. Global Delivery Coverage &amp; Carrier Routing</h2>
             <p className="text-muted-foreground">
-              GlobalCart features multi-warehouse routing and international carrier integration covering over 100 countries across North America, Europe, Asia-Pacific, and Latin America.
+              Apex Global Cart features multi-warehouse routing and international carrier integration covering over 100 countries across North America, Europe, Asia-Pacific, and Latin America.
             </p>
           </section>
 

@@ -6,8 +6,8 @@ export default function VerificationCompliance() {
   return (
     <article className="container mx-auto max-w-4xl px-4 py-12 md:py-16 space-y-6">
       <SEO
-        title="Verification & Compliance - Demo Project Standards - GlobalCart"
-        description="Learn about merchant verification, KYC compliance, trust architecture, and the demonstration pilot framework at GlobalCart."
+        title="Verification & Compliance - Demo Project Standards - Apex Global Cart"
+        description="Learn about merchant verification, KYC compliance, trust architecture, and the demonstration pilot framework at Apex Global Cart."
         canonical="https://globalcart-onlineshop.com/verification-compliance"
         breadcrumbs={[
           { name: "Home", item: "/" },

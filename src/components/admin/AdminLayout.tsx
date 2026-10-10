@@ -16,13 +16,13 @@ import { AdminErrorBoundary } from "@/components/admin/AdminErrorBoundary";
 /** Canonical page titles keyed by /admin/... paths */
 const canonicalPageTitles: Record<string, { title: string; breadcrumb: React.ReactNode }> = {
 
-  "/admin": { title: "Dashboard", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/inventory": { title: "Inventory", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/orders": { title: "Orders", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/customers": { title: "Customers", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/resellers": { title: "Retail-shops", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/customer-service": { title: "Customer Service", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
-  "/admin/content": { title: "Content", breadcrumb: <><span className="text-brand-green">Global</span><span className="text-brand-gold">Cart</span></> },
+  "/admin": { title: "Dashboard", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/inventory": { title: "Inventory", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/orders": { title: "Orders", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/customers": { title: "Customers", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/resellers": { title: "Retail-shops", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/customer-service": { title: "Customer Service", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
+  "/admin/content": { title: "Content", breadcrumb: <><span className="text-brand-orange">Apex </span><span className="text-brand-blue">Global </span><span className="text-brand-green">Cart</span></> },
   "/admin/admins": { title: "Admins", breadcrumb: "Management & Financing" },
   "/admin/messenger": { title: "Messenger", breadcrumb: "Management & Financing" },
   "/admin/roles": { title: "Roles & Permissions", breadcrumb: "Management & Financing" },

@@ -5,9 +5,9 @@ import LegalNotice from "@/pages/LegalNotice";
 export const Route = createFileRoute("/legal")({
   head: () => ({
     meta: [
-      { title: "Legal Notice & Corporate Impressum | GlobalCart Online Shop" },
-      { name: "description", content: "Corporate registration, ACRA UEN, Tax ID, and legal representative info for GlobalCart International Pte. Ltd." },
-      { property: "og:title", content: "Legal Notice | GlobalCart Online Shop" },
+      { title: "Legal Notice & Corporate Impressum | Apex Global Cart Online Shop" },
+      { name: "description", content: "Corporate registration, ACRA UEN, Tax ID, and legal representative info for Apex Global Cart International Pte. Ltd." },
+      { property: "og:title", content: "Legal Notice | Apex Global Cart Online Shop" },
       { property: "og:description", content: "Official corporate impressum and legal disclosure for GCOS." },
     ],
   }),

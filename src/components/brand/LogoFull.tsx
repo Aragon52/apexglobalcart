@@ -1,24 +1,20 @@
-import { FC } from 'react';
-import LogoIcon from './LogoIcon';
-import LogoWordmark from './LogoWordmark';
-import WorldMapBackground from './WorldMapBackground';
+import { FC } from "react";
+import logoFull from "@/assets/brand/apex-logo-full.png";
 
 interface LogoFullProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
-const iconSizeMap = { sm: 48, md: 80, lg: 120 };
-const wordmarkSizeMap = { sm: 'sm' as const, md: 'md' as const, lg: 'lg' as const };
+const widthMap = { sm: 120, md: 200, lg: 300 };
 
-const LogoFull: FC<LogoFullProps> = ({ size = 'md', className = '' }) => {
-  return (
-    <div className={`relative flex flex-col items-center gap-1 overflow-hidden ${className}`}>
-      <WorldMapBackground opacity={0.12} />
-      <LogoIcon size={iconSizeMap[size]} className="relative z-10" />
-      <LogoWordmark size={wordmarkSizeMap[size]} className="relative z-10" />
-    </div>
-  );
-};
+const LogoFull: FC<LogoFullProps> = ({ size = "md", className = "" }) => (
+  <img
+    src={logoFull}
+    alt="Apex Global Cart — Commerce at its peak"
+    width={widthMap[size]}
+    className={`h-auto object-contain ${className}`}
+  />
+);
 
 export default LogoFull;

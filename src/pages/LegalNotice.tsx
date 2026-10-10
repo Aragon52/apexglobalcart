@@ -6,8 +6,8 @@ export default function LegalNotice() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Legal Notice & Demo Project Disclosure - GlobalCart"
-        description="Official legal disclosures, corporate identification, demonstration project scope, and investor presentation terms for GlobalCart International Pte. Ltd."
+        title="Legal Notice & Demo Project Disclosure - Apex Global Cart"
+        description="Official legal disclosures, corporate identification, demonstration project scope, and investor presentation terms for Apex Global Cart International Pte. Ltd."
         canonical="https://globalcart-onlineshop.com/legal"
         breadcrumbs={[
           { name: "Home", item: "/" },
@@ -44,7 +44,7 @@ export default function LegalNotice() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <div className="p-3 rounded-lg border border-border bg-muted/30">
               <span className="text-muted-foreground block mb-1">Company Name:</span>
-              <span className="font-bold text-foreground text-sm">GlobalCart International Pte. Ltd.</span>
+              <span className="font-bold text-foreground text-sm">Apex Global Cart International Pte. Ltd.</span>
             </div>
             <div className="p-3 rounded-lg border border-border bg-muted/30">
               <span className="text-muted-foreground block mb-1">ACRA Unique Entity Number (UEN):</span>

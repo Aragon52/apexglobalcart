@@ -11,7 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function FAQ() {
   const faqs = [
     {
-      q: "What is the purpose of this GlobalCart Online Shop (GCOS) application?",
+      q: "What is the purpose of this Apex Global Cart Online Shop (GCOS) application?",
       a: "This entire environment is developed and maintained as a comprehensive demonstration project and technology pilot. Its core purpose is to introduce and showcase a complete, fully operating headless e-commerce application architecture, multi-merchant reseller engine, and synchronized operations line-ups (such as ARS, ACH, and SLA governance) to prospective business partners and investors.",
     },
     {
@@ -20,7 +20,7 @@ export default function FAQ() {
     },
     {
       q: "Who is behind this demonstration project?",
-      a: "The project is architected and presented by GlobalCart International Pte. Ltd. (ACRA UEN: 202301984M), established in Singapore, showcasing advanced headless commerce, multi-vendor marketplace engineering, and automated administrative consoles.",
+      a: "The project is architected and presented by Apex Global Cart International Pte. Ltd. (ACRA UEN: 202301984M), established in Singapore, showcasing advanced headless commerce, multi-vendor marketplace engineering, and automated administrative consoles.",
     },
     {
       q: "How does the demonstrated Buyer Protection Guarantee operate?",
@@ -43,8 +43,8 @@ export default function FAQ() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <SEO
-        title="Frequently Asked Questions (FAQ) & Investor FAQ - GlobalCart"
-        description="Find answers regarding GlobalCart's headless architecture, demonstration pilot scope, investor presentation details, and platform security."
+        title="Frequently Asked Questions (FAQ) & Investor FAQ - Apex Global Cart"
+        description="Find answers regarding Apex Global Cart's headless architecture, demonstration pilot scope, investor presentation details, and platform security."
         canonical="https://globalcart-onlineshop.com/faq"
         breadcrumbs={[
           { name: "Home", item: "/" },
