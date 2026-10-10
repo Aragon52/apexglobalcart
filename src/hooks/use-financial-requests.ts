@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { notifyFinancialRequest } from "@/services/push-service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
@@ -166,6 +167,7 @@ export function useFinancialMutations() {
         .update(updates)
         .eq("id", id);
       if (error) throw error;
+      void notifyFinancialRequest("deposit_requests", id);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["deposit-requests"] });
@@ -186,6 +188,7 @@ export function useFinancialMutations() {
         .update(updates)
         .eq("id", id);
       if (error) throw error;
+      void notifyFinancialRequest("withdrawal_requests", id);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["withdrawal-requests"] });

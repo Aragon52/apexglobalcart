@@ -104,6 +104,7 @@ import { Route as ApiAdminResetResellerPasswordRouteImport } from './routes/api/
 import { Route as ApiAdminUpdateOrderStatusRouteImport } from './routes/api/admin/update-order-status'
 import { Route as ApiAdminVerifyAllRouteImport } from './routes/api/admin/verify-all'
 import { Route as ApiPublicRegisterResellerRouteImport } from './routes/api/public/register-reseller'
+import { Route as ApiPushFinancialRouteImport } from './routes/api/push/financial'
 import { Route as ResellerProfileCustomizeRouteImport } from './routes/reseller.profile_.customize'
 import { Route as ApiPublicResellerUpdateProfileRouteImport } from './routes/api/public/reseller/update-profile'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -591,6 +592,11 @@ const ApiPublicRegisterResellerRoute =
     path: '/api/public/register-reseller',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPushFinancialRoute = ApiPushFinancialRouteImport.update({
+  id: '/api/push/financial',
+  path: '/api/push/financial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResellerProfileCustomizeRoute =
   ResellerProfileCustomizeRouteImport.update({
     id: '/reseller/profile_/customize',
@@ -716,6 +722,7 @@ export interface FileRoutesByFullPath {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
+  '/api/push/financial': typeof ApiPushFinancialRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -818,6 +825,7 @@ export interface FileRoutesByTo {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
+  '/api/push/financial': typeof ApiPushFinancialRoute
   '/reseller/profile/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -921,6 +929,7 @@ export interface FileRoutesById {
   '/api/admin/update-order-status': typeof ApiAdminUpdateOrderStatusRoute
   '/api/admin/verify-all': typeof ApiAdminVerifyAllRoute
   '/api/public/register-reseller': typeof ApiPublicRegisterResellerRoute
+  '/api/push/financial': typeof ApiPushFinancialRoute
   '/reseller/profile_/customize': typeof ResellerProfileCustomizeRoute
   '/api/public/reseller/update-profile': typeof ApiPublicResellerUpdateProfileRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -1025,6 +1034,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/api/public/register-reseller'
+    | '/api/push/financial'
     | '/reseller/profile/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1127,6 +1137,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/api/public/register-reseller'
+    | '/api/push/financial'
     | '/reseller/profile/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1229,6 +1240,7 @@ export interface FileRouteTypes {
     | '/api/admin/update-order-status'
     | '/api/admin/verify-all'
     | '/api/public/register-reseller'
+    | '/api/push/financial'
     | '/reseller/profile_/customize'
     | '/api/public/reseller/update-profile'
     | '/lovable/email/auth/preview'
@@ -1330,6 +1342,7 @@ export interface RootRouteChildren {
   ApiAdminUpdateOrderStatusRoute: typeof ApiAdminUpdateOrderStatusRoute
   ApiAdminVerifyAllRoute: typeof ApiAdminVerifyAllRoute
   ApiPublicRegisterResellerRoute: typeof ApiPublicRegisterResellerRoute
+  ApiPushFinancialRoute: typeof ApiPushFinancialRoute
   ResellerProfileCustomizeRoute: typeof ResellerProfileCustomizeRoute
   ApiPublicResellerUpdateProfileRoute: typeof ApiPublicResellerUpdateProfileRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -2004,6 +2017,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicRegisterResellerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/push/financial': {
+      id: '/api/push/financial'
+      path: '/api/push/financial'
+      fullPath: '/api/push/financial'
+      preLoaderRoute: typeof ApiPushFinancialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reseller/profile_/customize': {
       id: '/reseller/profile_/customize'
       path: '/reseller/profile/customize'
@@ -2160,6 +2180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAdminUpdateOrderStatusRoute: ApiAdminUpdateOrderStatusRoute,
   ApiAdminVerifyAllRoute: ApiAdminVerifyAllRoute,
   ApiPublicRegisterResellerRoute: ApiPublicRegisterResellerRoute,
+  ApiPushFinancialRoute: ApiPushFinancialRoute,
   ResellerProfileCustomizeRoute: ResellerProfileCustomizeRoute,
   ApiPublicResellerUpdateProfileRoute: ApiPublicResellerUpdateProfileRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,

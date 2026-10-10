@@ -24,7 +24,7 @@ const HOST_PREFIX_RULES: Array<{ test: RegExp; prefix: PortalPrefix }> = [
 ];
 
 /** Paths that must never be rewritten (server functions, API routes, assets, Vite internals, public files). */
-const RESERVED_PATH = /^\/(api|_serverFn|_server|_build|assets|src|node_modules|@|__|\.netlify|\.tanstack|favicon|robots\.txt|sitemap|manifest|brand|images|fonts|crypto|badges|placeholder|\.well-known|sw\.js|offline\.html)/;
+const RESERVED_PATH = /^\/(api|_serverFn|_server|_build|assets|src|node_modules|@|__|\.netlify|\.tanstack|favicon|robots\.txt|sitemap|manifest|brand|images|fonts|crypto|badges|placeholder|\.well-known|sw\.js|firebase-messaging-sw\.js|firebase-cloud-messaging-push-scope|offline\.html)/;
 
 export function portalPrefixForHost(hostname?: string | null): PortalPrefix {
   // 1. Explicit env configuration (VITE_PORTAL or VITE_APP_MODE)

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { notifyFinancialRequest } from "@/services/push-service";
 import { ArrowDownToLine, Clock, CheckCircle2, XCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -140,7 +141,7 @@ export default function ResellerWithdrawalSheet({ open, onOpenChange }: Reseller
       if (updateError) throw updateError;
 
       // 2. Create withdrawal request
-      const { error: insertError } = await supabase
+      const { data: inserted, error: insertError } = await supabase
         .from("withdrawal_requests")
         .insert({
           resellerDocId: reseller.id,
@@ -151,9 +152,12 @@ export default function ResellerWithdrawalSheet({ open, onOpenChange }: Reseller
             usdtAddress: reseller.usdtAddress,
             bankInfo: reseller.bankInfo
           })
-        });
+        })
+        .select("id")
+        .single();
 
       if (insertError) throw insertError;
+      void notifyFinancialRequest("withdrawal_requests", inserted?.id);
 
       toast({ title: t("reseller.withdrawalRequested"), description: `${t("reseller.withdrawalOf")} $${num.toFixed(2)} ${t("reseller.withdrawalSubmitted")}` });
       setAmount("");
