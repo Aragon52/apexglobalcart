@@ -5,9 +5,9 @@ import ReturnRefundPolicy from "@/pages/ReturnRefundPolicy";
 export const Route = createFileRoute("/refund-policy")({
   head: () => ({
     meta: [
-      { title: "Return & Refund Policy | GlobalCart Online Shop" },
+      { title: "Return & Refund Policy | Apex Global Cart Online Shop" },
       { name: "description", content: "Learn about GCOS 14-day return guarantees, refund processing, and consumer buyer protection." },
-      { property: "og:title", content: "Return & Refund Policy | GlobalCart Online Shop" },
+      { property: "og:title", content: "Return & Refund Policy | Apex Global Cart Online Shop" },
       { property: "og:description", content: "Complete guidelines on returns, refunds, and replacements at GCOS." },
     ],
   }),

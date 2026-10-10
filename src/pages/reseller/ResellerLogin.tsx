@@ -193,7 +193,7 @@ export default function ResellerLogin() {
 
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 pt-2 border-t border-white/10">
           <LogoIcon size={14} />
-          <span>GlobalCart Merchant Protection & Instant Access</span>
+          <span>Apex Global Cart Merchant Protection & Instant Access</span>
         </div>
       </div>
 

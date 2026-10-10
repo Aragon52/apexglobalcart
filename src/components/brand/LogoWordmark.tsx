@@ -1,26 +1,24 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 interface LogoWordmarkProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 }
 
 const sizeMap = {
-  sm: 'text-xl',
-  md: 'text-3xl',
-  lg: 'text-5xl',
-  xl: 'text-7xl',
+  sm: "text-xl",
+  md: "text-3xl",
+  lg: "text-5xl",
+  xl: "text-7xl",
 };
 
-const LogoWordmark: FC<LogoWordmarkProps> = ({ size = 'md', className = '' }) => {
+const LogoWordmark: FC<LogoWordmarkProps> = ({ size = "md", className = "" }) => {
   return (
-    <h1
-      className={`font-poppins font-bold tracking-tight ${sizeMap[size]} ${className}`}
-      style={{ lineHeight: 1.1 }}
-    >
-      <span className="text-brand-gold">Global</span>
+    <span className={`font-poppins font-bold tracking-tight leading-tight ${sizeMap[size]} ${className}`}>
+      <span className="text-brand-orange">Apex </span>
+      <span className="text-brand-blue">Global </span>
       <span className="text-brand-green">Cart</span>
-    </h1>
+    </span>
   );
 };
 

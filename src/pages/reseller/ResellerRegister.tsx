@@ -261,7 +261,7 @@ export default function ResellerRegister() {
 
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 pt-2 border-t border-white/10">
           <LogoIcon size={14} />
-          <span>GlobalCart Instant Merchant Activation & Zero Upfront Cost</span>
+          <span>Apex Global Cart Instant Merchant Activation & Zero Upfront Cost</span>
         </div>
       </div>
 
