@@ -326,14 +326,14 @@ const CartIndexRoute = CartIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartLoginRoute = CartLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => CartRoute,
+  id: '/cart/login',
+  path: '/cart/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CartRegisterRoute = CartRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => CartRoute,
+  id: '/cart/register',
+  path: '/cart/register',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   id: '/$slug',
@@ -1219,6 +1219,8 @@ export interface RootRouteChildren {
   ApiScrapeRoute: typeof ApiScrapeRoute
   ApiSendNotificationRoute: typeof ApiSendNotificationRoute
   ApiSyncRoute: typeof ApiSyncRoute
+  CartLoginRoute: typeof CartLoginRoute
+  CartRegisterRoute: typeof CartRegisterRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ResellerSplatRoute: typeof ResellerSplatRoute
   ResellerAdBoostRoute: typeof ResellerAdBoostRoute
@@ -1582,17 +1584,17 @@ declare module '@tanstack/react-router' {
     }
     '/cart/login': {
       id: '/cart/login'
-      path: '/login'
+      path: '/cart/login'
       fullPath: '/cart/login'
       preLoaderRoute: typeof CartLoginRouteImport
-      parentRoute: typeof CartRoute
+      parentRoute: typeof rootRouteImport
     }
     '/cart/register': {
       id: '/cart/register'
-      path: '/register'
+      path: '/cart/register'
       fullPath: '/cart/register'
       preLoaderRoute: typeof CartRegisterRouteImport
-      parentRoute: typeof CartRoute
+      parentRoute: typeof rootRouteImport
     }
     '/categories/$slug': {
       id: '/categories/$slug'
@@ -2007,6 +2009,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiScrapeRoute: ApiScrapeRoute,
   ApiSendNotificationRoute: ApiSendNotificationRoute,
   ApiSyncRoute: ApiSyncRoute,
+  CartLoginRoute: CartLoginRoute,
+  CartRegisterRoute: CartRegisterRoute,
   ProductsIdRoute: ProductsIdRoute,
   ResellerSplatRoute: ResellerSplatRoute,
   ResellerAdBoostRoute: ResellerAdBoostRoute,
