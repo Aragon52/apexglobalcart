@@ -590,7 +590,7 @@ export default function ARSTrackOrdersPage() {
                     {order.focused && <Star className="inline h-3 w-3 text-primary mr-1" />}
                     {order.orderId}
                   </TableCell>
-                  <TableCell className="font-mono text-xs text-[#009000] whitespace-nowrap">
+                  <TableCell className="font-mono text-xs text-primary whitespace-nowrap">
                     {order.resellerNumericId ? `GRS${order.resellerNumericId}` : (order.humanResellerId || order.resellerId)}
                   </TableCell>
                   <TableCell className="whitespace-nowrap text-muted-foreground">{order.staffUsername}</TableCell>

@@ -383,7 +383,7 @@ export default function ARSDepositPage() {
                         <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
                           {format(new Date(req.createdAt), "MMM dd, yyyy HH:mm")}
                         </TableCell>
-                        <TableCell className="font-mono text-xs text-[#009000]">
+                        <TableCell className="font-mono text-xs text-primary">
                           {req.resellerId || (reseller ? `GRS${reseller.resellerId}` : "Unknown")}
                         </TableCell>
                         <TableCell className="font-medium text-sm">

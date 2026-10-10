@@ -20,7 +20,7 @@ const brandConfigs: Record<Portal, BrandConfig> = {
     title: 'GCOS | Global online marketplace',
     description:
       'Shop premium products from verified sellers worldwide. Discover reseller stores, enjoy secure checkout, and get world-class customer support.',
-    themeColor: '#009000',
+    themeColor: '#0B1B3F',
     ogImage: '/brand/og-customer.png',
     ogImageAlt: 'GCOS Global online marketplace',
     manifestPath: '/manifest.json',
@@ -36,7 +36,7 @@ const brandConfigs: Record<Portal, BrandConfig> = {
     title: 'GCOS Reseller Portal | Grow Your Global Store',
     description:
       'Manage your online store, track orders, boost sales with our marketing tools, and grow your global business on the GCOS marketplace.',
-    themeColor: '#009000',
+    themeColor: '#0B1B3F',
     ogImage: '/brand/og-reseller.png',
     ogImageAlt: 'GCOS Reseller Portal dashboard',
     manifestPath: '/manifest-reseller.json',
