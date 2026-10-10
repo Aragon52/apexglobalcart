@@ -8,7 +8,7 @@ export const Route = createFileRoute("/legal-notice")({
       { title: "Legal Notice & Corporate Impressum | Apex Global Cart Online Shop" },
       { name: "description", content: "Corporate registration, ACRA UEN, Tax ID, and legal representative info for Apex Global Cart International Pte. Ltd." },
       { property: "og:title", content: "Legal Notice | Apex Global Cart Online Shop" },
-      { property: "og:description", content: "Official corporate impressum and legal disclosure for GCOS." },
+      { property: "og:description", content: "Official corporate impressum and legal disclosure for Apex Global Cart." },
     ],
   }),
   component: () => (

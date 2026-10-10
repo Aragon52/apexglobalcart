@@ -5,7 +5,7 @@ import AdminInventoryPage from "@/pages/admin/AdminInventoryPage";
 export const Route = createFileRoute("/admin/inventory")({
   head: () => ({
     meta: [
-      { title: "Admin portal — GCOS" },
+      { title: "Admin portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],

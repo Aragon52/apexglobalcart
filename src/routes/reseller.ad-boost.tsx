@@ -5,7 +5,7 @@ import AdBoostService from "@/pages/reseller/AdBoostService";
 export const Route = createFileRoute("/reseller/ad-boost")({
   head: () => ({
     meta: [
-      { title: "User Portal — GCOS" },
+      { title: "User Portal — Apex Global Cart" },
       { name: "robots", content: "noindex, nofollow, noarchive, nosnippet" },
       { name: "googlebot", content: "noindex, nofollow, noarchive, nosnippet" },
     ],
