@@ -12,8 +12,8 @@ export const EmailFooter = () => (
     <Text style={brand}>Apex Global Cart</Text>
     <Text style={line}>
       Support:{' '}
-      <Link href="mailto:support@globalcart-onlineshop.com" style={link}>
-        support@globalcart-onlineshop.com
+      <Link href="mailto:support@apexglobalonlineshop.com" style={link}>
+        support@apexglobalonlineshop.com
       </Link>
     </Text>
     <Text style={line}>Hotline: +65 6800 4200 (24/7)</Text>
