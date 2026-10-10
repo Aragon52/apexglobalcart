@@ -19,13 +19,15 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const currentUserRef = useRef<string | null>(null);
 
   // Periodic heartbeat & session tracking for all Admin/Staff/Owner sessions
+  // Lightweight: one heartbeat every 5 minutes, only while the tab is visible.
   useEffect(() => {
     if (session) {
-      // Immediate session registration / heartbeat
       trackAdminSessionHeartbeat(session);
       const generalInterval = setInterval(() => {
-        trackAdminSessionHeartbeat(session);
-      }, 30000);
+        if (document.visibilityState === "visible") {
+          trackAdminSessionHeartbeat(session);
+        }
+      }, 5 * 60 * 1000);
 
       const handleUnload = () => {
         trackAdminSessionLogout(session);

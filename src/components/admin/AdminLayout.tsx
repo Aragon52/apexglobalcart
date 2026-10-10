@@ -98,11 +98,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
   }, [location.pathname, session, navigate, signOut, loading]);
 
-  useEffect(() => {
-    if (session) {
-      logActivity('VIEW_PAGE', location.pathname);
-    }
-  }, [location.pathname, session, logActivity]);
 
   const pageInfo = pageTitles[location.pathname] || { title: "Page", breadcrumb: "—" };
   const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));

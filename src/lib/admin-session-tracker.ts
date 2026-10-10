@@ -38,6 +38,7 @@ export interface AdminActiveSessionRecord {
   role: string;
   accountId: string | null;
   ipAddress: string;
+  location?: string;
   deviceLabel: string;
   userAgent: string;
   loginAt: string;
@@ -152,7 +153,7 @@ async function saveRawRegistry(records: AdminActiveSessionRecord[]): Promise<boo
  */
 export async function trackAdminSessionLogin(session: AdminSession): Promise<string> {
   try {
-    const { ip } = await getClientPublicIp();
+    const { ip, location } = await getClientPublicIp();
     const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "Unknown";
     const deviceLabel = parseDeviceLabel(userAgent);
     const now = new Date().toISOString();
@@ -180,7 +181,8 @@ export async function trackAdminSessionLogin(session: AdminSession): Promise<str
       adminName: session.name || "Admin",
       role: session.role || "Admin",
       accountId: session.accountId || "GA-SYS",
-      ipAddress: ip || "127.0.0.1",
+      ipAddress: ip || "unknown",
+      location,
       deviceLabel,
       userAgent,
       loginAt: existingIdx >= 0 ? filtered[existingIdx].loginAt : now,
@@ -196,7 +198,8 @@ export async function trackAdminSessionLogin(session: AdminSession): Promise<str
 
     await saveRawRegistry(filtered);
 
-    // Also log in admin_audit_logs for audit persistence
+    // Only record a login event for genuinely new sessions (not page reloads)
+    if (existingIdx >= 0) return sessionId;
     await supabase.from("admin_audit_logs").insert({
       admin_id: session.uid || session.email,
       admin_email: session.email.toLowerCase().trim(),
@@ -206,6 +209,7 @@ export async function trackAdminSessionLogin(session: AdminSession): Promise<str
       details: {
         sessionId,
         deviceLabel,
+        location,
         userAgent,
         role: session.role,
         accountId: session.accountId,
@@ -337,7 +341,7 @@ export async function fetchAllAdminSessionsData(): Promise<{
       adminId: log.admin_id || "",
       action: log.action || "ACTIVITY",
       ipAddress: log.ip_address || "127.0.0.1",
-      target: log.target || "",
+      target: log.details?.location ? `${log.target || ""} · ${log.details.location}` : (log.target || ""),
       userAgent: log.details?.userAgent || "",
       createdAt: log.created_at || new Date().toISOString(),
       details: log.details || {},
