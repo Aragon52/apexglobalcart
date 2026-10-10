@@ -6,28 +6,36 @@ import { calculateVipLevel, getVipProductLimit } from "@/lib/vip-utils";
 
 const EMPTY_RESELLERS: Reseller[] = [];
 
+let realtimeUsers = 0;
+let sharedChannel: ReturnType<typeof supabase.channel> | null = null;
+let refreshTimer: ReturnType<typeof setTimeout> | null = null;
+
 export function useUnifiedResellers() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    // Setup real-time listener for profiles and retail_shops
-    const profilesChannel = supabase
-      .channel('public:reseller_profiles')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'reseller_profiles' }, () => {
-        queryClient.invalidateQueries({ queryKey: ["resellers"] });
-      })
-      .subscribe();
-
-    const retailShopsChannel = supabase
-      .channel('public:retail_shops')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'retail_shops' }, () => {
-        queryClient.invalidateQueries({ queryKey: ["resellers"] });
-      })
-      .subscribe();
-
+    // One shared, debounced realtime listener no matter how many components use this hook.
+    realtimeUsers += 1;
+    if (realtimeUsers === 1) {
+      const scheduleRefresh = () => {
+        if (refreshTimer) clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(() => {
+          void queryClient.invalidateQueries({ queryKey: ["resellers"] });
+        }, 15_000);
+      };
+      sharedChannel = supabase
+        .channel('unified-resellers')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'reseller_profiles' }, scheduleRefresh)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'retail_shops' }, scheduleRefresh)
+        .subscribe();
+    }
     return () => {
-      supabase.removeChannel(profilesChannel);
-      supabase.removeChannel(retailShopsChannel);
+      realtimeUsers -= 1;
+      if (realtimeUsers === 0 && sharedChannel) {
+        void supabase.removeChannel(sharedChannel);
+        sharedChannel = null;
+        if (refreshTimer) clearTimeout(refreshTimer);
+      }
     };
   }, [queryClient]);
 
@@ -37,7 +45,6 @@ export function useUnifiedResellers() {
     queryKey: ["resellers"],
     queryFn: async () => {
       try {
-        console.log("[UNIFIED_HOOKS] Fetching unified resellers...");
         
         const [
           usersRes,
@@ -61,7 +68,6 @@ export function useUnifiedResellers() {
         const staff = staffRes.data || [];
         const retailShops = retailShopsRes.data || [];
 
-        console.log(`[UNIFIED_HOOKS] Fetched: ${users.length} users, ${profiles.length} profiles, ${retailShops.length} shops`);
 
         const usersMap = new Map();
         users.forEach(u => usersMap.set(u.id, u));
@@ -215,10 +221,7 @@ export function useUnifiedResellers() {
           const resolvedProductLimit = (retailShopData.product_limit as number) || getVipProductLimit(resolvedLvlNum, regDate);
 
           // Auto-heal dirty database entries in background if level has upgraded via balance/deposits
-          if (resolvedLvlNum > explicitLvlNum) {
-            supabase.from('reseller_profiles').update({ level: resolvedLevel, updated_at: new Date().toISOString() }).eq('id', profileData.id).then(() => {}, () => {});
-            supabase.from('retail_shops').upsert({ id: profileData.id, level: resolvedLevel, product_limit: resolvedProductLimit }, { onConflict: 'id' }).then(() => {}, () => {});
-          }
+          // (Removed: writing back from this read caused a realtime -> refetch -> write loop that overloaded the database.)
 
           return {
             id: profileData.id,
@@ -249,24 +252,7 @@ export function useUnifiedResellers() {
               const pNum = String(profileData.reseller_id || '').toLowerCase();
               const stats = resellerOrderStatsMap.get(pUid) || (pNum ? resellerOrderStatsMap.get(pNum) : null);
               const resolvedPending = stats && stats.count > 0 ? Number(stats.pending.toFixed(2)) : Number(profileData.pending_balance || 0);
-              const resolvedUnpicked = stats && stats.count > 0 ? Number(stats.unpicked.toFixed(2)) : Number(profileData.unpicked_balance || 0);
-              const resolvedEarnings = Number(Math.max(Number(profileData.total_earnings || 0), stats?.earnings || 0).toFixed(2));
-              const resolvedOrders = Math.max(Number(profileData.total_orders || 0), stats?.count || 0);
 
-              if (
-                Math.abs(Number(profileData.pending_balance || 0) - resolvedPending) > 0.01 ||
-                Math.abs(Number(profileData.unpicked_balance || 0) - resolvedUnpicked) > 0.01 ||
-                resolvedEarnings > Number(profileData.total_earnings || 0) ||
-                resolvedOrders > Number(profileData.total_orders || 0)
-              ) {
-                supabase.from('reseller_profiles').update({
-                  pending_balance: resolvedPending,
-                  unpicked_balance: resolvedUnpicked,
-                  total_earnings: resolvedEarnings,
-                  total_orders: resolvedOrders,
-                  updated_at: new Date().toISOString()
-                }).eq('id', profileData.id).then(() => {}, () => {});
-              }
               return resolvedPending;
             })(),
             unpickedBalance: (() => {
@@ -301,8 +287,8 @@ export function useUnifiedResellers() {
         return [];
       }
     },
-    staleTime: 5000, 
-    refetchOnWindowFocus: true,
+    staleTime: 2 * 60_000,
+    refetchOnWindowFocus: false,
     placeholderData: (previousData: Reseller[] | undefined) => previousData,
   });
 
