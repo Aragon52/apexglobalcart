@@ -352,9 +352,9 @@ const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => CategoriesRoute,
+  id: '/categories/$slug',
+  path: '/categories/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIdRoute = ProductsIdRouteImport.update({
   id: '/products/$id',
@@ -1294,6 +1294,7 @@ export interface RootRouteChildren {
   ApiSyncRoute: typeof ApiSyncRoute
   CartLoginRoute: typeof CartLoginRoute
   CartRegisterRoute: typeof CartRegisterRoute
+  CategoriesSlugRoute: typeof CategoriesSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ResellerSplatRoute: typeof ResellerSplatRoute
   ResellerAdBoostRoute: typeof ResellerAdBoostRoute
@@ -1690,10 +1691,10 @@ declare module '@tanstack/react-router' {
     }
     '/categories/$slug': {
       id: '/categories/$slug'
-      path: '/$slug'
+      path: '/categories/$slug'
       fullPath: '/categories/$slug'
       preLoaderRoute: typeof CategoriesSlugRouteImport
-      parentRoute: typeof CategoriesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/products/$id': {
       id: '/products/$id'
@@ -2120,6 +2121,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSyncRoute: ApiSyncRoute,
   CartLoginRoute: CartLoginRoute,
   CartRegisterRoute: CartRegisterRoute,
+  CategoriesSlugRoute: CategoriesSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
   ResellerSplatRoute: ResellerSplatRoute,
   ResellerAdBoostRoute: ResellerAdBoostRoute,
