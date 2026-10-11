@@ -100,10 +100,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
 
   const pageInfo = pageTitles[location.pathname] || { title: "Page", breadcrumb: "—" };
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
+  // null until mounted: the browser's current theme is read only on the client
+  const [dark, setDark] = useState<boolean | null>(null);
   const [diagModalOpen, setDiagModalOpen] = useState(false);
 
   useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
+  }, []);
+
+  useEffect(() => {
+    if (dark === null) return;
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
