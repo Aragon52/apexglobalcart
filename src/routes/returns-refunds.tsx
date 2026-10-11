@@ -1,15 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainLayout from "@/components/layout/MainLayout";
-import ReturnRefundPolicy from "@/pages/ReturnRefundPolicy";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Duplicate address: send visitors and crawlers to the main page.
 export const Route = createFileRoute("/returns-refunds")({
-  head: () => ({
-    meta: [
-      { title: "Return & Refund Policy | Apex Global Cart" },
-      { name: "description", content: "Review Apex Global Cart return eligibility, refund processing, and support for faulty or incorrect items." },
-      { property: "og:title", content: "Return & Refund Policy | Apex Global Cart" },
-      { property: "og:description", content: "Review Apex Global Cart return eligibility and refund processing." },
-    ],
-  }),
-  component: () => <MainLayout><ReturnRefundPolicy /></MainLayout>,
+  beforeLoad: () => {
+    throw redirect({ to: "/refund-policy", statusCode: 301 });
+  },
 });

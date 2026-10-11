@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AccountRouteImport } from './routes/account'
-import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -57,6 +56,7 @@ import { Route as ApiSyncRouteImport } from './routes/api/sync'
 import { Route as CartIndexRouteImport } from './routes/cart.index'
 import { Route as CartLoginRouteImport } from './routes/cart.login'
 import { Route as CartRegisterRouteImport } from './routes/cart.register'
+import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as ResellerIndexRouteImport } from './routes/reseller.index'
@@ -129,11 +129,6 @@ const AboutUsRoute = AboutUsRouteImport.update({
 const AccountRoute = AccountRouteImport.update({
   id: '/account',
   path: '/account',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CategoriesRoute = CategoriesRouteImport.update({
-  id: '/categories',
-  path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -351,10 +346,15 @@ const CartRegisterRoute = CartRegisterRouteImport.update({
   path: '/cart/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => CategoriesRoute,
+  id: '/categories/$slug',
+  path: '/categories/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIdRoute = ProductsIdRouteImport.update({
   id: '/products/$id',
@@ -631,7 +631,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
@@ -690,6 +689,7 @@ export interface FileRoutesByFullPath {
   '/store/$slug': typeof StoreSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/cart/': typeof CartIndexRoute
+  '/categories/': typeof CategoriesIndexRoute
   '/reseller/': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -734,7 +734,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
@@ -793,6 +792,7 @@ export interface FileRoutesByTo {
   '/store/$slug': typeof StoreSlugRoute
   '/admin': typeof AdminIndexRoute
   '/cart': typeof CartIndexRoute
+  '/categories': typeof CategoriesIndexRoute
   '/reseller': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -838,7 +838,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/about-us': typeof AboutUsRoute
   '/account': typeof AccountRoute
-  '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
@@ -897,6 +896,7 @@ export interface FileRoutesById {
   '/store/$slug': typeof StoreSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/cart/': typeof CartIndexRoute
+  '/categories/': typeof CategoriesIndexRoute
   '/reseller/': typeof ResellerIndexRoute
   '/admin/ach/customers': typeof AdminAchCustomersRoute
   '/admin/ach/financial': typeof AdminAchFinancialRoute
@@ -943,7 +943,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/categories'
     | '/contact'
     | '/contact-us'
     | '/faq'
@@ -1002,6 +1001,7 @@ export interface FileRouteTypes {
     | '/store/$slug'
     | '/admin/'
     | '/cart/'
+    | '/categories/'
     | '/reseller/'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -1046,7 +1046,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/categories'
     | '/contact'
     | '/contact-us'
     | '/faq'
@@ -1105,6 +1104,7 @@ export interface FileRouteTypes {
     | '/store/$slug'
     | '/admin'
     | '/cart'
+    | '/categories'
     | '/reseller'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -1149,7 +1149,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/about-us'
     | '/account'
-    | '/categories'
     | '/contact'
     | '/contact-us'
     | '/faq'
@@ -1208,6 +1207,7 @@ export interface FileRouteTypes {
     | '/store/$slug'
     | '/admin/'
     | '/cart/'
+    | '/categories/'
     | '/reseller/'
     | '/admin/ach/customers'
     | '/admin/ach/financial'
@@ -1253,7 +1253,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AboutUsRoute: typeof AboutUsRoute
   AccountRoute: typeof AccountRoute
-  CategoriesRoute: typeof CategoriesRouteWithChildren
   ContactRoute: typeof ContactRoute
   ContactUsRoute: typeof ContactUsRoute
   FaqRoute: typeof FaqRoute
@@ -1295,6 +1294,7 @@ export interface RootRouteChildren {
   ApiSyncRoute: typeof ApiSyncRoute
   CartLoginRoute: typeof CartLoginRoute
   CartRegisterRoute: typeof CartRegisterRoute
+  CategoriesSlugRoute: typeof CategoriesSlugRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ResellerSplatRoute: typeof ResellerSplatRoute
   ResellerAdBoostRoute: typeof ResellerAdBoostRoute
@@ -1311,6 +1311,7 @@ export interface RootRouteChildren {
   StoreSlugRoute: typeof StoreSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   CartIndexRoute: typeof CartIndexRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
   ResellerIndexRoute: typeof ResellerIndexRoute
   AdminAchCustomersRoute: typeof AdminAchCustomersRoute
   AdminAchFinancialRoute: typeof AdminAchFinancialRoute
@@ -1378,13 +1379,6 @@ declare module '@tanstack/react-router' {
       path: '/account'
       fullPath: '/account'
       preLoaderRoute: typeof AccountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/categories': {
-      id: '/categories'
-      path: '/categories'
-      fullPath: '/categories'
-      preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1688,12 +1682,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories/'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/$slug': {
       id: '/categories/$slug'
-      path: '/$slug'
+      path: '/categories/$slug'
       fullPath: '/categories/$slug'
       preLoaderRoute: typeof CategoriesSlugRouteImport
-      parentRoute: typeof CategoriesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/products/$id': {
       id: '/products/$id'
@@ -2062,18 +2063,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface CategoriesRouteChildren {
-  CategoriesSlugRoute: typeof CategoriesSlugRoute
-}
-
-const CategoriesRouteChildren: CategoriesRouteChildren = {
-  CategoriesSlugRoute: CategoriesSlugRoute,
-}
-
-const CategoriesRouteWithChildren = CategoriesRoute._addFileChildren(
-  CategoriesRouteChildren,
-)
-
 interface AdminSystemRouteChildren {
   AdminSystemSessionsRoute: typeof AdminSystemSessionsRoute
 }
@@ -2091,7 +2080,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AboutUsRoute: AboutUsRoute,
   AccountRoute: AccountRoute,
-  CategoriesRoute: CategoriesRouteWithChildren,
   ContactRoute: ContactRoute,
   ContactUsRoute: ContactUsRoute,
   FaqRoute: FaqRoute,
@@ -2133,6 +2121,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSyncRoute: ApiSyncRoute,
   CartLoginRoute: CartLoginRoute,
   CartRegisterRoute: CartRegisterRoute,
+  CategoriesSlugRoute: CategoriesSlugRoute,
   ProductsIdRoute: ProductsIdRoute,
   ResellerSplatRoute: ResellerSplatRoute,
   ResellerAdBoostRoute: ResellerAdBoostRoute,
@@ -2149,6 +2138,7 @@ const rootRouteChildren: RootRouteChildren = {
   StoreSlugRoute: StoreSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   CartIndexRoute: CartIndexRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
   ResellerIndexRoute: ResellerIndexRoute,
   AdminAchCustomersRoute: AdminAchCustomersRoute,
   AdminAchFinancialRoute: AdminAchFinancialRoute,

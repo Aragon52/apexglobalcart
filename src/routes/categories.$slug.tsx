@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import CategoryDetail from "@/pages/CategoryDetail";
 
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/categories/$slug")({
     const name = categoryName(params.slug);
     const title = `${name} — Shop deals & new arrivals | Apex Global Cart`;
     const description = `Shop top rated ${name.toLowerCase()} products, new arrivals and special promotions from verified reseller stores on Apex Global Cart.`;
-    return {
+    return withPageSeo(`/categories/${params.slug}`, {
       meta: [
         { title },
         { name: "description", content: description },
@@ -36,7 +37,7 @@ export const Route = createFileRoute("/categories/$slug")({
           }),
         },
       ],
-    };
+    });
   },
   component: CategoriesSlugRoutePage,
 });

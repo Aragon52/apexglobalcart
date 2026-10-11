@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import ShippingPolicy from "@/pages/ShippingPolicy";
 
 export const Route = createFileRoute("/shipping-policy")({
-  head: () => ({
+  head: () => withPageSeo("/shipping-policy", {
     meta: [
       { title: "Shipping Policy | Apex Global Cart" },
       { name: "description", content: "Learn how Apex Global Cart shipping, delivery estimates, customs, and delivery support work." },

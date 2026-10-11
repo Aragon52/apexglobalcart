@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import FAQ from "@/pages/FAQ";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({
+  head: () => withPageSeo("/faq", {
     meta: [
       { title: "FAQ & Trust Center | Apex Global Cart Online Shop" },
       { name: "description", content: "Frequently asked questions about Apex Global Cart payment security, buyer protection, shipping, and seller verification." },
