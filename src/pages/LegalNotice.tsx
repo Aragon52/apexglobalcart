@@ -8,10 +8,10 @@ export default function LegalNotice() {
       <SEO
         title="Legal Notice & Demo Project Disclosure - Apex Global Cart"
         description="Official legal disclosures, corporate identification, demonstration project scope, and investor presentation terms for Apex Global Cart International Pte. Ltd."
-        canonical="https://apexglobalonlineshop.com/legal"
+        canonical="https://apexglobalonlineshop.com/legal-notice"
         breadcrumbs={[
           { name: "Home", item: "/" },
-          { name: "Legal Notice", item: "/legal" },
+          { name: "Legal Notice", item: "/legal-notice" },
         ]}
       />
 
