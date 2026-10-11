@@ -10,7 +10,6 @@ export interface OwnerActiveSession {
 }
 
 const SETTING_KEY = "ownership_active_sessions";
-const MAX_SIMULTANEOUS_SESSIONS = 2;
 // 10 minutes timeout for inactive sessions
 const SESSION_STALE_TIMEOUT_MS = 10 * 60 * 1000;
 
@@ -110,7 +109,7 @@ async function saveActiveOwnerSessions(sessions: OwnerActiveSession[]): Promise<
 
 /**
  * Verify and register a login attempt for the Ownership account.
- * Enforces maximum 2 simultaneous device sessions.
+ * Tracks the Ownership account's device sessions (no device limit).
  */
 export async function registerOwnerLoginSession(): Promise<{
   success: boolean;
@@ -141,16 +140,6 @@ export async function registerOwnerLoginSession(): Promise<{
       return {
         success: true,
         sessionId: refreshedSession.sessionId,
-        activeSessions: currentSessions,
-      };
-    }
-
-    // New device attempting to log in - check if limit of 2 is reached
-    if (currentSessions.length >= MAX_SIMULTANEOUS_SESSIONS) {
-      console.warn(`[OWNER_SESSION] Login blocked: ${currentSessions.length}/${MAX_SIMULTANEOUS_SESSIONS} active sessions already in use.`);
-      return {
-        success: false,
-        message: `Ownership login blocked: Maximum of ${MAX_SIMULTANEOUS_SESSIONS} simultaneous device sessions allowed. There are already ${currentSessions.length} active sessions on other devices. Please log out from another device to sign in here.`,
         activeSessions: currentSessions,
       };
     }

@@ -338,19 +338,6 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
           return { success: false, message: sbAuthErr?.message.includes("Failed to fetch") ? sbAuthErr.message : "Invalid credentials for ownership account." };
         }
 
-        // Enforce maximum 2 simultaneous login sessions for Ownership account
-        // Strict rule: a slot frees only when a device taps "Log out" (its sign-in is revoked).
-        const { data: otherSessions, error: sessionCountErr } = await supabase.rpc("count_other_active_sessions");
-        if (sessionCountErr || Number(otherSessions ?? 0) >= 2) {
-          await supabase.auth.signOut({ scope: "local" });
-          localStorage.removeItem("gcos_admin_session");
-          setSession(null);
-          return {
-            success: false,
-            message: "Access denied: Maximum device limit (2) reached. To protect this account from unauthorized access, new logins are blocked. Please log out from one of your authorized devices first."
-          };
-        }
-
         const ownerUid = ownerAuth.user.id;
         const ownerSession: AdminSession = {
           name: "System Owner",
