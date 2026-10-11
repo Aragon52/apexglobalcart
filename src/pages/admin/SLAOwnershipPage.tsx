@@ -196,7 +196,7 @@ export default function SLAOwnershipPage() {
         </div>
 
         <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
-          The Ownership account enforces a strict security policy allowing a <span className="font-medium text-foreground">maximum of 2 simultaneous active login sessions</span>. If 2 devices are already active, any 3rd device will be blocked until one of the active sessions is logged out or terminated below.
+          These are the devices currently signed in to the Ownership account. If you don't recognise a device, sign it out below.
         </p>
 
         {activeSessions.length === 0 ? (
