@@ -171,7 +171,7 @@ export default function SLAOwnershipPage() {
         </div>
       </div>
 
-      {/* Simultaneous Device Sessions Management (Max 2 Allowed) */}
+      {/* Simultaneous Device Sessions Management  */}
       <div className="rounded-lg border border-border bg-card p-5 shadow-theme-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
           <div className="flex items-center gap-2">
@@ -182,7 +182,7 @@ export default function SLAOwnershipPage() {
                 ? "bg-amber-500/10 text-amber-600 border border-amber-500/20" 
                 : "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20"
             }`}>
-              {activeSessions.length} / 2 Active Devices
+              {activeSessions.length} active {activeSessions.length === 1 ? "device" : "devices"}
             </span>
           </div>
           <button
@@ -196,7 +196,7 @@ export default function SLAOwnershipPage() {
         </div>
 
         <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
-          The Ownership account enforces a strict security policy allowing a <span className="font-medium text-foreground">maximum of 2 simultaneous active login sessions</span>. If 2 devices are already active, any 3rd device will be blocked until one of the active sessions is logged out or terminated below.
+          These are the devices currently signed in to the Ownership account. If you don't recognise a device, sign it out below.
         </p>
 
         {activeSessions.length === 0 ? (
