@@ -30,7 +30,21 @@ export const getStoreSeo = createServerFn({ method: "GET" })
     try {
       const { data: rows } = await client.rpc("get_public_reseller_profile", { _key: data.slug });
       const row = Array.isArray(rows) ? rows[0] : null;
-      if (!row?.shop_name) return null;
+      if (!row?.shop_name) {
+        const { data: shop } = await client
+          .from("retail_shops")
+          .select("shop_name, shop_logo, shop_hero_banner, level, star_rating, is_suspended")
+          .eq("shop_slug", data.slug)
+          .maybeSingle();
+        if (!shop?.shop_name || shop.is_suspended) return null;
+        return {
+          shopName: shop.shop_name,
+          logo: shop.shop_logo ?? null,
+          banner: shop.shop_hero_banner ?? null,
+          level: shop.level ?? null,
+          rating: shop.star_rating != null ? Number(shop.star_rating) : null,
+        };
+      }
       return {
         shopName: row.shop_name,
         logo: row.shop_logo ?? null,

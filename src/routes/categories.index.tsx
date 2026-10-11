@@ -3,7 +3,7 @@ import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import Categories from "@/pages/Categories";
 
-export const Route = createFileRoute("/categories")({
+export const Route = createFileRoute("/categories/")({
   head: () => withPageSeo("/categories", {
     meta: [
       { title: "Browse Product Categories | Apex Global Cart" },
