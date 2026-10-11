@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import LegalNotice from "@/pages/LegalNotice";
 
 export const Route = createFileRoute("/legal-notice")({
-  head: () => ({
+  head: () => withPageSeo("/legal-notice", {
     meta: [
       { title: "Legal Notice & Corporate Impressum | Apex Global Cart Online Shop" },
       { name: "description", content: "Corporate registration, ACRA UEN, Tax ID, and legal representative info for Apex Global Cart International Pte. Ltd." },

@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import TermsOfService from "@/pages/TermsOfService";
 
 export const Route = createFileRoute("/terms-of-service")({
-  head: () => ({
+  head: () => withPageSeo("/terms-of-service", {
     meta: [
       { title: "Terms of Service | Apex Global Cart Online Shop" },
       { name: "description", content: "Terms of service, buyer protection rules, and merchant guidelines for Apex Global Cart International Pte. Ltd." },

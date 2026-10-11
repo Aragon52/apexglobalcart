@@ -1,19 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainLayout from "@/components/layout/MainLayout";
-import TermsOfService from "@/pages/TermsOfService";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Duplicate address: send visitors and crawlers to the main page.
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service | Apex Global Cart Online Shop" },
-      { name: "description", content: "Terms of service, buyer protection rules, and merchant guidelines for Apex Global Cart International Pte. Ltd." },
-      { property: "og:title", content: "Terms of Service | Apex Global Cart Online Shop" },
-      { property: "og:description", content: "User terms of service, merchant policies, and buyer guarantees at Apex Global Cart." },
-    ],
-  }),
-  component: () => (
-    <MainLayout>
-      <TermsOfService />
-    </MainLayout>
-  ),
+  beforeLoad: () => {
+    throw redirect({ to: "/terms-of-service", statusCode: 301 });
+  },
 });
