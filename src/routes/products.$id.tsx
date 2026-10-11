@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withPageSeo } from "@/lib/page-seo";
 import MainLayout from "@/components/layout/MainLayout";
 import ProductDetail from "@/pages/ProductDetail";
 import { getProductSeo } from "@/lib/product-seo.functions";
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/products/$id")({
       return { product: null };
     }
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     const p = loaderData?.product ?? null;
     const title = p ? `${p.name} | ${SITE}` : `Product details & customer reviews | ${SITE}`;
     const summary = p?.description
@@ -62,7 +63,7 @@ export const Route = createFileRoute("/products/$id")({
         ]
       : [];
 
-    return { meta, scripts };
+    return withPageSeo(`/products/${params.id}`, { meta, scripts }, image ?? undefined);
   },
   component: ProductsIdRoutePage,
 });
