@@ -91,12 +91,29 @@ export default function ResellerDashboard() {
   const displayTotalOrders = orderCounts.total || reseller?.totalOrders || 0;
   const displayCompletedOrders = orderCounts.completed || 0;
 
-  // Generate a pseudo-random weekly visit count (adjustable from admin)
+  // Visitor count scales with VIP level and only changes once per hour (stable per shop + hour)
+  const [hourIndex, setHourIndex] = useState(() => Math.floor(Date.now() / 3_600_000));
+  useEffect(() => {
+    const msToNextHour = 3_600_000 - (Date.now() % 3_600_000);
+    const timeout = setTimeout(() => setHourIndex(Math.floor(Date.now() / 3_600_000)), msToNextHour + 1000);
+    return () => clearTimeout(timeout);
+  }, [hourIndex]);
+
   const weeklyVisits = useMemo(() => {
-    const base = reseller ? (displayTotalOrders * 3 + 120) : 200;
-    const jitter = Math.floor(Math.random() * 80) - 40;
-    return Math.max(50, base + jitter);
-  }, [reseller, displayTotalOrders]);
+    const ranges: Record<number, [number, number]> = {
+      0: [50, 120], 1: [120, 250], 2: [250, 500], 3: [500, 900], 4: [900, 1500], 5: [1500, 2500],
+    };
+    const lvl = LEVEL_BADGE_MAP[reseller?.level ?? "VIP-0"] ?? 0;
+    const [min, max] = ranges[lvl];
+    const seedStr = `${reseller?.id ?? "guest"}:${hourIndex}`;
+    let h = 2166136261;
+    for (let i = 0; i < seedStr.length; i++) {
+      h ^= seedStr.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    const ratio = ((h >>> 0) % 10000) / 10000;
+    return Math.round(min + ratio * (max - min));
+  }, [reseller?.id, reseller?.level, hourIndex]);
 
   // Derive verification status
   const verificationStatus = useMemo(() => {
