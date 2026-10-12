@@ -51,6 +51,8 @@ function hasPrefix(pathname: string, prefix: string): boolean {
 /** Request/address-bar URL -> internal router URL. */
 export function toInternalUrl({ url }: { url: URL }): URL | undefined {
   if (RESERVED_PATH.test(url.pathname)) return undefined;
+  // Public storefronts are served as-is on every host so shared shop links work for visitors.
+  if (hasPrefix(url.pathname, "/store")) return undefined;
 
   const prefix = portalPrefixForHost(url.hostname);
   if (!prefix) return undefined;
