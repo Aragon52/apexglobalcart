@@ -110,9 +110,9 @@ export default function ResellerShopCustomization() {
   if (!reseller) return null;
 
   const processLogoFile = async (file: File) => {
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > 25 * 1024 * 1024) {
       toast.error(t("common.fileTooLarge", { defaultValue: "File is too large" }), {
-        description: t("common.imageUnder5MB", { defaultValue: "Please choose an image under 5MB" }),
+        description: t("common.imageUnder5MB", { defaultValue: "Please choose an image under 25MB" }),
       });
       return;
     }
@@ -128,9 +128,9 @@ export default function ResellerShopCustomization() {
   };
 
   const processBannerFile = async (file: File) => {
-    if (file.size > 10 * 1024 * 1024) {
+    if (file.size > 25 * 1024 * 1024) {
       toast.error(t("common.fileTooLarge", { defaultValue: "File is too large" }), {
-        description: t("common.imageUnder10MB", { defaultValue: "Please choose an image under 10MB" }),
+        description: t("common.imageUnder10MB", { defaultValue: "Please choose an image under 25MB" }),
       });
       return;
     }
@@ -384,7 +384,7 @@ export default function ResellerShopCustomization() {
           <input
             ref={logoInputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/svg+xml"
+            accept="image/png,image/jpeg,image/webp,image/svg+xml,image/heic,image/heif,.heic,.heif"
             className="hidden"
             onClick={(e) => {
               (e.target as HTMLInputElement).value = "";
@@ -396,7 +396,7 @@ export default function ResellerShopCustomization() {
             {logoMode === "upload" ? (
               <div>
                 <p className="text-xs text-muted-foreground">
-                  {t("reseller.shopLogoDesc", { defaultValue: "Square image recommended (PNG, JPG, or SVG up to 5MB)." })}
+                  {t("reseller.shopLogoDesc", { defaultValue: "Square image recommended (PNG, JPG, HEIC or SVG up to 25MB)." })}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   <button
@@ -535,7 +535,7 @@ export default function ResellerShopCustomization() {
         <input
           ref={bannerInputRef}
           type="file"
-          accept="image/png,image/jpeg,image/webp"
+          accept="image/png,image/jpeg,image/webp,image/heic,image/heif,.heic,.heif"
           className="hidden"
           onClick={(e) => {
             (e.target as HTMLInputElement).value = "";
@@ -547,7 +547,7 @@ export default function ResellerShopCustomization() {
           <div className="flex items-center justify-between">
             <p className="text-xs text-muted-foreground">
               {t("reseller.heroBannerDesc", {
-                defaultValue: "Displays at the top of your public storefront (up to 10MB).",
+                defaultValue: "Displays at the top of your public storefront (JPG, PNG or HEIC up to 25MB).",
               })}
             </p>
             <div className="flex items-center gap-2">

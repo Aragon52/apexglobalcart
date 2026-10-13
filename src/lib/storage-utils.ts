@@ -79,6 +79,8 @@ export async function uploadResellerAsset(
   try {
     let preparedData: string | File = fileOrBase64;
     if (fileOrBase64 instanceof File) {
+      fileOrBase64 = await convertHeicIfNeeded(fileOrBase64);
+      preparedData = fileOrBase64;
       const compressed = await compressImageToBase64(fileOrBase64, maxDim);
       if (compressed) {
         preparedData = compressed;
@@ -186,4 +188,20 @@ export async function compressImageToBase64(file: File, maxDim = 1000): Promise<
     };
     reader.readAsDataURL(file);
   });
+}
+
+/** Converts HEIC/HEIF photos (iPhone) to JPEG so every browser can display them. */
+export async function convertHeicIfNeeded(file: File): Promise<File> {
+  const name = file.name.toLowerCase();
+  const isHeic = /image\/hei[cf]/.test(file.type) || name.endsWith(".heic") || name.endsWith(".heif");
+  if (!isHeic) return file;
+  try {
+    const { default: heic2any } = await import("heic2any");
+    const out = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.85 });
+    const blob = Array.isArray(out) ? out[0] : out;
+    return new File([blob], name.replace(/\.hei[cf]$/, ".jpg"), { type: "image/jpeg" });
+  } catch (err) {
+    console.warn("[HEIC] Conversion failed, uploading original:", err);
+    return file;
+  }
 }
