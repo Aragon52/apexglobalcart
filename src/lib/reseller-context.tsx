@@ -188,15 +188,19 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, sbSession) => {
       console.log(`[RESELLER] onAuthStateChange event: ${event}, session: ${!!sbSession}`);
       if (event === 'INITIAL_SESSION') return; // Ignore initial to avoid race condition with getSession
+      // Token refreshes happen hourly and on tab focus; they don't change who is signed in.
+      if (event === 'TOKEN_REFRESHED') return;
       
       const user = sbSession?.user;
       
       if (user) {
+        const sameUser = currentUserRef.current === user.id;
         currentUserRef.current = user.id;
         setupRealtimeChannels(user.id);
         
         try {
-          await fetchProfile(user.id, user.email || '');
+          // Refresh silently for an already-loaded user so the page doesn't blank out or flash
+          await fetchProfile(user.id, user.email || '', false, sameUser);
         } catch (error) {
           console.error("[RESELLER] Failed to fetch profile inside onAuthStateChange", error);
         }
@@ -264,6 +268,14 @@ export function ResellerProvider({ children }: { children: React.ReactNode }) {
           supabase.from('reseller_product_selection').select('product_id').eq('reseller_id', userId),
           supabase.from('orders').select('id,profit,profits,status,total_amount,total_cost').eq('reseller_id', userId),
         ]);
+
+        // A timeout or network error is not the same as "account missing": keep the current session
+        if (userRes.error && userRes.error.code !== 'PGRST116') {
+          throw new Error(`Transient profile load failure: ${userRes.error.message}`);
+        }
+        if (profileRes.error) {
+          throw new Error(`Transient profile load failure: ${profileRes.error.message}`);
+        }
 
         let userData = userRes.data;
         let profileData = profileRes.data;
