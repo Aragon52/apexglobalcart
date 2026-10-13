@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FileText, ArrowDownToLine, ArrowUpFromLine, Clock, CheckCircle2, XCircle, ChevronRight } from "lucide-react";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { supabase } from "@/lib/supabase";
@@ -44,6 +44,8 @@ export default function FinancialStatementsSheet() {
   const [filter, setFilter] = useState<FilterType>("all");
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(false);
+  const resellerId = reseller?.id;
+  const hasLoaded = useRef(false);
 
   const statusConfig = {
     pending: { icon: Clock, label: t("reseller.pending"), className: "text-yellow-500 bg-yellow-500/10" },
@@ -53,15 +55,16 @@ export default function FinancialStatementsSheet() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      if (!reseller || !open) return;
-      setLoading(true);
+      if (!resellerId || !open) return;
+      // Only show the spinner on the first load to avoid flashing on background refreshes
+      setLoading((prev) => prev || !hasLoaded.current);
       try {
         const [
           { data: depositSnap = [] },
           { data: withdrawalSnap = [] }
         ] = await Promise.all([
-          supabase.from("deposit_requests").select("*").eq("resellerDocId", reseller.id).order("createdAt", { ascending: false }),
-          supabase.from("withdrawal_requests").select("*").eq("resellerDocId", reseller.id).order("createdAt", { ascending: false })
+          supabase.from("deposit_requests").select("*").eq("resellerDocId", resellerId).order("createdAt", { ascending: false }),
+          supabase.from("withdrawal_requests").select("*").eq("resellerDocId", resellerId).order("createdAt", { ascending: false })
         ]);
 
         const deposits: Transaction[] = (depositSnap || []).map(data => ({
@@ -86,6 +89,7 @@ export default function FinancialStatementsSheet() {
           new Date(b.date).getTime() - new Date(a.date).getTime()
         );
         setTransactions(all);
+        hasLoaded.current = true;
       } catch (error) {
         console.error("Error fetching transactions:", error);
       } finally {
@@ -94,7 +98,7 @@ export default function FinancialStatementsSheet() {
     };
 
     fetchTransactions();
-  }, [reseller, open]);
+  }, [resellerId, open]);
 
   const filtered = transactions.filter(
     (t) => filter === "all" || t.type === filter
