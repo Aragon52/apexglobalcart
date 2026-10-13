@@ -71,7 +71,7 @@ export default function ProfileSettingsSheet({ open: controlledOpen, onOpenChang
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > 25 * 1024 * 1024) {
       toast({ title: t("reseller.fileTooLarge"), description: t("reseller.selectImageUnder5MB"), variant: "destructive" });
       return;
     }
@@ -209,7 +209,7 @@ export default function ProfileSettingsSheet({ open: controlledOpen, onOpenChang
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/png,image/jpeg,image/webp"
+                accept="image/png,image/jpeg,image/webp,image/heic,image/heif,.heic,.heif"
                 className="hidden"
                 onChange={handleImageUpload}
               />
