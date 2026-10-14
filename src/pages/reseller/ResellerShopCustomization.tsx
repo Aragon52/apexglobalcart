@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "@/lib/router-compat";
 import { useReseller, type StoreTheme } from "@/lib/reseller-context-hooks";
 import { toast } from "sonner";
-import { compressImageToBase64, uploadResellerAsset } from "@/lib/storage-utils";
+import { RESELLER_IMAGE_MAX_BYTES, uploadResellerAsset } from "@/lib/storage-utils";
 import { getStorefrontUrl, resellerPath } from "@/lib/subdomain";
 import {
   Save,
@@ -109,41 +109,37 @@ export default function ResellerShopCustomization() {
 
   if (!reseller) return null;
 
-  const processLogoFile = async (file: File) => {
-    if (file.size > 25 * 1024 * 1024) {
+  // Uploads the image at full quality and saves it to the shop straight away,
+  // so the change is never lost if the reseller forgets to press save.
+  const processImageFile = async (file: File, kind: "logo" | "banner") => {
+    if (file.size > RESELLER_IMAGE_MAX_BYTES) {
       toast.error(t("common.fileTooLarge", { defaultValue: "File is too large" }), {
-        description: t("common.imageUnder5MB", { defaultValue: "Please choose an image under 25MB" }),
+        description: "Please choose an image under 50MB",
       });
       return;
     }
-    const uploadedUrl = await uploadResellerAsset(reseller.id, "logo", file, 600);
-    if (uploadedUrl) {
-      setLogoPreview(uploadedUrl);
-      toast.success(t("reseller.logoSelected", { defaultValue: "Logo selected. Click 'Save Shop Decoration' to publish." }));
-    } else {
-      toast.error(t("common.error", { defaultValue: "Error" }), {
-        description: t("common.failedToProcessImage", { defaultValue: "Failed to process image" }),
+    const toastId = toast.loading(kind === "logo" ? "Uploading logo…" : "Uploading banner…");
+    try {
+      const uploadedUrl = await uploadResellerAsset(reseller.id, kind, file);
+      if (kind === "logo") {
+        setLogoPreview(uploadedUrl);
+        await updateProfile({ shopLogo: uploadedUrl });
+      } else {
+        setBannerPreview(uploadedUrl);
+        await updateProfile({ shopHeroBanner: uploadedUrl });
+      }
+      toast.success(kind === "logo" ? "Shop logo saved" : "Shop banner saved", { id: toastId });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Please try again.";
+      toast.error(kind === "logo" ? "Couldn't save your logo" : "Couldn't save your banner", {
+        id: toastId,
+        description: message,
       });
     }
   };
 
-  const processBannerFile = async (file: File) => {
-    if (file.size > 25 * 1024 * 1024) {
-      toast.error(t("common.fileTooLarge", { defaultValue: "File is too large" }), {
-        description: t("common.imageUnder10MB", { defaultValue: "Please choose an image under 25MB" }),
-      });
-      return;
-    }
-    const uploadedUrl = await uploadResellerAsset(reseller.id, "banner", file, 1200);
-    if (uploadedUrl) {
-      setBannerPreview(uploadedUrl);
-      toast.success(t("reseller.bannerSelected", { defaultValue: "Banner selected. Click 'Save Shop Decoration' to publish." }));
-    } else {
-      toast.error(t("common.error", { defaultValue: "Error" }), {
-        description: t("common.failedToProcessImage", { defaultValue: "Failed to process image" }),
-      });
-    }
-  };
+  const processLogoFile = (file: File) => processImageFile(file, "logo");
+  const processBannerFile = (file: File) => processImageFile(file, "banner");
 
   const handleLogoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

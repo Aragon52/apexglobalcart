@@ -60,49 +60,46 @@ export async function uploadImage(path: string, data: string | File): Promise<st
   return publicUrlData.publicUrl;
 }
 
+/** Largest image a reseller may upload for logo, banner or profile picture. */
+export const RESELLER_IMAGE_MAX_BYTES = 50 * 1024 * 1024;
+
+function extensionFor(file: File): string {
+  const fromName = file.name.split(".").pop()?.toLowerCase();
+  if (fromName && /^[a-z0-9]{2,5}$/.test(fromName)) return fromName;
+  const fromType = file.type.split("/")[1]?.replace("svg+xml", "svg").replace("jpeg", "jpg");
+  return fromType || "jpg";
+}
+
 /**
- * Uploads a reseller image asset (avatar, logo, or banner) to Supabase Storage,
- * compressing it first if needed and returning a public CDN URL.
- * Falls back to optimized compressed base64 if storage is unavailable.
+ * Uploads a reseller image asset (avatar, logo, or banner) to storage at its
+ * original quality and returns the public URL. iPhone HEIC photos are converted
+ * to JPEG so every browser can show them; nothing else is resized or compressed.
+ * Throws a readable error if the upload fails, so the caller can tell the user.
  */
 export async function uploadResellerAsset(
   userId: string,
   assetType: "avatar" | "logo" | "banner",
   fileOrBase64: File | string,
-  maxDim = 1200
+  _maxDim = 0
 ): Promise<string> {
-  // If already an HTTP/HTTPS URL, return as-is
-  if (typeof fileOrBase64 === "string" && fileOrBase64.startsWith("http")) {
-    return fileOrBase64;
+  if (typeof fileOrBase64 === "string") {
+    if (fileOrBase64.startsWith("http")) return fileOrBase64;
+    const ext = fileOrBase64.match(/^data:image\/([a-z0-9+]+)/)?.[1]?.replace("svg+xml", "svg").replace("jpeg", "jpg") || "jpg";
+    return uploadImage(`resellers/${userId || "anonymous"}/${assetType}_${Date.now()}.${ext}`, fileOrBase64);
   }
 
-  try {
-    let preparedData: string | File = fileOrBase64;
-    if (fileOrBase64 instanceof File) {
-      fileOrBase64 = await convertHeicIfNeeded(fileOrBase64);
-      preparedData = fileOrBase64;
-      const compressed = await compressImageToBase64(fileOrBase64, maxDim);
-      if (compressed) {
-        preparedData = compressed;
-      }
-    }
+  const file = await convertHeicIfNeeded(fileOrBase64);
+  const filePath = `resellers/${userId || "anonymous"}/${assetType}_${Date.now()}.${extensionFor(file)}`;
 
-    const cleanId = userId || "anonymous";
-    const timestamp = Date.now();
-    const filePath = `resellers/${cleanId}/${assetType}_${timestamp}.jpg`;
-
-    const publicUrl = await uploadImage(filePath, preparedData);
-    if (publicUrl && publicUrl.startsWith("http")) {
-      return publicUrl;
-    }
-  } catch (err) {
-    console.warn(`[STORAGE] Storage upload error for ${assetType}, using base64 fallback:`, err);
+  const { error } = await supabase.storage.from("uploads").upload(filePath, file, {
+    upsert: true,
+    contentType: file.type || "image/jpeg",
+    cacheControl: "3600",
+  });
+  if (error) {
+    throw new Error(error.message || "Upload failed. Please check your connection and try again.");
   }
-
-  // Fallback to base64
-  if (typeof fileOrBase64 === "string") return fileOrBase64;
-  const fallback = await compressImageToBase64(fileOrBase64, Math.min(maxDim, 600));
-  return fallback || "";
+  return supabase.storage.from("uploads").getPublicUrl(filePath).data.publicUrl;
 }
 
 /**
