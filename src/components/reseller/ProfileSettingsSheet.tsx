@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useReseller } from "@/lib/reseller-context-hooks";
 import { useToast } from "@/hooks/use-toast";
-import { compressImageToBase64, uploadResellerAsset } from "@/lib/storage-utils";
+import { RESELLER_IMAGE_MAX_BYTES, uploadResellerAsset } from "@/lib/storage-utils";
 import { useTranslation } from "react-i18next";
 import {
   Sheet,
@@ -71,14 +71,14 @@ export default function ProfileSettingsSheet({ open: controlledOpen, onOpenChang
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 25 * 1024 * 1024) {
-      toast({ title: t("reseller.fileTooLarge"), description: t("reseller.selectImageUnder5MB"), variant: "destructive" });
+    if (file.size > RESELLER_IMAGE_MAX_BYTES) {
+      toast({ title: t("reseller.fileTooLarge"), description: "Please choose an image under 50MB", variant: "destructive" });
       return;
     }
     
     setIsUpdating(true);
     try {
-      const uploadedUrl = await uploadResellerAsset(reseller.id, "avatar", file, 400);
+      const uploadedUrl = await uploadResellerAsset(reseller.id, "avatar", file);
       if (uploadedUrl) {
         setPreviewUrl(uploadedUrl);
         await updateProfile({
