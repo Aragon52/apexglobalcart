@@ -392,7 +392,7 @@ export default function ResellerShopCustomization() {
             {logoMode === "upload" ? (
               <div>
                 <p className="text-xs text-muted-foreground">
-                  {t("reseller.shopLogoDesc", { defaultValue: "Square image recommended (PNG, JPG, HEIC or SVG up to 25MB)." })}
+                  {t("reseller.shopLogoDesc", { defaultValue: "Square image recommended (PNG, JPG, HEIC or SVG up to 50MB)." })}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   <button
@@ -543,7 +543,7 @@ export default function ResellerShopCustomization() {
           <div className="flex items-center justify-between">
             <p className="text-xs text-muted-foreground">
               {t("reseller.heroBannerDesc", {
-                defaultValue: "Displays at the top of your public storefront (JPG, PNG or HEIC up to 25MB).",
+                defaultValue: "Displays at the top of your public storefront (JPG, PNG or HEIC up to 50MB).",
               })}
             </p>
             <div className="flex items-center gap-2">
